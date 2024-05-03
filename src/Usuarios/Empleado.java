@@ -13,5 +13,10 @@ public class Empleado extends Persona{
         //this.rol = Empleado;
     }
 
+    @Override
+    public String toString(){
+        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString(), salario); //me falta la fecha en formato
+    }
+
 
 }

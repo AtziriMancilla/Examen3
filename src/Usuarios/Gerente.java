@@ -9,7 +9,12 @@ public class Gerente extends Empleado{
             super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, RFC, contrasena, fechaInicio, salario);
             this.contrasenaSistema= contrasenaSistema;
     }
-    public void verInversiones (){
+
+    @Override
+    public String toString(){
+        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString()); //me falta la fecha en formato
+    }
+    public static void verInversiones (){
 
     }
 }

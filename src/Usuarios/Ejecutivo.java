@@ -8,19 +8,24 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
     super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, RFC, contrasena, fechaInicio, salario);
 }
 
-    public void darDeAltaCliente(){
+    @Override
+    public String toString(){
+        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString()); //me falta la fecha en formato
+    }
+
+    public static void darDeAltaCliente(){
 
     }
-    public void autorizarTarjeta(){
+    public static void autorizarTarjeta(){
 
     }
-    public void registrarEjecutivo(){
+    public static void registrarEjecutivo(){
 
     }
-    public void modificarEjecutivo(){
+    public static void modificarEjecutivo(){
 
     }
-    public void eliminarEjecutivo(){
+    public static void eliminarEjecutivo(){
 
     }
 }
