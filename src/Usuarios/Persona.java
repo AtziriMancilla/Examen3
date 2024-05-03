@@ -8,7 +8,7 @@ public class Persona {
     private String ciudad;
     private String estado;
     private String curp;
-    private String dirección;
+    private String direccion;
     private int anioNacimiento;
     private String RFC;
     //private Sucursal sucursal;
