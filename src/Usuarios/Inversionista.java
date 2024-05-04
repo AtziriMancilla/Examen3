@@ -10,7 +10,9 @@ public class Inversionista extends Persona{
     public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, String RFC, String contrasena) {
         super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, RFC, contrasena);
     }
-
+    public ArrayList<Inversion> getInversiones() {
+        return inversiones;
+    }
     public static void registrarInversionista(){
 
     }
