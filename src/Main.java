@@ -1,3 +1,5 @@
+import Banco.Tarjetas.TarjetaCredito;
+import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
 
 import java.time.LocalDate;
@@ -15,11 +17,25 @@ public class Main {
         char sexo = 'H';
         String estado = "Michoacán";
         RFC = Generador.generarRFC(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
-        System.out.println(RFC);
+        System.out.println("RFC: " + RFC);
+        System.out.println();
         String CURP = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento,sexo,estado);
-        System.out.println(CURP);
-        int clave = 5073;
-        String numero = Generador.generarTarjeta(clave);
-        System.out.println(numero);
+        System.out.println("CURP: " + CURP);
+        System.out.println();
+        int claveDebito = 5073;
+        int claveCredito = 4072;
+        TarjetaDebito tarjetaDebito = new TarjetaDebito(claveDebito);
+        System.out.println("\tTarjeta de débito:");
+        System.out.println(tarjetaDebito.toString());
+        System.out.println();
+        System.out.println("\tTarjetas de Crédito:");
+        TarjetaCredito tarjeta = new TarjetaCredito(claveCredito,60000);
+        System.out.println(tarjeta.toString());
+        System.out.println();
+        TarjetaCredito tarjeta2 = new TarjetaCredito(claveCredito,150000);
+        System.out.println(tarjeta2.toString());
+        System.out.println();
+        TarjetaCredito tarjeta3 = new TarjetaCredito(claveCredito,400000);
+        System.out.println(tarjeta3.toString());
     }
 }
