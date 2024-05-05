@@ -1,6 +1,6 @@
 package Banco.utils;
 
-import Banco.Tarjeta;
+import Banco.Tarjetas.TarjetaCredito;
 
 import java.time.LocalDate;
 
