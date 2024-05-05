@@ -12,9 +12,11 @@ public class Main {
         apellidoPaterno = "Santoyo";
         apellidoMaterno = "Benites";
         LocalDate fechaNacimiento = LocalDate.of(1997, 1, 30);
+        char sexo = 'H';
+        String estado = "Michoacán";
         RFC = Generador.generarRFC(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
         System.out.println(RFC);
-        String CURP = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
+        String CURP = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento,sexo,estado);
         System.out.println(CURP);
     }
 }
