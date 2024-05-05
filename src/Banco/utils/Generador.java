@@ -2,23 +2,29 @@ package Banco.utils;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Generador {
-    private static String tarjetas;
+    //ArrayLists para las tarjetas de crédito y débito.
+    private static ArrayList<String> tarjetas = new ArrayList<>();
     //En este método, se solicita como parámetro la clave que usará cada sucursal para sus tarjetas, que conforma los primeros 4 dígitos del plástico. Ejemplo: clave = 5073.
     public static String generarTarjeta(int clave) {
+        boolean flag = true;//Variable para el ciclo que validará si ya hay un número igual existente.
         Random r = new Random();
-        String campo1 = Integer.toString(clave);//Se convierte la clave a tipo String.
-        String campo2 = Integer.toString(r.nextInt(1000,9999));//Se generan números aleatorios en grupos de 4 dígitos.
-        String campo3 = Integer.toString(r.nextInt(1000,9999));
-        String campo4 = Integer.toString(r.nextInt(1000,9999));
-        tarjetas = campo1 + " " + campo2 + " " + campo3 + " " + campo4;//Se concatenan los datos y se agregan espacios para mejor organización del número.
-        return tarjetas;
-    }
-
-    public static boolean validarTarjeta() {
-        return false;
+        String numeroTarjeta;
+        do{//Una vez que se genera el número de la tarjeta, validará si ya hay uno igual existente. Si no es así, guardará el nuevo número en la arraylist y luego lo retornará.
+            String campo1 = Integer.toString(clave);//Se convierte la clave a tipo String.
+            String campo2 = String.format("%04d",r.nextInt(10000));//Se generan números aleatorios en grupos de 4 dígitos.
+            String campo3 = String.format("%04d",r.nextInt(10000));
+            String campo4 = String.format("%04d",r.nextInt(10000));
+            numeroTarjeta = campo1 + " " + campo2 + " " + campo3 + " " + campo4;//Se concatenan los datos y se agregan espacios para mejor organización del número.
+            if (!tarjetas.contains(numeroTarjeta)) {
+                tarjetas.add(numeroTarjeta);
+                flag = false;
+            }
+        }while(flag);
+        return numeroTarjeta;
     }
 
     public static String generarRFC(String nombre, String apellidoPaterno, String apellidoMaterno, LocalDate fechaNacimiento) {
