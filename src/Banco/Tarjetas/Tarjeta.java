@@ -3,6 +3,7 @@ package Banco.Tarjetas;
 import Banco.utils.Generador;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
@@ -12,7 +13,7 @@ public class Tarjeta {
     private LocalDate fechaCreacion;
     private String clabeInterbancaria;
     private LocalDate fechaVencimiento;
-    private LocalDate fechaHoraUltimoMov;
+    private LocalDateTime fechaHoraUltimoMov;
 
     public Tarjeta(int clave) {
         this.numeroTarjeta = generarTarjeta(clave);
@@ -48,11 +49,11 @@ public class Tarjeta {
         return clabeInterbancaria;
     }
     //Getters y setters
-    private LocalDate getFechaHoraUltimoMov() {
+    private LocalDateTime getFechaHoraUltimoMov() {
         return fechaHoraUltimoMov;
     }
 
-    private void setFechaHoraUltimoMov(LocalDate fechaHoraUltimoMov) {
+    public void setFechaHoraUltimoMov(LocalDateTime fechaHoraUltimoMov) {
         this.fechaHoraUltimoMov = fechaHoraUltimoMov;
     }
 
@@ -85,15 +86,9 @@ public class Tarjeta {
         return String.format("Núm.Tarjeta: %s\nFecha de Creación: %s\nFecha de Vencimiento: %s",numeroTarjeta,fechaC,fechaVen);
     }
 
-    private boolean simplicity(double saldo) {
-        return false;
-    }
-
-    private boolean platino() {
-        return false;
-    }
-
-    private boolean oro() {
-        return false;
+    public String fechaUltimoMov() {
+        DateTimeFormatter formatoFechaM = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");
+        String fechaM = formatoFechaM.format(fechaHoraUltimoMov);
+        return String.format("Último movimiento: %s",fechaM);
     }
 }
