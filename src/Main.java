@@ -18,5 +18,8 @@ public class Main {
         System.out.println(RFC);
         String CURP = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento,sexo,estado);
         System.out.println(CURP);
+        int clave = 5073;
+        String numero = Generador.generarTarjeta(clave);
+        System.out.println(numero);
     }
 }

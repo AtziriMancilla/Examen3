@@ -5,10 +5,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class Generador {
-    private long tarjetas;
-
-    public static void generarTarjeta() {
-
+    private static String tarjetas;
+    //En este método, se solicita como parámetro la clave que usará cada sucursal para sus tarjetas, que conforma los primeros 4 dígitos del plástico. Ejemplo: clave = 5073.
+    public static String generarTarjeta(int clave) {
+        Random r = new Random();
+        String campo1 = Integer.toString(clave);//Se convierte la clave a tipo String.
+        String campo2 = Integer.toString(r.nextInt(1000,9999));//Se generan números aleatorios en grupos de 4 dígitos.
+        String campo3 = Integer.toString(r.nextInt(1000,9999));
+        String campo4 = Integer.toString(r.nextInt(1000,9999));
+        tarjetas = campo1 + " " + campo2 + " " + campo3 + " " + campo4;//Se concatenan los datos y se agregan espacios para mejor organización del número.
+        return tarjetas;
     }
 
     public static boolean validarTarjeta() {
@@ -19,10 +25,10 @@ public class Generador {
         DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("YYMMdd"); //Formato para la fecha de nacimiento
         String fechaNacimientoS = formatoFecha.format(fechaNacimiento);
         Random r = new Random(); //Variable para los números aleatorios.
-        int numero1 = r.nextInt(26) + 65; //Rango del 65 al 90 para las letras mayúsculas según código ASCII
+        int numero1 = r.nextInt(65,91); //Rango del 65 al 90 para las letras mayúsculas según código ASCII
         char caracter1 = (char) numero1; //Convertir a caracter
         String letra1 = Character.toString(caracter1); //Convertir a cadena
-        int numero2 = r.nextInt(26) + 65;
+        int numero2 = r.nextInt(65,91);
         char caracter2 = (char) numero2;
         String letra2 = Character.toString(caracter2);
         int caracter3 = r.nextInt(10);
