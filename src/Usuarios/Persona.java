@@ -11,11 +11,11 @@ public class Persona {
     private String estado;
     private String curp;
     private String direccion;
-    private LocalDate FechaNacimiento;
+    private LocalDate fechaNacimiento;
     private String RFC;
     //private Sucursal sucursal;
     private String contrasena;
-    //public String toString(){
-        //return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s",nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,dirección,anioNacimiento,RFC);
-    //}
+    public String toString(){
+        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s",nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaNacimiento,RFC);
+    }
 }
