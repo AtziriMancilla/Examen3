@@ -17,4 +17,13 @@ public class Gerente extends Empleado{
     public static void verInversiones (){
 
     }
+    public static void modificarGerente(){
+
+    }
+    public static void eliminarGerente(){
+
+    }
+    public static void mostrarGerentes(){
+
+    }
 }

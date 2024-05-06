@@ -1,11 +1,19 @@
 package Usuarios;
 
+import Usuarios.utils.DatosComun;
+import Usuarios.utils.Rol;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ejecutivo extends Empleado{
+private LocalDate fechaInicio;
 
-public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, String RFC, String contrasena, LocalDate fechaInicio, double salario){
-    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, RFC, contrasena, fechaInicio, salario);
+public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
+    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, Rol.EJECUTIVO, RFC, contrasena, salario);
+    LocalDate fechaInicio = LocalDate.now();
+
 }
 
     @Override
@@ -20,6 +28,34 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
 
     }
     public static void registrarEjecutivo(){
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.EJECUTIVO);
+        String nombre = datosComun.get(0);
+        String apellidoPaterno = datosComun.get(1);
+        String apellidoMaterno = datosComun.get(2);
+        String ciudad = datosComun.get(3);
+        String estado = datosComun.get(4);
+        String CURP = datosComun.get(5);
+        String direccion = datosComun.get(6);
+        String fechaNacimientoCadena= datosComun.get(7);
+        String RFC = datosComun.get(8);
+        String contrasena = datosComun.get(9);
+
+        ///fecha nacimiento cadena viene en formato ("dd/MM/YYYY")
+        String diacadena = fechaNacimientoCadena.substring(0,2);
+        String mescadena = fechaNacimientoCadena.substring(3,5);
+        String aniocadena = fechaNacimientoCadena.substring (6,10);
+        int dia = Integer.parseInt(diacadena);
+        int mes = Integer.parseInt(mescadena);
+        int anio = Integer.parseInt(aniocadena);
+        //conversion a LocalDate
+        LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
+        //
+        System.out.println("Ingrese salario");
+        double salario = sc.nextDouble();
+        Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, RFC, contrasena, salario);
+    }
+    public static void mostrarEjecutivos(){
 
     }
     public static void modificarEjecutivo(){

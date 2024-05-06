@@ -19,4 +19,13 @@ public class Inversion {
         String fechaFormateada = fecha.format(pattern);
         return String.format("Inversionista: %s Monto: %f Fecha: %s ",inversionista.toString(),monto,fechaFormateada);
     }
+    public static void realizarInversion(){
+
+    }
+    public static void mostrarInversiones(){
+
+    }
+    public static void eliminarInversion(){
+
+    }
 }
