@@ -23,12 +23,6 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString()); //me falta la fecha en formato
     }
 
-    public static void darDeAltaCliente(){
-
-    }
-    public static void autorizarTarjeta(){
-
-    }
     public static void registrarEjecutivo(){
         Scanner sc = new Scanner(System.in);
         ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.EJECUTIVO);

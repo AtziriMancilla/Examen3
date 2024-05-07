@@ -115,7 +115,4 @@ public class Cliente extends Persona{
             System.out.println("Se cancelo la eliminacion");
         }
     }
-    public static void buscarCliente(){
-
-    }
 }
