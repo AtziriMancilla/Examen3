@@ -12,6 +12,8 @@ import Usuarios.utils.Rol;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Cliente extends Persona{
     private int num=1;
@@ -80,13 +82,38 @@ public class Cliente extends Persona{
         System.out.println(">Cliente registrado<");
     }
     public static void mostrarClientes(){
+        System.out.println("\nClientes en el banco\n");
+        if (((ArrayList)Banco.personas.get(Rol.CLIENTE)).isEmpty()) {
+            System.out.println("No hay clientes registrados");
+        } else {
+            int i = 1;
 
+            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.CLIENTE)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona)var1.next();
+                Cliente cliente = (Cliente)usuario;
+                System.out.println("" + i + ") " + cliente.toString());
+            }
+        }
     }
     public static void modificarCliente(){
 
     }
     public static void borrarCliente(){
-
+        Scanner sc=new Scanner(System.in);
+        mostrarClientes();
+        System.out.println("Selecciona el cliente que deseas eliminar");
+        int numCliente=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.CLIENTE).get(numCliente-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.CLIENTE).remove(numCliente-1);
+            System.out.println("Cliente eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
     public static void buscarCliente(){
 

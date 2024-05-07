@@ -7,6 +7,8 @@ import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 public class Inversionista extends Persona{
     private ArrayList<Inversion> inversiones;
@@ -53,12 +55,40 @@ public class Inversionista extends Persona{
 
     }
     public static void eliminarInversionista(){
-
+        //preguntar en que casos no se puede eliminar y poner un try catch en el boundexception
+        Scanner sc=new Scanner(System.in);
+        mostrarInversionistas();
+        System.out.println("Selecciona el inversionista que deseas eliminar");
+        int numInversionista=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista-1);
+            System.out.println("Inversionista eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
     public static void realizarInversion(){
 
     }
-    public static void mostrarInversionistas(){}
+    public static void mostrarInversionistas(){
+        System.out.println("\nInversionistas en el banco\n");
+        if (((ArrayList)Banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
+            System.out.println("No hay inversionistas registrados");
+        } else {
+            int i = 1;
+
+            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona)var1.next();
+                Inversionista inversionista = (Inversionista) usuario;
+                System.out.println("" + i + ") " + inversionista.toString());
+            }
+        }
+    }
     @Override
     public String toString() {
         return super.toString();

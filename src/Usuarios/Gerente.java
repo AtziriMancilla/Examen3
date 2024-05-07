@@ -1,8 +1,11 @@
 package Usuarios;
 
+import Banco.Banco;
 import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Gerente extends Empleado{
     public String contrasenaSistema;
@@ -24,10 +27,8 @@ public class Gerente extends Empleado{
     public static void modificarGerente(){
 
     }
-    public static void eliminarGerente(){
 
-    }
-    public static void mostrarGerentes(){
-
+    public static void mostrarGerente(){
+        System.out.println("\nGerente en el banco\n"+ Banco.personas.get(Rol.GERENTE).getFirst().toString());
     }
 }
