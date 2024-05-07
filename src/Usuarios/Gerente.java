@@ -27,9 +27,7 @@ public class Gerente extends Empleado{
     public static void modificarGerente(){
 
     }
-    public static void eliminarGerente(){
 
-    }
     public static void mostrarGerente(){
         System.out.println("\nGerente en el banco\n"+ Banco.personas.get(Rol.GERENTE).getFirst().toString());
     }

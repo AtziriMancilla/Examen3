@@ -55,6 +55,7 @@ public class Inversionista extends Persona{
 
     }
     public static void eliminarInversionista(){
+        //preguntar en que casos no se puede eliminar y poner un try catch en el boundexception
         Scanner sc=new Scanner(System.in);
         mostrarInversionistas();
         System.out.println("Selecciona el inversionista que deseas eliminar");

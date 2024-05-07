@@ -66,9 +66,6 @@ public class Banco {
     public void borrarEjecutivo(){
         Ejecutivo.eliminarEjecutivo();
     }
-    public void borrarGerente(){
-        Gerente.eliminarGerente();
-    }
     public void borrarInversionista(){
         Inversionista.eliminarInversionista();
     }
