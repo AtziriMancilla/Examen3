@@ -146,4 +146,7 @@ public class Persona {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    protected void setApellido(String s) {
+    }
 }

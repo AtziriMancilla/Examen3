@@ -42,7 +42,7 @@ public class DatosComun {
         LocalDate fechaNacimiento = obtenerFechaNacimiento();
         String fechaNacimientoCadena = FechaMostrar(fechaNacimiento);
         //anioNacimiento
-        String anioNacimiento = obteneranioNacimiento(fechaNacimiento);
+        int anioNacimiento = obteneranioNacimiento(fechaNacimiento);
         //obtener el sexo para la curp
         char sexo = obtenerSexo();
         boolean comprobacion = validarSexo(sexo);
@@ -94,11 +94,11 @@ public class DatosComun {
         String fechaFormateada = fechaNacimiento.format(pattern);
         return fechaFormateada;
     }
-    private static String obteneranioNacimiento (LocalDate fechaNacimiento){
+    private static int obteneranioNacimiento (LocalDate fechaNacimiento){
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("YYYY");
         String anioFormateado = fechaNacimiento.format(pattern);
-
-        return anioFormateado;
+        int anioNacimientoEntero = Integer.parseInt(anioFormateado);
+        return anioNacimientoEntero;
     }
     private static char obtenerSexo (){
         Scanner sc = new Scanner(System.in);

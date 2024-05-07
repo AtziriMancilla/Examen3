@@ -96,6 +96,80 @@ public class Cliente extends Persona{
         }
     }
     public static void modificarCliente(){
+        Scanner sc=new Scanner(System.in);
+        mostrarClientes();
+        System.out.println("Selecciona el cliente: ");
+        int numCliente=sc.nextInt();
+        System.out.println("¿Qué información deseas editar?");
+        System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento 7)Contraseña");
+        int opcion=sc.nextInt();
+        Cliente cliente=(Cliente) Banco.personas.get(Rol.CLIENTE).get(numCliente-1);
+        switch (opcion){
+            case 1:
+                System.out.println("Ingrese el nuevo nombre: ");
+                cliente.setNombre(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCliente-1,cliente);
+                String curpAntigua = cliente.getCurp();
+                char sexo = curpAntigua.charAt(10);
+               Generador.generarCURP(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento(), sexo, cliente.getEstado());
+                String nuevorfc = Generador.generarRFC(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento());
+                cliente.setRFC(nuevorfc);
+                System.out.println("Nombre modificado");
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo apellido Paterno: ");
+                cliente.setApellidoPaterno(sc.nextLine());
+                System.out.println("Ingrese el nuevo apellido Materno: ");
+                cliente.setApellidoMaterno(sc.nextLine());
+                String curpAntigua1 = cliente.getCurp();
+                char sexo1 = curpAntigua1.charAt(10);
+                Generador.generarCURP(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento(), sexo1, cliente.getEstado());
+                String nuevorfc1 = Generador.generarRFC(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento());
+                cliente.setRFC(nuevorfc1);
+                Banco.personas.get(Rol.CLIENTE).set(numCliente-1,cliente);
+                System.out.println("Apellido modificado");
+                break;
+            case 3:
+                System.out.println("Ingrese nueva ciudad: ");
+                cliente.setCiudad(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCliente-1,cliente);
+                System.out.println("Ciudad actualizada");
+                break;
+            case 4:
+                System.out.println("Ingrese nuevo estado: ");
+                cliente.setEstado(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCliente-1,cliente);
+                System.out.println("Estado actualizado");
+                break;
+            case 5:
+                System.out.println("Ingrese nueva direccion: ");
+                cliente.setDireccion(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCliente-1,cliente);
+                System.out.println("Dirección actualizada");
+                break;
+            case 6 :
+                System.out.println("Fecha de nacimiento");
+                LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
+                cliente.setFechaNacimiento(nuevaFechaNacimiento);
+                int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                cliente.setAnioNacimiento(anioNacimiento);
+                String curpAntigua2 = cliente.getCurp();
+                char sexo2 = curpAntigua2.charAt(10);
+                Generador.generarCURP(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento(), sexo2, cliente.getEstado());
+                String RFCNuevo = Generador.generarRFC(cliente.getNombre(), cliente.getApellidoPaterno(), cliente.getApellidoMaterno(), cliente.getFechaNacimiento());
+                cliente.setRFC(RFCNuevo);
+                System.out.println("Fecha Nacimiento Actualizada");
+                break;
+            case 7 :
+                System.out.println("Ingrese nueva contraseña");
+                String nuevaContrasena = sc.nextLine();
+                cliente.setContrasena(nuevaContrasena);
+                System.out.println("Contrasena Actualizada");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + opcion);
+
+        }
 
     }
     public static void borrarCliente(){

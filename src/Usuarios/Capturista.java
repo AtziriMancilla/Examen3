@@ -1,6 +1,7 @@
 package Usuarios;
 
 import Banco.Banco;
+import Banco.utils.Generador;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Rol;
 
@@ -89,7 +90,80 @@ public class Capturista extends Empleado{
         }
     }
     public static void modificarCapturista(){
+        Scanner sc=new Scanner(System.in);
+        mostrarCapturistas();
+        System.out.println("Selecciona el capturista: ");
+        int numCapturista=sc.nextInt();
+        System.out.println("¿Qué información deseas editar?");
+        System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento 7)Contraseña");
+        int opcion=sc.nextInt();
+        Capturista capturista=(Capturista) Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1);
+        switch (opcion){
+            case 1:
+                System.out.println("Ingrese el nuevo nombre: ");
+                capturista.setNombre(sc.nextLine());
+                Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                String curpAntigua = capturista.getCurp();
+                char sexo = curpAntigua.charAt(10);
+                Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo, capturista.getEstado());
+                String nuevorfc = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                capturista.setRFC(nuevorfc);
+                System.out.println("Nombre modificado");
+                break;
+            case 2:
+                System.out.println("Ingrese el nuevo apellido Paterno: ");
+                capturista.setApellidoPaterno(sc.nextLine());
+                System.out.println("Ingrese el nuevo apellido Materno: ");
+                capturista.setApellidoMaterno(sc.nextLine());
+                String curpAntigua1 = capturista.getCurp();
+                char sexo1 = curpAntigua1.charAt(10);
+                Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo1, capturista.getEstado());
+                String nuevorfc1 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                capturista.setRFC(nuevorfc1);
+                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
+                System.out.println("Apellido modificado");
+                break;
+            case 3:
+                System.out.println("Ingrese nueva ciudad: ");
+                capturista.setCiudad(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
+                System.out.println("Ciudad actualizada");
+                break;
+            case 4:
+                System.out.println("Ingrese nuevo estado: ");
+                capturista.setEstado(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
+                System.out.println("Estado actualizado");
+                break;
+            case 5:
+                System.out.println("Ingrese nueva direccion: ");
+                capturista.setDireccion(sc.nextLine());
+                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
+                System.out.println("Dirección actualizada");
+                break;
+            case 6 :
+                System.out.println("Fecha de nacimiento");
+                LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
+                capturista.setFechaNacimiento(nuevaFechaNacimiento);
+                int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                capturista.setAnioNacimiento(anioNacimiento);
+                String curpAntigua2 = capturista.getCurp();
+                char sexo2 = curpAntigua2.charAt(10);
+                Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo2, capturista.getEstado());
+                String RFCNuevo = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                capturista.setRFC(RFCNuevo);
+                System.out.println("Fecha Nacimiento Actualizada");
+                break;
+            case 7 :
+                System.out.println("Ingrese nueva contraseña");
+                String nuevaContrasena = sc.nextLine();
+                capturista.setContrasena(nuevaContrasena);
+                System.out.println("Contrasena Actualizada");
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + opcion);
 
+        }
     }
 
 }
