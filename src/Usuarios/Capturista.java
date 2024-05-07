@@ -72,7 +72,21 @@ public class Capturista extends Empleado{
         }
     }
     public static void borrarCapturista(){
-
+        Scanner sc=new Scanner(System.in);
+        mostrarCapturistas();
+        System.out.println("Selecciona el capturista que deseas eliminar");
+        int numCapturista=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.CAPTURISTA).remove(numCapturista-1);
+            System.out.println("Capturista eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
     public static void modificarCapturista(){
 

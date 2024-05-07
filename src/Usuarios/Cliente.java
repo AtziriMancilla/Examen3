@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Cliente extends Persona{
     private int num=1;
@@ -98,7 +99,21 @@ public class Cliente extends Persona{
 
     }
     public static void borrarCliente(){
-
+        Scanner sc=new Scanner(System.in);
+        mostrarClientes();
+        System.out.println("Selecciona el cliente que deseas eliminar");
+        int numCliente=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.CLIENTE).get(numCliente-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.CLIENTE).remove(numCliente-1);
+            System.out.println("Cliente eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
     public static void buscarCliente(){
 

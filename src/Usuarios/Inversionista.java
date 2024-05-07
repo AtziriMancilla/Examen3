@@ -8,6 +8,7 @@ import Usuarios.utils.Rol;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Inversionista extends Persona{
     private ArrayList<Inversion> inversiones;
@@ -54,7 +55,21 @@ public class Inversionista extends Persona{
 
     }
     public static void eliminarInversionista(){
-
+        Scanner sc=new Scanner(System.in);
+        mostrarInversionistas();
+        System.out.println("Selecciona el inversionista que deseas eliminar");
+        int numInversionista=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista-1);
+            System.out.println("Inversionista eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
     public static void realizarInversion(){
 

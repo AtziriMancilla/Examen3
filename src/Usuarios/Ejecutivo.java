@@ -80,6 +80,20 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
 
     }
     public static void eliminarEjecutivo(){
-
+        Scanner sc=new Scanner(System.in);
+        mostrarEjecutivos();
+        System.out.println("Selecciona el ejecutivo que deseas eliminar");
+        int numEjecutivo=sc.nextInt();
+        System.out.println("Seleccionaste a: ");
+        Banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo-1).toString();
+        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
+        int opcion= sc.nextInt();
+        if(opcion==1){
+            Banco.personas.get(Rol.EJECUTIVO).remove(numEjecutivo-1);
+            System.out.println("Ejecutivo eliminado");
+        }
+        else{
+            System.out.println("Se cancelo la eliminacion");
+        }
     }
 }
