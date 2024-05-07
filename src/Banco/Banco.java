@@ -52,7 +52,7 @@ public class Banco {
         Cliente.mostrarClientes();
     }
     public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
-    public void mostrarEmpleados(){Empleado.mostrarEmpleados();}
+
     public void mostrarGerente(){
         Gerente.mostrarGerente();
     }
