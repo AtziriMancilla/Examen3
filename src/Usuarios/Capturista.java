@@ -6,6 +6,7 @@ import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Capturista extends Empleado{
@@ -57,7 +58,18 @@ public class Capturista extends Empleado{
 
     }
     public static void mostrarCapturistas(){
+        System.out.println("\nCapturistas en el banco\n");
+        if (((ArrayList)Banco.personas.get(Rol.CAPTURISTA)).isEmpty()) {
+            System.out.println("No hay capturistas registrados");
+        } else {
+            int i = 1;
 
+            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.CAPTURISTA)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona)var1.next();
+                Capturista capturista = (Capturista) usuario;
+                System.out.println("" + i + ") " + capturista.toString());
+            }
+        }
     }
     public static void borrarCapturista(){
 

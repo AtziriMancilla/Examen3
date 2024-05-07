@@ -12,6 +12,7 @@ import Usuarios.utils.Rol;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Cliente extends Persona{
     private int num=1;
@@ -80,7 +81,18 @@ public class Cliente extends Persona{
         System.out.println(">Cliente registrado<");
     }
     public static void mostrarClientes(){
+        System.out.println("\nClientes en el banco\n");
+        if (((ArrayList)Banco.personas.get(Rol.CLIENTE)).isEmpty()) {
+            System.out.println("No hay clientes registrados");
+        } else {
+            int i = 1;
 
+            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.CLIENTE)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona)var1.next();
+                Cliente cliente = (Cliente)usuario;
+                System.out.println("" + i + ") " + cliente.toString());
+            }
+        }
     }
     public static void modificarCliente(){
 

@@ -6,6 +6,7 @@ import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Ejecutivo extends Empleado{
@@ -62,7 +63,18 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         System.out.println(">Ejecutivo registrado<");
     }
     public static void mostrarEjecutivos(){
+        System.out.println("\nEjecutivos en el banco\n");
+        if (((ArrayList)Banco.personas.get(Rol.EJECUTIVO)).isEmpty()) {
+            System.out.println("No hay ejecutivos registrados");
+        } else {
+            int i = 1;
 
+            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.EJECUTIVO)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona)var1.next();
+                Ejecutivo ejecutivo = (Ejecutivo) usuario;
+                System.out.println("" + i + ") " + ejecutivo.toString());
+            }
+        }
     }
     public static void modificarEjecutivo(){
 
