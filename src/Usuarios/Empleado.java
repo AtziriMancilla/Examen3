@@ -5,14 +5,15 @@ import Usuarios.utils.Rol;
 import java.time.LocalDate;
 
 public class Empleado extends Persona{
-    private LocalDate fechaInicio;
+
     protected double salario;
-    //private Rol rol;
-    public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, Rol rol, String RFC, String contrasena, double salario){
-        super(nombre,apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, rol, RFC, contrasena );
-        this.fechaInicio = LocalDate.now();
+    private Rol rol;
+    private LocalDate fechaInicio;
+    public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento,  LocalDate fechaNacimiento, Rol rol, String RFC, String contrasena, double salario){
+        super(nombre,apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, Persona.getAnioNacimiento(),  fechaNacimiento, rol, RFC, contrasena );
         this.salario = salario;
-        //this.rol = Empleado;
+        this.rol = rol;
+        this.fechaInicio = LocalDate.now();
     }
 
     @Override

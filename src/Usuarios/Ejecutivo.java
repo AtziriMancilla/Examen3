@@ -1,5 +1,6 @@
 package Usuarios;
 
+import Banco.Banco;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Rol;
 
@@ -10,9 +11,9 @@ import java.util.Scanner;
 public class Ejecutivo extends Empleado{
 private LocalDate fechaInicio;
 
-public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
-    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, Rol.EJECUTIVO, RFC, contrasena, salario);
-    LocalDate fechaInicio = LocalDate.now();
+public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
+    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.EJECUTIVO, RFC, contrasena, salario);
+    fechaInicio = LocalDate.now();
 
 }
 
@@ -53,7 +54,12 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         //
         System.out.println("Ingrese salario");
         double salario = sc.nextDouble();
-        Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, RFC, contrasena, salario);
+        Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anio, fechaNacimiento, RFC, contrasena, salario);
+        if(!Banco.personas.containsKey(Rol.EJECUTIVO)){
+            Banco.personas.put(Rol.EJECUTIVO, new ArrayList<Persona>());
+        }
+        Banco.personas.get(Rol.EJECUTIVO).add(ejecutivo);
+        System.out.println(">Ejecutivo registrado<");
     }
     public static void mostrarEjecutivos(){
 

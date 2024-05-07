@@ -1,5 +1,6 @@
 package Usuarios;
 
+import Banco.Banco;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Inversion;
 import Usuarios.utils.Rol;
@@ -8,10 +9,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Inversionista extends Persona{
-    private ArrayList<Inversion> inversiones = new ArrayList<>();
+    private ArrayList<Inversion> inversiones;
 
-    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, String RFC, String contrasena) {
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, RFC, contrasena);
+    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena) {
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.INVERSIONISTA, RFC, contrasena);
+        inversiones = new ArrayList<>();
     }
     public ArrayList<Inversion> getInversiones() {
         return inversiones;
@@ -38,7 +40,14 @@ public class Inversionista extends Persona{
         int anio = Integer.parseInt(aniocadena);
         //conversion a LocalDate
         LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
-        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, RFC, contrasena);
+
+        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anio, fechaNacimiento, RFC, contrasena);
+
+        if(!Banco.personas.containsKey(Rol.INVERSIONISTA)){
+            Banco.personas.put(Rol.INVERSIONISTA, new ArrayList<Persona>());
+        }
+        Banco.personas.get(Rol.INVERSIONISTA).add(inversionista);
+        System.out.println(">Inversionista registrado<");
     }
     public static void modificarInversionista(){
 

@@ -1,6 +1,8 @@
 package Usuarios;
 
 
+import Banco.Banco;
+import Banco.Tarjetas.Tarjeta;
 import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
@@ -16,14 +18,14 @@ public class Cliente extends Persona{
     private int id;
     private LocalDate fechaRegistro;
     private TarjetaDebito tarjetaDebito;
-    private ArrayList<TarjetaCredito> tarjetasCredito=new ArrayList<>();
-
-    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, String RFC, String contrasena) {
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, RFC, contrasena);
+    private ArrayList<TarjetaCredito> tarjetasCredito;
+    public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena) {
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CLIENTE, RFC, contrasena);
         fechaRegistro=LocalDate.now();
         id=num;
         num++;
-        TarjetaDebito tarjetaDebito1 = new TarjetaDebito(1234);
+        tarjetaDebito= new TarjetaDebito(1234);
+        tarjetasCredito= new ArrayList<>();
     }
 
     @Override
@@ -70,7 +72,12 @@ public class Cliente extends Persona{
         int anio = Integer.parseInt(aniocadena);
         //conversion a LocalDate
         LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
-        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, RFC, contrasena);
+        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anio, fechaNacimiento, RFC, contrasena);
+        if(!Banco.personas.containsKey(Rol.CLIENTE)){
+            Banco.personas.put(Rol.CLIENTE, new ArrayList<Persona>());
+        }
+        Banco.personas.get(Rol.CLIENTE).add(cliente);
+        System.out.println(">Cliente registrado<");
     }
     public static void mostrarClientes(){
 

@@ -41,7 +41,8 @@ public class DatosComun {
         System.out.println("Ingrese fecha de Nacimiento");
         LocalDate fechaNacimiento = obtenerFechaNacimiento();
         String fechaNacimientoCadena = FechaMostrar(fechaNacimiento);
-
+        //anioNacimiento
+        String anioNacimiento = obteneranioNacimiento(fechaNacimiento);
         //obtener el sexo para la curp
         char sexo = obtenerSexo();
         boolean comprobacion = validarSexo(sexo);
@@ -56,7 +57,7 @@ public class DatosComun {
             System.out.println("Ingresa la contraseña");
             String contrasena = sc.nextLine();
 
-            datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimientoCadena, RFC, contrasena));
+            datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimientoCadena, RFC, contrasena, anioNacimiento));
 
             return datosComun;
 
@@ -92,6 +93,12 @@ public class DatosComun {
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         String fechaFormateada = fechaNacimiento.format(pattern);
         return fechaFormateada;
+    }
+    private static String obteneranioNacimiento (LocalDate fechaNacimiento){
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("YYYY");
+        String anioFormateado = fechaNacimiento.format(pattern);
+
+        return anioFormateado;
     }
     private static char obtenerSexo (){
         Scanner sc = new Scanner(System.in);

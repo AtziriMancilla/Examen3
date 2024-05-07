@@ -14,13 +14,14 @@ public class Persona {
     private String estado;
     private String curp;
     private String direccion;
+    private static int anioNacimiento;
     public LocalDate fechaNacimiento;
     private String RFC;
     //private Sucursal sucursal;
     private String contrasena;
     private Rol rol;
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, Rol rol, String rfc, String contrasena) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, Rol rol, String rfc, String contrasena) {
       this.id = PERSONAS_REGISTRADAS;
       PERSONAS_REGISTRADAS++;
       this.nombre = nombre;
@@ -30,6 +31,7 @@ public class Persona {
       this.estado = estado;
       this.curp = curp;
       this.direccion = direccion;
+      this.anioNacimiento = anioNacimiento;
       this.fechaNacimiento = fechaNacimiento;
       this.RFC = rfc;
       this.rol = rol;
@@ -127,5 +129,21 @@ public class Persona {
 
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    }
+
+    public static int getAnioNacimiento() {
+        return anioNacimiento;
+    }
+
+    public void setAnioNacimiento(int anioNacimiento) {
+        this.anioNacimiento = anioNacimiento;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 }
