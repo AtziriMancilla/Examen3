@@ -122,7 +122,7 @@ public class DatosComun {
         }
     }
 
-    private static String pedirDatoString() {
+    public static String pedirDatoString() {
         Scanner sc = new Scanner(System.in);
         String dato = "uwu";
 
@@ -156,7 +156,7 @@ public class DatosComun {
 
         return dato;
     }
-    private static String pedirDireccion(){
+    public static String pedirDireccion(){
         Scanner sc = new Scanner(System.in);
         String direccion ="";
         System.out.println("Ingrese calle");
@@ -173,7 +173,7 @@ public class DatosComun {
         return direccion;
     }
 
-    private static int pedirNumero(){
+    public static int pedirNumero(){
         Scanner sc = new Scanner(System.in);
         int numero=0;
         boolean comprobacion = false;
