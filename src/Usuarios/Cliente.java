@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Cliente extends Persona{
-    private int num=1;
+    private static int num=1;
     private int id;
     private LocalDate fechaRegistro;
     private TarjetaDebito tarjetaDebito;
@@ -61,20 +61,16 @@ public class Cliente extends Persona{
         String estado = datosComun.get(4);
         String CURP = datosComun.get(5);
         String direccion = datosComun.get(6);
-        String fechaNacimientoCadena= datosComun.get(7);
-        String RFC = datosComun.get(8);
-        String contrasena = datosComun.get(9);
+        String anioNacimiento = datosComun.get(7);
+        String fechaNacimientoCadena= datosComun.get(8);
+        String RFC = datosComun.get(9);
+        String contrasena = datosComun.get(10);
 
-        ///fecha nacimiento cadena viene en formato ("dd/MM/YYYY")
-        String diacadena = fechaNacimientoCadena.substring(0,2);
-        String mescadena = fechaNacimientoCadena.substring(3,5);
-        String aniocadena = fechaNacimientoCadena.substring (6,10);
-        int dia = Integer.parseInt(diacadena);
-        int mes = Integer.parseInt(mescadena);
-        int anio = Integer.parseInt(aniocadena);
-        //conversion a LocalDate
-        LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
-        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anio, fechaNacimiento, RFC, contrasena);
+        //ocupo volver int el año de nacimiento y LocalDate la fecha de nacimiento
+        int anioNacimientoint = Integer.parseInt(anioNacimiento);
+        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
+
+        Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, contrasena);
         if(!Banco.personas.containsKey(Rol.CLIENTE)){
             Banco.personas.put(Rol.CLIENTE, new ArrayList<Persona>());
         }

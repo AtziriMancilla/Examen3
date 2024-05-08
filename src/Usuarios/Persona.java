@@ -3,6 +3,7 @@ package Usuarios;
 import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Persona {
     private static int PERSONAS_REGISTRADAS = 1;
@@ -40,6 +41,8 @@ public class Persona {
     }
 
     public String toString(){
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+        String fechaNacimiento = getFechaNacimiento().format(pattern);
         return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s",nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaNacimiento,RFC);
     }
 

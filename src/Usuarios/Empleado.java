@@ -18,8 +18,22 @@ public class Empleado extends Persona{
 
     @Override
     public String toString(){
-        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString(), salario); //me falta la fecha en formato
+        return String.format("%s, Salario: %d, Fecha Inicio: %s", super.toString(), salario, String.valueOf(fechaInicio));
     }
 
+    public double getSalario() {
+        return salario;
+    }
 
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
 }

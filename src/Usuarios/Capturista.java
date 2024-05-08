@@ -12,16 +12,16 @@ import java.util.Scanner;
 
 public class Capturista extends Empleado{
 
-    LocalDate fechaInicio;
+    private LocalDate fechaInicio;
 
     public Capturista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, getAnioNacimiento(), fechaNacimiento, Rol.CAPTURISTA, RFC, contrasena,  salario);
-        fechaInicio = LocalDate.now();
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CAPTURISTA, RFC, contrasena,  salario);
+        fechaInicio = getFechaInicio();
     }
 
     @Override
     public String toString(){
-        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString()); //me falta la fecha en formato
+        return String.format("%s, Fecha Inicio: %s", super.toString(), String.valueOf(fechaInicio));
     }
     public static void registrarCapturista(){
         Scanner sc = new Scanner(System.in);
@@ -33,24 +33,18 @@ public class Capturista extends Empleado{
         String estado = datosComun.get(4);
         String CURP = datosComun.get(5);
         String direccion = datosComun.get(6);
-        String fechaNacimientoCadena= datosComun.get(7);
-        String RFC = datosComun.get(8);
-        String contrasena = datosComun.get(9);
+        String anioNacimiento = datosComun.get(7);
+        String fechaNacimientoCadena= datosComun.get(8);
+        String RFC = datosComun.get(9);
+        String contrasena = datosComun.get(10);
 
         System.out.println("Ingrese salario");
-        double salario = sc.nextDouble();
-        ///fecha nacimiento cadena viene en formato ("dd/MM/YYYY")
-        String diacadena = fechaNacimientoCadena.substring(0,2);
-        String mescadena = fechaNacimientoCadena.substring(3,5);
-        String aniocadena = fechaNacimientoCadena.substring (6,10);
-        int dia = Integer.parseInt(diacadena);
-        int mes = Integer.parseInt(mescadena);
-        int anio = Integer.parseInt(aniocadena);
-        //conversion a LocalDate
-        LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
-        ////
+        double salario = DatosComun.pedirValorDouble();
+        //ocupo volver int el año de nacimiento y LocalDate la fecha de nacimiento
+        int anioNacimientoint = Integer.parseInt(anioNacimiento);
+        LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
-        Capturista capturista = new Capturista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anio, fechaNacimiento, RFC, contrasena, salario);
+        Capturista capturista = new Capturista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, contrasena, salario);
         if(!Banco.personas.containsKey(Rol.CAPTURISTA)){
             Banco.personas.put(Rol.CAPTURISTA, new ArrayList<Persona>());
         }

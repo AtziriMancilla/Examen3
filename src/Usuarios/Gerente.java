@@ -17,12 +17,12 @@ public class Gerente extends Empleado{
     public Gerente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena,  double salario, String contrasenaSistema){
             super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.GERENTE, RFC, contrasena, salario);
             this.contrasenaSistema= contrasenaSistema;
-             fechaInicio = LocalDate.now();
+             fechaInicio = getFechaInicio();
     }
 
     @Override
     public String toString(){
-        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Año nacimiento: %d, RFC: %s, Fecha de inicio: , salario: %f", super.toString()); //me falta la fecha en formato
+        return String.format("%s, Fecha Inicio: %s", super.toString(), String.valueOf(fechaInicio)); //me falta la fecha en formato
     }
 
     public static void modificarGerente(){
