@@ -3,6 +3,7 @@ package Usuarios;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Inversion;
 import Usuarios.utils.Rol;
+import utils.UsuarioEnSesion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 public class Inversionista extends Persona{
     private ArrayList<Inversion> inversiones = new ArrayList<>();
 
-    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, String RFC, String contrasena) {
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, RFC, contrasena);
+    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, LocalDate fechaNacimiento, Rol rol,String RFC, String contrasena) {
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimiento, rol,RFC, contrasena);
     }
     public ArrayList<Inversion> getInversiones() {
         return inversiones;
@@ -38,7 +39,9 @@ public class Inversionista extends Persona{
         int anio = Integer.parseInt(aniocadena);
         //conversion a LocalDate
         LocalDate fechaNacimiento = LocalDate.of(anio,mes, dia);
-        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, RFC, contrasena);
+        Rol rol = Rol.INVERSIONISTA;
+        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, fechaNacimiento, rol, RFC, contrasena);
+        //falta agregar comando para añadir a la lista hashmap de su correspondiente sucursal.
     }
     public static void modificarInversionista(){
 
@@ -47,8 +50,15 @@ public class Inversionista extends Persona{
 
     }
     public static void realizarInversion(){
-
+        Persona persona = UsuarioEnSesion.getInstancia().getUsuarioActual();
+        Inversionista inversionista = (Inversionista) persona;
+        inversionista.realizarInversion();
     }
+
+    public void agregarInversion(Inversion inversion){
+        inversiones.add(inversion);
+    }
+
     public static void mostrarInversionistas(){}
     @Override
     public String toString() {

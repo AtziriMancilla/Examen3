@@ -82,7 +82,7 @@ public class Banco {
     public void modificarInversionista(){Inversionista.modificarInversionista();}
 
     //Me imagino que también los metodos para las inversiones
-    public void realizarInversion(){Inversion.realizarInversion();
+    public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
     }
     public void mostrarInversiones(){Inversion.mostrarInversiones();
     }
