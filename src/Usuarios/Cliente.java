@@ -21,6 +21,8 @@ public class Cliente extends Persona{
     private LocalDate fechaRegistro;
     private TarjetaDebito tarjetaDebito;
     private ArrayList<TarjetaCredito> tarjetasCredito;
+
+    private boolean tieneMovimientos;
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena) {
         super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CLIENTE, RFC, contrasena);
         fechaRegistro=LocalDate.now();
@@ -28,6 +30,7 @@ public class Cliente extends Persona{
         num++;
         tarjetaDebito= new TarjetaDebito(1234);
         tarjetasCredito= new ArrayList<>();
+        tieneMovimientos=false;
     }
 
     @Override
@@ -35,6 +38,12 @@ public class Cliente extends Persona{
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         String fechaFormateada = fechaRegistro.format(pattern);
         return String.format("ID: %d, %s Fecha registro %s ",id,super.toString(),fechaFormateada);
+    }
+    public boolean isTieneMovimientos() {
+        return tieneMovimientos;
+    }
+    public void movimiento(){
+        tieneMovimientos=true;
     }
 
     public static void solicitarTarjeta(){

@@ -1,7 +1,10 @@
 package Banco.Tarjetas;
 
+import Usuarios.Cliente;
+
 public class TarjetaDebito extends Tarjeta {
     private double saldo;
+    Cliente cliente;
 
     public TarjetaDebito(int clave) {
         super(clave);
@@ -10,6 +13,7 @@ public class TarjetaDebito extends Tarjeta {
 
     private void depositar(double deposito) {
         this.saldo += deposito;
+        cliente.movimiento();
     }
 
     private void retirar(double retiro) {
