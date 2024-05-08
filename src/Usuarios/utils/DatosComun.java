@@ -57,7 +57,7 @@ public class DatosComun {
             System.out.println("Ingresa la contraseña");
             String contrasena = sc.nextLine();
 
-            datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, fechaNacimientoCadena, RFC, contrasena, anioNacimiento));
+            datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, String.valueOf(fechaNacimiento), RFC, contrasena, String.valueOf(anioNacimiento)));
 
             return datosComun;
 
