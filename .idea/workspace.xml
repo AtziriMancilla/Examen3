@@ -45,8 +45,9 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "banquito",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/DELL-UserFIND/OneDrive/Escritorio/Tecnológico de Morelia/Ing en Sistemas Computacionales/2do Semestre/POO/Clases_POO",
+    "last_opened_file_path": "C:/Users/DELL-UserFIND/OneDrive/Escritorio/Tecnológico de Morelia/Ing en Sistemas Computacionales/2do Semestre/POO/jafetSantoyoBenites-POO-GrupoA-20241",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -198,6 +199,7 @@
       <workItem from="1714920409763" duration="491000" />
       <workItem from="1714932438994" duration="12180000" />
       <workItem from="1715041702032" duration="683000" />
+      <workItem from="1715042696465" duration="4958000" />
     </task>
     <servers />
   </component>
