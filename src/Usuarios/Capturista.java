@@ -75,18 +75,43 @@ public class Capturista extends Empleado{
     public static void borrarCapturista(){
         Scanner sc=new Scanner(System.in);
         mostrarCapturistas();
-        System.out.println("Selecciona el capturista que deseas eliminar");
-        int numCapturista=sc.nextInt();
+        int numCapturista=0;
+        boolean band;
+        do {
+            try {
+                band=false;
+                System.out.println("Selecciona el Ejecutivo que deseas eliminar");
+                numCapturista = sc.nextInt();
+                Banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1);
+            } catch (IndexOutOfBoundsException | InputMismatchException error) {
+                System.out.println("Opcion no valida");
+                band=true;
+            }
+            finally {
+                sc.nextLine();
+            }
+        }while(band);
         System.out.println("Seleccionaste a: ");
-        Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1).toString();
-        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
-        int opcion= sc.nextInt();
-        if(opcion==1){
-            Banco.personas.get(Rol.CAPTURISTA).remove(numCapturista-1);
-            System.out.println("Capturista eliminado");
+        System.out.println(Banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
+        int opcion = 0;
+        boolean bandera;
+        do {
+            bandera = false;
+            try {
+                System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
+                opcion = sc.nextInt();
+            }catch (InputMismatchException error) {
+                System.out.println("Opción no valida");
+                bandera = true;
+                sc.nextLine();
+            }
+        } while (bandera);
+        if (opcion == 1) {
+            Banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
+            System.out.println("Ejecutivo eliminado");
         }
-        else{
-            System.out.println("Se cancelo la eliminacion");
+        if (opcion != 1) {
+            System.out.println("Se cancelo la eliminación");
         }
     }
     public static void modificarCapturista(){

@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="a9a53224-9e74-4fa5-9e7d-da06cd056198" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Banco/Banco.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Banco.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banco/Tarjetas/TarjetaDebito.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Tarjetas/TarjetaDebito.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Capturista.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Capturista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuarios/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Empleado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Gerente.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuarios/Inversionista.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Inversionista.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuarios/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/utils/Inversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/utils/Inversion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,11 +28,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "banquito",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/maceva/examenPoo/Examen/src",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -64,5 +61,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

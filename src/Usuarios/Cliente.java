@@ -13,6 +13,7 @@ import utils.UsuarioEnSesion;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -23,9 +24,6 @@ public class Cliente extends Persona {
     private TarjetaDebito tarjetaDebito;
     private ArrayList<TarjetaCredito> tarjetasCredito;
 
-
-    private boolean tieneMovimientos;
-
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion,
         int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena){
             super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CLIENTE, RFC, nombreUsuario, contrasena);
@@ -35,7 +33,6 @@ public class Cliente extends Persona {
             num++;
             tarjetaDebito = new TarjetaDebito(1234);
             tarjetasCredito = new ArrayList<>();
-            tieneMovimientos = false;
         }
 
 
@@ -45,20 +42,16 @@ public class Cliente extends Persona {
             String fechaFormateada = fechaRegistro.format(pattern);
             return String.format("ID: %d, %s Fecha registro %s ", id, super.toString(), fechaFormateada);
         }
-        public boolean isTieneMovimientos () {
-            return tieneMovimientos;
+        public TarjetaDebito getTarjetaDebito() {
+            return tarjetaDebito;
         }
-        public void movimiento () {
-            tieneMovimientos = true;
-        }
-
         public static void solicitarTarjeta () {
 
         }
         public static void verEstatusSolicitud () {
 
         }
-        public static void verTarjetas () {
+        public static void verTarjetas() {
 
         }
         public static void realizarCompra () {
@@ -208,19 +201,51 @@ public class Cliente extends Persona {
 
         }
         public static void borrarCliente () {
-            Scanner sc = new Scanner(System.in);
+            Scanner sc=new Scanner(System.in);
             mostrarClientes();
-            System.out.println("Selecciona el cliente que deseas eliminar");
-            int numCliente = sc.nextInt();
-            System.out.println("Seleccionaste a: ");
-            Banco.personas.get(Rol.CLIENTE).get(numCliente - 1).toString();
-            System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
-            int opcion = sc.nextInt();
-            if (opcion == 1) {
-                Banco.personas.get(Rol.CLIENTE).remove(numCliente - 1);
-                System.out.println("Cliente eliminado");
-            } else {
-                System.out.println("Se cancelo la eliminacion");
+            int numCliente=0;
+            boolean band;
+            do {
+                try {
+                    band=false;
+                    System.out.println("Selecciona el cliente que deseas eliminar");
+                    numCliente = sc.nextInt();
+                    Banco.personas.get(Rol.CLIENTE).get(numCliente - 1);
+                } catch (IndexOutOfBoundsException | InputMismatchException error) {
+                    System.out.println("Opcion no valida");
+                    band=true;
+                }
+                finally {
+                    sc.nextLine();
+                }
+            }while(band);
+            Cliente cliente=(Cliente) Banco.personas.get(Rol.CLIENTE).get(numCliente - 1);
+            if(cliente.getTarjetaDebito().getSaldo()==0) {
+                System.out.println("Seleccionaste a: ");
+                System.out.println(Banco.personas.get(Rol.CLIENTE).get(numCliente - 1).toString());
+                int opcion = 0;
+                boolean bandera;
+                do {
+                    bandera = false;
+                    try {
+                        System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
+                        opcion = sc.nextInt();
+                    } catch (InputMismatchException error) {
+                        System.out.println("Opción no valida");
+                        bandera = true;
+                        sc.nextLine();
+                    }
+                } while (bandera);
+                if (opcion == 1) {
+                    Banco.personas.get(Rol.CLIENTE).remove(numCliente - 1);
+                    System.out.println("Cliente eliminado");
+                }
+                if (opcion != 1) {
+                    System.out.println("Se cancelo la eliminación");
+                }
+            }
+            else{
+                System.out.println("No se puede eliminar a este Cliente");
             }
         }
 
@@ -245,6 +270,6 @@ public class Cliente extends Persona {
                 }
             } while (!confirmacion);
             return numCliente;
-        }
     }
 }
+

@@ -9,6 +9,7 @@ import utils.UsuarioEnSesion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -141,7 +142,6 @@ public class Inversionista extends Persona{
 
     }
     public static void eliminarInversionista(){
-        //boundexception
         Scanner sc=new Scanner(System.in);
         mostrarInversionistas();
         int numInversionista=0;
@@ -151,47 +151,67 @@ public class Inversionista extends Persona{
                 band=false;
                 System.out.println("Selecciona el inversionista que deseas eliminar");
                 numInversionista = sc.nextInt();
-                System.out.println("Seleccionaste a: ");
-                Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString();
-            } catch (ArrayIndexOutOfBoundsException error) {
+                Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
+            } catch (IndexOutOfBoundsException | InputMismatchException error) {
                 System.out.println("Opcion no valida");
                 band=true;
-            } finally {
+            }
+            finally {
                 sc.nextLine();
             }
         }while(band);
-        System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
-        int opcion= sc.nextInt();
-        if(opcion==1){
-            Banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista-1);
-            System.out.println("Inversionista eliminado");
+        Inversionista inversionista=(Inversionista)Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
+        if(inversionista.getInversiones().isEmpty()) {
+            System.out.println("Seleccionaste a: ");
+            System.out.println(Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString());
+            int opcion = 0;
+            boolean bandera;
+            do {
+                bandera = false;
+                try {
+                    System.out.println("¿Deseas eliminarlo? 1) Si, Otro numero) Cancelar");
+                    opcion = sc.nextInt();
+                } catch (InputMismatchException error) {
+                    System.out.println("Opcion no valida");
+                    bandera = true;
+                    sc.nextLine();
+                }
+            } while (bandera);
+            if (opcion == 1) {
+                Banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista - 1);
+                System.out.println("Inversionista eliminado");
+            }
+            if (opcion != 1) {
+                System.out.println("Se cancelo la eliminacion");
+            }
         }
         else{
-            System.out.println("Se cancelo la eliminacion");
+            System.out.println("No se puede eliminar este inversionista");
         }
     }
-    public static void realizarInversion(){
-        Persona persona = UsuarioEnSesion.getInstancia().getUsuarioActual();
-        Inversionista inversionista = (Inversionista) persona;
-        inversionista.realizarInversion();
-    }
+//    public static void realizarInversion(){
+//        Persona persona = UsuarioEnSesion.getInstancia().getUsuarioActual();
+//        Inversionista inversionista = (Inversionista) persona;
+//        inversionista.realizarInversion();
+//    }
+//
+//    public void agregarInversion(Inversion inversion){
+//        inversiones.add(inversion);
+//    }
 
-    public void agregarInversion(Inversion inversion){
-        inversiones.add(inversion);
-    }
 
-
-    public static void mostrarInversionistas(){
+    public static void mostrarInversionistas() {
         System.out.println("\nInversionistas en el banco\n");
         if ((Banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
             System.out.println("No hay inversionistas registrados");
-        } else {
+        }
+        else {
             int i = 1;
 
-            for(Iterator<Persona> var1 = (Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
-                Persona usuario = (Persona)var1.next();
+            for (Iterator<Persona> var1 = (Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
+                Persona usuario = (Persona) var1.next();
                 Inversionista inversionista = (Inversionista) usuario;
-                System.out.println( i + ") " + inversionista.toString());
+                System.out.println(i + ") " + inversionista.toString());
             }
         }
     }
