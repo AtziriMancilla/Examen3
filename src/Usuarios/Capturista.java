@@ -4,6 +4,7 @@ import Banco.Banco;
 import Banco.utils.Generador;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Rol;
+import utils.UsuarioEnSesion;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -90,111 +91,121 @@ public class Capturista extends Empleado{
     public static void modificarCapturista(){
         Scanner sc=new Scanner(System.in);
         mostrarCapturistas();
-        System.out.println("Selecciona el capturista: ");
+        System.out.println("Selecciona el capturista");
+        int numCapturista = pedirCapturista();
 
-        int numCapturista=DatosComun.pedirNumero();
-        //falta try catch para que no sobrepase un numero de la lista
-        System.out.println("¿Qué información deseas editar?");
-        System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento 7)Contraseña");
-        int opcion=DatosComun.pedirNumero();
+        int opcion=10 ;
+        do{
+            System.out.println("¿Qué información deseas editar?");
+            System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento \n7)Contraseña \n0)Regresar");
+            opcion=DatosComun.pedirNumero();
 
-        Capturista capturista=(Capturista) Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1);
-        switch (opcion){
-            case 1:
-                System.out.println("Ingrese el nuevo nombre: ");
-                String nuevoNombre = DatosComun.pedirDatoString();
-                capturista.setNombre(nuevoNombre);
-                Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
-                String curpAntigua = capturista.getCurp();
-                char sexo = curpAntigua.charAt(10);
-                String nuevaCurp= Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo, capturista.getEstado());
-                String nuevorfc = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
-                capturista.setRFC(nuevorfc);
-                capturista.setCurp(nuevaCurp);
-                System.out.println("Nombre modificado");
-                break;
-            case 2:
-                System.out.println("Ingrese el nuevo apellido Paterno: ");
-                String nuevoApellidoPaterno = DatosComun.pedirDatoString();
-                capturista.setApellidoPaterno(nuevoApellidoPaterno);
-                System.out.println("Ingrese el nuevo apellido Materno: ");
-                String nuevoApellidoMaterno = DatosComun.pedirDatoString();
-                capturista.setApellidoMaterno(nuevoApellidoMaterno);
-                String curpAntigua1 = capturista.getCurp();
-                char sexo1 = curpAntigua1.charAt(10);
-                String nuevaCurp1 = Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo1, capturista.getEstado());
-                String nuevorfc1 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
-                capturista.setRFC(nuevorfc1);
-                capturista.setCurp(nuevaCurp1);
-                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
-                System.out.println("Apellido modificado");
-                break;
-            case 3:
-                System.out.println("Ingrese nueva ciudad: ");
-                String nuevaCiudad = DatosComun.pedirDatoString();
-                capturista.setCiudad(nuevaCiudad);
-                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
-                System.out.println("Ciudad actualizada");
-                break;
-            case 4:
-                System.out.println("Ingrese nuevo estado: ");
-                String nuevoEstado = DatosComun.pedirDatoString();
-                capturista.setEstado(nuevoEstado);
-                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
-                System.out.println("Estado actualizado");
-                break;
-            case 5:
-                System.out.println("Ingrese nueva direccion: ");
-                String nuevaDireccion = DatosComun.pedirDireccion();
-                capturista.setDireccion(nuevaDireccion);
-                Banco.personas.get(Rol.CLIENTE).set(numCapturista-1,capturista);
-                System.out.println("Dirección actualizada");
-                break;
-            case 6 :
-                System.out.println("Fecha de nacimiento");
-                LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
-                capturista.setFechaNacimiento(nuevaFechaNacimiento);
-                int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
-                capturista.setAnioNacimiento(anioNacimiento);
-                String curpAntigua2 = capturista.getCurp();
-                char sexo2 = curpAntigua2.charAt(10);
-                String nuevaCurp2 = Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo2, capturista.getEstado());
-                String RFCNuevo2 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
-                capturista.setRFC(RFCNuevo2);
-                capturista.setCurp(nuevaCurp2);
-                System.out.println("Fecha Nacimiento Actualizada");
-                break;
-            case 7 :
-                System.out.println("Ingrese nueva contraseña");
-                String nuevaContrasena = sc.nextLine();
-                capturista.setContrasena(nuevaContrasena);
-                System.out.println("Contrasena Actualizada");
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + opcion);
+            Capturista capturista=(Capturista) Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1);
+            switch (opcion){
+                case 1:
+                    System.out.println("Ingrese el nuevo nombre: ");
+                    String nuevoNombre = DatosComun.pedirDatoString();
+                    capturista.setNombre(nuevoNombre);
+                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    String curpAntigua = capturista.getCurp();
+                    char sexo = curpAntigua.charAt(10);
+                    String nuevaCurp= Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo, capturista.getEstado());
+                    String nuevorfc = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                    capturista.setRFC(nuevorfc);
+                    capturista.setCurp(nuevaCurp);
+                    System.out.println("Nombre modificado");
+                    break;
 
-        }
-    }
-    /*private static int pedirNumeroDeLista(){
-        Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Ingrese un índice para acceder al elemento de la lista: ");
-            int indice = sc.nextInt();
+                case 2:
+                    System.out.println("Ingrese el nuevo apellido Paterno: ");
+                    String nuevoApellidoPaterno = DatosComun.pedirDatoString();
+                    capturista.setApellidoPaterno(nuevoApellidoPaterno);
+                    System.out.println("Ingrese el nuevo apellido Materno: ");
+                    String nuevoApellidoMaterno = DatosComun.pedirDatoString();
+                    capturista.setApellidoMaterno(nuevoApellidoMaterno);
+                    String curpAntigua1 = capturista.getCurp();
+                    char sexo1 = curpAntigua1.charAt(10);
+                    String nuevaCurp1 = Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo1, capturista.getEstado());
+                    String nuevorfc1 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                    capturista.setRFC(nuevorfc1);
+                    capturista.setCurp(nuevaCurp1);
+                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    System.out.println("Apellido modificado");
+                    break;
+                case 3:
+                    System.out.println("Ingrese nueva ciudad: ");
+                    String nuevaCiudad = DatosComun.pedirDatoString();
+                    capturista.setCiudad(nuevaCiudad);
+                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    System.out.println("Ciudad actualizada");
+                    break;
+                case 4:
+                    System.out.println("Ingrese nuevo estado: ");
+                    String nuevoEstado = DatosComun.pedirDatoString();
+                    capturista.setEstado(nuevoEstado);
+                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    System.out.println("Estado actualizado");
+                    break;
+                case 5:
+                    System.out.println("Ingrese nueva direccion: ");
+                    String nuevaDireccion = DatosComun.pedirDireccion();
+                    capturista.setDireccion(nuevaDireccion);
+                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    System.out.println("Dirección actualizada");
+                    break;
+                case 6 :
+                    System.out.println("Fecha de nacimiento");
+                    LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
+                    capturista.setFechaNacimiento(nuevaFechaNacimiento);
+                    int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                    capturista.setAnioNacimiento(anioNacimiento);
+                    String curpAntigua2 = capturista.getCurp();
+                    char sexo2 = curpAntigua2.charAt(10);
+                    String nuevaCurp2 = Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo2, capturista.getEstado());
+                    String RFCNuevo2 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
+                    capturista.setRFC(RFCNuevo2);
+                    capturista.setCurp(nuevaCurp2);
+                    System.out.println("Fecha Nacimiento Actualizada");
+                    break;
+                case 7 :
+                    System.out.println("Ingrese nueva contraseña");
+                    String nuevaContrasena = sc.nextLine();
+                    capturista.setContrasena(nuevaContrasena);
+                    System.out.println("Contrasena Actualizada");
+                    break;
+                case 0 :
+                    System.out.println("Tenemos que poner un método mostrarMenuEmpleado");
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + opcion);
 
-            if (indice < 0 || indice >= Banco.personas.get(Rol.CAPTURISTA).size()) {
-                throw new IndexOutOfBoundsException("El índice ingresado está fuera del rango válido.");
             }
 
-            String elemento = Banco.personas.get(Rol.CAPTURISTA).get(i);
-            System.out.println("El elemento en el índice " + indice + " es: " + elemento);
-        } catch (InputMismatchException e) {
-            System.out.println("Error: Debe ingresar un número entero.");
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Error: " + e.getMessage());
-        } finally {
-            sc.close();
-        }
+
+        }while(opcion!=0);
     }
-    }*/
+
+   private static int pedirCapturista(){
+        Scanner sc = new Scanner(System.in);
+       boolean confirmacion = false;
+       int numCapturista=0;
+       do{
+           try{
+               System.out.println("Selecciona el capturista: ");
+               numCapturista=DatosComun.pedirNumero();
+               if(numCapturista<0||numCapturista>Banco.personas.get(Rol.CAPTURISTA).size()){
+                   throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
+               }
+               confirmacion=true;
+           }catch(IndexOutOfBoundsException error){
+               System.out.println("Error: "+ error.getMessage());
+
+           }finally {
+               sc.nextLine();
+           }
+       }while(!confirmacion);
+       return  numCapturista;
+   }
 
 }

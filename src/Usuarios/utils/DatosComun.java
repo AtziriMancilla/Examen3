@@ -124,7 +124,7 @@ public class DatosComun {
 
     public static String pedirDatoString() {
         Scanner sc = new Scanner(System.in);
-        String dato = "uwu";
+        String dato = "";
 
         boolean comprobacion = false;
         do {
@@ -148,7 +148,7 @@ public class DatosComun {
                 System.out.println("Error. Intente de nuevo. ");
                 comprobacion=true;
             }finally {
-                sc.close();
+                sc.nextLine();
             }
 
         } while (!comprobacion);
