@@ -52,9 +52,9 @@ public class Banco {
         Cliente.mostrarClientes();
     }
     public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
-    public void mostrarEmpleados(){Empleado.mostrarEmpleados();}
+
     public void mostrarGerente(){
-        Gerente.mostrarGerentes();
+        Gerente.mostrarGerente();
     }
     public void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
 
@@ -65,9 +65,6 @@ public class Banco {
     public void borrarCliente(){Cliente.borrarCliente();}
     public void borrarEjecutivo(){
         Ejecutivo.eliminarEjecutivo();
-    }
-    public void borrarGerente(){
-        Gerente.eliminarGerente();
     }
     public void borrarInversionista(){
         Inversionista.eliminarInversionista();

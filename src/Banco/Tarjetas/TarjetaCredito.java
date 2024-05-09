@@ -48,5 +48,7 @@ public class TarjetaCredito extends Tarjeta {
     public double getCreditoActual() {
         return creditoActual;
     }
+    public static void autorizarTarjeta(){
 
+    }
 }
