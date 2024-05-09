@@ -19,10 +19,11 @@ public class Persona {
     public LocalDate fechaNacimiento;
     private String RFC;
     //private Sucursal sucursal;
+    private String nombreUsuario;
     private String contrasena;
     private Rol rol;
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, Rol rol, String rfc, String contrasena) {
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, Rol rol, String rfc,String nombreUsuario, String contrasena) {
       this.id = PERSONAS_REGISTRADAS;
       PERSONAS_REGISTRADAS++;
       this.nombre = nombre;
@@ -36,13 +37,14 @@ public class Persona {
       this.fechaNacimiento = fechaNacimiento;
       this.RFC = rfc;
       this.rol = rol;
+      this.nombreUsuario=nombreUsuario;
       this.contrasena = contrasena;
       //this.sucursal = sucursal;
     }
 
     public String toString(){
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-        String fechaNacimiento = getFechaNacimiento().format(pattern);
+//        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+//        String fechaNacimiento = getFechaNacimiento().format(pattern);
         return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s",nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaNacimiento,RFC);
     }
 

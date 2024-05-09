@@ -1,6 +1,7 @@
 package Usuarios.utils;
 
 import Banco.utils.Generador;
+import Usuarios.Persona;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -45,11 +46,12 @@ public class DatosComun {
         String curp = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, estado);
         //Aquí debería ir el RFC
         String RFC = Generador.generarRFC(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
-
+        System.out.print("Ingresa el nombre de usuario: ");
+        String nombreUsuario=sc.nextLine();
         System.out.println("Ingresa la contraseña");
         String contrasena = sc.nextLine(); //aqui no se si vamos a meter excepciones de algun tipo
 
-        datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, String.valueOf(anioNacimiento), String.valueOf(fechaNacimiento), RFC, contrasena));//falta meter sucursal
+        datosComun.addAll(Arrays.asList(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, String.valueOf(anioNacimiento), String.valueOf(fechaNacimiento), RFC, nombreUsuario, contrasena));//falta meter sucursal
 
         return datosComun;
 
@@ -246,5 +248,8 @@ public class DatosComun {
 
         return valorDouble;
     }
+    public static void pedirOpcionValida(ArrayList<Persona> listaUsuarios){
+
     }
+}
 

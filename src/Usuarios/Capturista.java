@@ -19,8 +19,8 @@ public class Capturista extends Empleado{
 
     private LocalDate fechaInicio;
 
-    public Capturista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CAPTURISTA, RFC, contrasena,  salario);
+    public Capturista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena, double salario){
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CAPTURISTA, RFC, nombreUsuario, contrasena, salario);
         fechaInicio = getFechaInicio();
     }
 
@@ -41,7 +41,8 @@ public class Capturista extends Empleado{
         String anioNacimiento = datosComun.get(7);
         String fechaNacimientoCadena= datosComun.get(8);
         String RFC = datosComun.get(9);
-        String contrasena = datosComun.get(10);
+        String nombreUsuario=datosComun.get(10);
+        String contrasena = datosComun.get(11);
 
         System.out.println("Ingrese salario");
         double salario = DatosComun.pedirValorDouble();
@@ -49,7 +50,7 @@ public class Capturista extends Empleado{
         int anioNacimientoint = Integer.parseInt(anioNacimiento);
         LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
-        Capturista capturista = new Capturista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, contrasena, salario);
+        Capturista capturista = new Capturista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena, salario);
         if(!Banco.personas.containsKey(Rol.CAPTURISTA)){
             Banco.personas.put(Rol.CAPTURISTA, new ArrayList<Persona>());
         }

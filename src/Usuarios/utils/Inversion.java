@@ -39,7 +39,7 @@ public class Inversion {
             if (monto>0){
                 System.out.println("Realizando depósito y guardando registro...");
                 Inversion inversionNueva = new Inversion(inversionista,monto);
-                inversionista.agregarInversion(inversionNueva);
+                //inversionista.realizarInversion(inversionNueva);
                 System.out.println("Inversión hecha con éxito! Regresando al menú anterior...");
                 cantidadValida = true;
             }
@@ -48,7 +48,5 @@ public class Inversion {
     public static void mostrarInversiones(){
 
     }
-    public static void eliminarInversion(){
 
-    }
 }

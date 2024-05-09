@@ -14,8 +14,8 @@ import java.util.Scanner;
 public class Ejecutivo extends Empleado{
 private LocalDate fechaInicio;
 
-public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena, double salario){
-    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.EJECUTIVO, RFC, contrasena, salario);
+public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena, double salario){
+    super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.EJECUTIVO, RFC, nombreUsuario, contrasena, salario);
     fechaInicio = getFechaInicio();
 
 }
@@ -38,7 +38,8 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         String anioNacimiento = datosComun.get(7);
         String fechaNacimientoCadena= datosComun.get(8);
         String RFC = datosComun.get(9);
-        String contrasena = datosComun.get(10);
+        String nombreUsuario=datosComun.get(10);
+        String contrasena = datosComun.get(11);
 
         System.out.println("Ingrese salario");
         double salario = DatosComun.pedirValorDouble();
@@ -46,7 +47,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         int anioNacimientoint = Integer.parseInt(anioNacimiento);
         LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
-        Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, contrasena, salario);
+        Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena, salario);
         if(!Banco.personas.containsKey(Rol.EJECUTIVO)){
             Banco.personas.put(Rol.EJECUTIVO, new ArrayList<Persona>());
         }

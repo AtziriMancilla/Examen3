@@ -15,8 +15,8 @@ import java.util.Scanner;
 public class Inversionista extends Persona{
     private ArrayList<Inversion> inversiones;
 
-    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String contrasena) {
-        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.INVERSIONISTA, RFC, contrasena);
+    public Inversionista(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena) {
+        super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.INVERSIONISTA, RFC, nombreUsuario, contrasena);
         inversiones = new ArrayList<>();
 
     }
@@ -35,13 +35,14 @@ public class Inversionista extends Persona{
         String anioNacimiento = datosComun.get(7);
         String fechaNacimientoCadena= datosComun.get(8);
         String RFC = datosComun.get(9);
-        String contrasena = datosComun.get(10);
+        String nombreUsuario=datosComun.get(10);
+        String contrasena = datosComun.get(11);
 
         //ocupo volver int el año de nacimiento y LocalDate la fecha de nacimiento
         int anioNacimientoint = Integer.parseInt(anioNacimiento);
         LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
-        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, contrasena);
+        Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena);
 
         if(!Banco.personas.containsKey(Rol.INVERSIONISTA)){
             Banco.personas.put(Rol.INVERSIONISTA, new ArrayList<Persona>());
@@ -140,13 +141,25 @@ public class Inversionista extends Persona{
 
     }
     public static void eliminarInversionista(){
-        //preguntar en que casos no se puede eliminar y poner un try catch en el boundexception
+        //boundexception
         Scanner sc=new Scanner(System.in);
         mostrarInversionistas();
-        System.out.println("Selecciona el inversionista que deseas eliminar");
-        int numInversionista=sc.nextInt();
-        System.out.println("Seleccionaste a: ");
-        Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista-1).toString();
+        int numInversionista=0;
+        boolean band;
+        do {
+            try {
+                band=false;
+                System.out.println("Selecciona el inversionista que deseas eliminar");
+                numInversionista = sc.nextInt();
+                System.out.println("Seleccionaste a: ");
+                Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString();
+            } catch (ArrayIndexOutOfBoundsException error) {
+                System.out.println("Opcion no valida");
+                band=true;
+            } finally {
+                sc.nextLine();
+            }
+        }while(band);
         System.out.println("¿Deseas eliminarlo? 1) Si 2) Cancelar");
         int opcion= sc.nextInt();
         if(opcion==1){
@@ -170,15 +183,15 @@ public class Inversionista extends Persona{
 
     public static void mostrarInversionistas(){
         System.out.println("\nInversionistas en el banco\n");
-        if (((ArrayList)Banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
+        if ((Banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
             System.out.println("No hay inversionistas registrados");
         } else {
             int i = 1;
 
-            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
+            for(Iterator<Persona> var1 = (Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
                 Persona usuario = (Persona)var1.next();
                 Inversionista inversionista = (Inversionista) usuario;
-                System.out.println("" + i + ") " + inversionista.toString());
+                System.out.println( i + ") " + inversionista.toString());
             }
         }
     }
