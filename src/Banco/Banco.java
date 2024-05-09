@@ -5,6 +5,7 @@ import Usuarios.*;
 import Usuarios.utils.Inversion;
 import Usuarios.utils.Rol;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +15,16 @@ public class Banco {
     public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
 
     public Banco (){
-
+        inicializarHashmap();
+        Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
+        personas.get(Rol.INVERSIONISTA).add(inversionista);
+    }
+    public void inicializarHashmap(){
+        personas.put(Rol.GERENTE, new ArrayList<Persona>());
+        personas.put(Rol.CLIENTE, new ArrayList<Persona>());
+        personas.put(Rol.CAPTURISTA, new ArrayList<Persona>());
+        personas.put(Rol.EJECUTIVO, new ArrayList<Persona>());
+        personas.put(Rol.INVERSIONISTA, new ArrayList<Persona>());
     }
     public void agregarPersona(Persona persona, Rol rol){
         personas.put(rol, new ArrayList<Persona>());
@@ -83,5 +93,5 @@ public class Banco {
     }
     public void mostrarInversiones(){Inversion.mostrarInversiones();
     }
-    public void eliminarInversión(){Inversion.eliminarInversion();}
+    //public void eliminarInversión(){Inversion.eliminarInversion();}
 }

@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9a53224-9e74-4fa5-9e7d-da06cd056198" name="Changes" comment="" />
+    <list default="true" id="a9a53224-9e74-4fa5-9e7d-da06cd056198" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Banco/Banco.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Banco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banco/Tarjetas/TarjetaDebito.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Tarjetas/TarjetaDebito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Capturista.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Capturista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Gerente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Gerente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Inversionista.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Inversionista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Persona.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuarios/utils/Inversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/utils/Inversion.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2g4ZHe0ftros2HRAZAf3Qsq8oOY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -22,7 +35,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "usuarios",
+    "git-widget-placeholder": "banquito",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/maceva/examenPoo/Examen/src",
     "nodejs_package_manager_path": "npm",
@@ -45,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1714958723949</updated>
       <workItem from="1714958724991" duration="22000" />
+      <workItem from="1715231586471" duration="4000" />
     </task>
     <servers />
   </component>
