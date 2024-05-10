@@ -66,11 +66,11 @@ public class Menu {
     }
     private static void seleccionarMenu() {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
-            case CAPTURISTA -> mostrarMenuC();
+            //case CAPTURISTA -> mostrarMenuC();
             case CLIENTE -> mostrarMenuCliente();
-            case EJECUTIVO -> mostrarMenuEjecutivo();
-            case GERENTE -> mostrarMenuGerente();
-            case INVERSIONISTA -> mostrarMenuInversionista();
+            //case EJECUTIVO -> mostrarMenuEjecutivo();
+            //case GERENTE -> mostrarMenuGerente();
+            //case INVERSIONISTA -> mostrarMenuInversionista();
         }
     }
 
@@ -98,15 +98,15 @@ public class Menu {
                 sc.nextLine();
                 switch (opcion) {
                     case 1:
+                        System.out.println("\t Bienvenido a su cuenta");
                         System.out.println("Saldo de la cuenta: "+ tarjetaDebito.getSaldo());
                         System.out.println(tarjetaDebito.toString());//Obtener el resto de los datos de la tarjeta
                         break;
                     case 2:
-                        System.out.println("Este será el menú depósito");
-
+                        cliente.depositarDebito();
                         break;
                     case 3:
-                        System.out.println("Este será el menú retiro");
+                        cliente.retirarDebito(tarjetaDebito);
                         break;
                     case 4:
                         System.out.println("Este será el menú consulta crédito");
