@@ -9,12 +9,11 @@ public class TarjetaDebito extends Tarjeta {
         this.saldo = 0;
     }
 
-    private void depositar(double deposito) {
+    public void depositar(double deposito) {
         this.saldo += deposito;
-
     }
 
-    private void retirar(double retiro) {
+    public void retirar(double retiro) {
         this.saldo -= retiro;
     }
 
@@ -35,5 +34,9 @@ public class TarjetaDebito extends Tarjeta {
     private boolean oro(double saldo) {
         if (saldo >= 400000) return true;
         return false;
+    }
+    @Override
+    public String toString(){
+        return String.format("%s, Saldo: %f",super.toString(),saldo);
     }
 }

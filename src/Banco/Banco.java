@@ -18,6 +18,9 @@ public class Banco {
         inicializarHashmap();
         Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
         personas.get(Rol.INVERSIONISTA).add(inversionista);
+        Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
+        personas.get(Rol.CLIENTE).add(cliente);
+        cliente.realizarDeposito(60000);
     }
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());

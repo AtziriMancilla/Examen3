@@ -41,11 +41,11 @@ public class Persona {
       this.contrasena = contrasena;
       //this.sucursal = sucursal;
     }
-
+    @Override
     public String toString(){
-//        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
-//        String fechaNacimiento = getFechaNacimiento().format(pattern);
-        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s,Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s",nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaNacimiento,RFC);
+        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+        String fechaFormateada = getFechaNacimiento().format(pattern);
+        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s, Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s", id, nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaFormateada,RFC);
     }
 
     public int getId() {

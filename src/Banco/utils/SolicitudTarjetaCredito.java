@@ -1,33 +1,39 @@
 package Banco.utils;
 
+import Banco.Banco;
 import Banco.Tarjetas.TarjetaCredito;
+import Usuarios.Cliente;
 
 import java.time.LocalDate;
 
 public class SolicitudTarjetaCredito {
-
-    //Cliente clienteSolicitante;
+    Cliente cliente;
     private LocalDate fechaSolicitud;
-    private String  tipoTarjeta;
+    private TipoTarjetaCredito  tipoTarjeta;
     private String status;
     int idCliente;
-//    public SolicitudTarjetaCredito(Cliente cliente, String tipoTarjeta){
-//        this.cliente=cliente;
-//        status= "En espera";
-//        this.tipoTarjeta=tipoTarjeta;
-//        idCliente=cliente.getId();
-//    }
+    public SolicitudTarjetaCredito(Cliente cliente, TipoTarjetaCredito tipo){
+        this.cliente=cliente;
+        status= "En espera";
+        tipoTarjeta=tipo;
+        idCliente=cliente.getId();
+    }
+    //método que aprueba la solicitud en curso y asigna una tarjeta de credito
+    //en el menu verificar que el cliente no tenga 3 tarjetas de credito para mostrarle la opcion de solicitar
     public void aprobarTarjeta(){
         status="Solicitud Aprobada";
-        Generador.generarTarjeta(5579);
-        //añadir tarjeta a arraycliente
-        //quitar de la lista de solicitudes
+        TarjetaCredito tarjetaCredito=new TarjetaCredito(5579,tipoTarjeta);
+        cliente.getTarjetasCredito().add(tarjetaCredito);
+
     }
     public void rechazarTarjeta(){
         status="Solicitud Rechazada";
         //quitar de la lista de solicitudes
     }
     public String toString(){
-        return String.format("Cliente solicitante: ,Fecha de solicitud: %s , Tipo de tarjeta: %s",fechaSolicitud,tipoTarjeta);
+        return String.format("Cliente solicitante: %s ,Fecha de solicitud: %s , Tipo de tarjeta: %s",cliente,fechaSolicitud,tipoTarjeta);
+    }
+    public String getStatus() {
+        return status;
     }
 }
