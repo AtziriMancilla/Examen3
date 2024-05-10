@@ -211,20 +211,23 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         int numEjecutivo=0;
 
         do{
+            confirmacion = false;
             try{
                 System.out.println("Selecciona el ejecutivo: ");
                 numEjecutivo=DatosComun.pedirNumero();
-                if(numEjecutivo<0||numEjecutivo>Banco.personas.get(Rol.CAPTURISTA).size()){
-                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
+
+                if(numEjecutivo<1||numEjecutivo>Banco.personas.get(Rol.CAPTURISTA).size()){
+                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la lista");
                 }
-                confirmacion=true;
+                else{
+                    return  numEjecutivo;
+                }
             }catch(IndexOutOfBoundsException error){
                 System.out.println("Error: "+ error.getMessage());
 
-            }finally {
-                sc.nextLine();
             }
-        }while(!confirmacion);
+        }while(confirmacion);
+        sc.nextLine();
         return  numEjecutivo;
     }
 }

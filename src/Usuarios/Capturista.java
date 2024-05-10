@@ -216,21 +216,26 @@ public class Capturista extends Empleado{
         Scanner sc = new Scanner(System.in);
        boolean confirmacion = false;
        int numCapturista=0;
+
        do{
+           confirmacion = false;
+
            try{
                System.out.println("Selecciona el capturista: ");
                numCapturista=DatosComun.pedirNumero();
-               if(numCapturista<0||numCapturista>Banco.personas.get(Rol.CAPTURISTA).size()){
+
+               if(numCapturista<1||numCapturista>Banco.personas.get(Rol.CAPTURISTA).size()){
                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
                }
-               confirmacion=true;
-           }catch(IndexOutOfBoundsException error){
+              else{
+                  return  numCapturista;
+               }
+           } catch(IndexOutOfBoundsException error){
                System.out.println("Error: "+ error.getMessage());
-
-           }finally {
-               sc.nextLine();
+               confirmacion = true;
            }
-       }while(!confirmacion);
+       } while(confirmacion);
+       sc.nextLine();
        return  numCapturista;
    }
 

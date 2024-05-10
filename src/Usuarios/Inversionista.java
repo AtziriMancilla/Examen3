@@ -225,20 +225,24 @@ public class Inversionista extends Persona{
         boolean confirmacion = false;
         int numInversionista=0;
         do{
+            confirmacion = false;
             try{
                 System.out.println("Selecciona el inversionista: ");
                 numInversionista=DatosComun.pedirNumero();
-                if(numInversionista<0||numInversionista>Banco.personas.get(Rol.CAPTURISTA).size()){
+
+                if(numInversionista<1||numInversionista>Banco.personas.get(Rol.CAPTURISTA).size()){
                     throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
                 }
-                confirmacion=true;
+                else{
+                    return  numInversionista;
+                }
+
             }catch(IndexOutOfBoundsException error){
                 System.out.println("Error: "+ error.getMessage());
-
-            }finally {
-                sc.nextLine();
+                confirmacion=true;
             }
-        }while(!confirmacion);
+        }while(confirmacion);
+        sc.nextLine();
         return  numInversionista;
     }
 }

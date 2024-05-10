@@ -325,21 +325,23 @@ public class Cliente extends Persona {
             boolean confirmacion = false;
             int numCliente = 0;
             do {
+                confirmacion = false;
 
                 try {
                     System.out.println("Selecciona el cliente: ");
                     numCliente = DatosComun.pedirNumero();
-                    if (numCliente < 0 || numCliente > Banco.personas.get(Rol.CLIENTE).size()) {
-                        throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
+                    if (numCliente < 1 || numCliente > Banco.personas.get(Rol.CLIENTE).size()) {
+                        throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la lista");
                     }
-                    confirmacion = true;
+                    else{
+                        return  numCliente;
+                    }
                 } catch (IndexOutOfBoundsException error) {
                     System.out.println("Error: " + error.getMessage());
 
-                } finally {
-                    sc.nextLine();
                 }
-            } while (!confirmacion);
+            } while (confirmacion);
+            sc.nextLine();
             return numCliente;
     }
 }

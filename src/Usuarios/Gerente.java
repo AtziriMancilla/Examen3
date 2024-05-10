@@ -120,22 +120,27 @@ public class Gerente extends Empleado{
     private static int pedirGerente(){
         Scanner sc = new Scanner(System.in);
         boolean confirmacion = false;
-        int numCapturista=0;
+        int numGerente=0;
         do{
+            confirmacion = false;
+
             try{
                 System.out.println("Selecciona el gerente: ");
-                numCapturista=DatosComun.pedirNumero();
-                if(numCapturista<0||numCapturista>Banco.personas.get(Rol.GERENTE).size()){
-                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
+                numGerente=DatosComun.pedirNumero();
+
+                if(numGerente<1||numGerente>Banco.personas.get(Rol.GERENTE).size()){
+                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la lista");
                 }
-                confirmacion=true;
+                else{
+                    return  numGerente;
+                }
+
             }catch(IndexOutOfBoundsException error){
                 System.out.println("Error: "+ error.getMessage());
 
-            }finally {
-                sc.nextLine();
             }
         }while(!confirmacion);
-        return  numCapturista;
+        sc.nextLine();
+        return  numGerente;
     }
 }
