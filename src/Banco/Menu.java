@@ -233,7 +233,7 @@ public class Menu {
             System.out.println("Selecciona una opción para continuar");
             System.out.println("1. Realizar inversión");
             System.out.println("2. Ver mis propias inversiones");
-            System.out.println("3. Retirar inversión ");
+
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
 
@@ -243,9 +243,6 @@ public class Menu {
                     break;
                 case 2:
                    //
-                    break;
-                case 3:
-                    //
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
