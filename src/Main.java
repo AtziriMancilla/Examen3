@@ -2,6 +2,7 @@ import Banco.Banco;
 import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
+import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.Cliente;
 import Usuarios.Ejecutivo;
 import Usuarios.Inversionista;
@@ -59,6 +60,7 @@ public class Main {
 //        //Cliente.solicitarTarjetaCredito((Cliente) Banco.personas.get(Rol.CLIENTE).getFirst());
 //        //Cliente.buscarCliente();
 //        Ejecutivo.buscarEjecutivo();
-        Cliente.registrarCliente();
+//        Cliente.registrarCliente();
+        SolicitudTarjetaCredito.verSolicitudesTarjetas();
     }
 }

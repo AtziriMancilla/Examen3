@@ -1,6 +1,7 @@
 package Banco;
 
 import Banco.utils.SolicitudTarjetaCredito;
+import Banco.utils.TipoTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.Inversion;
 import Usuarios.utils.Rol;
@@ -25,6 +26,8 @@ public class Banco {
         Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
         personas.get(Rol.CLIENTE).add(cliente);
         //cliente.realizarDeposito(600000);
+        SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
+        solicitudes.add(solicitudTarjetaCredito);
     }
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());
