@@ -1,5 +1,6 @@
 package Banco;
 
+import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
@@ -85,11 +86,13 @@ public class Menu {
         System.out.println("1) Consultar cuenta de débito");
         System.out.println("2) Depositar a cuenta de débito");
         System.out.println("3) Retirar dinero");
-        System.out.println("4) Consultar cuentas de crédito");
-        System.out.println("5) Realizar solicitud de tarjeta de crédito");
-        System.out.println("6) Revisar estatus de solicitud de tarjeta");
-        System.out.println("7) Realizar compra con tarjeta de crédito");
-        System.out.println("8) Realizar pago a tarjeta de crédito");
+        System.out.println("4) Comprar con tarjeta de débito");
+        System.out.println("5) Consultar cuentas de crédito");
+        System.out.println("6) Mostrar tarjetas de débito y crédito");
+        System.out.println("7) Realizar solicitud de tarjeta de crédito");
+        System.out.println("8) Revisar estatus de solicitud de tarjeta");
+        System.out.println("9) Realizar compra con tarjeta de crédito");
+        System.out.println("10) Realizar pago a tarjeta de crédito");
         System.out.println("0) Cerrar Sesión");
         do {
             System.out.print("Opción: ");
@@ -103,23 +106,99 @@ public class Menu {
                     tarjetaDebito.depositoDebito();
                     break;
                 case 3:
-                    tarjetaDebito.retirarDebito(tarjetaDebito);
+                    tarjetaDebito.retirarDebito();
                     break;
                 case 4:
-                    System.out.println("Este será el menú consulta crédito");
+                    tarjetaDebito.comprarDebito();
                     break;
                 case 5:
+                    int card = 1;
+                    if(cliente.getTarjetasCredito()!=null) {
+                        for(TarjetaCredito tarjetaCredito: cliente.getTarjetasCredito()){
+                            System.out.printf("\n%d) %s\n", card, tarjetaCredito.toString());
+                            card++;
+                        }
+                    }
+                    break;
+                case 6:
+                    cliente.verTodasLasTarjetas();
+                    break;
+                case 7:
                     System.out.println("\tBienvenido\n");
                     Cliente.solicitarTarjetaCredito(cliente);
                     break;
-                case 6:
+                case 8:
                     System.out.println("Este será el menú status de solicitud de tarjeta");
                     break;
-                case 7:
-                    System.out.println("Este será el menú realizar compra con tarjeta");
+                case 9:
+                    int i=1,seleccion,contadorTarjetas=0;//Contador i para las opciones
+                    boolean select = true;
+                    if (cliente.getTarjetasCredito()!=null) {
+                        System.out.println("\tSelecciona la tarjeta a usar");
+                        System.out.println("\nTarjetas de Crédito Disponibles");
+                        for(TarjetaCredito tarjetaCredito:cliente.getTarjetasCredito()) {
+                            if (tarjetaCredito.getSaldoPendiente() > 0) {
+                                System.out.printf("\n%d) Tarjeta %s\n", i, tarjetaCredito.getTipoCredito());
+                                System.out.printf("Crédito Máximo: %f\n", tarjetaCredito.getCreditoMaximo());
+                                i++;
+                            }//Este contador permite registrar cuántas tarjetas están sin saldo pendiente.
+                            if (tarjetaCredito.getSaldoPendiente() == 0) {
+                                contadorTarjetas++;
+                            }
+                        }
+                        if (contadorTarjetas<cliente.getTarjetasCredito().size()) {
+                            do {
+                                seleccion = DatosComun.pedirNumero();
+                                if (seleccion<1||seleccion>i) {
+                                    System.out.println("Error. Selecciona una opción válida");
+                                }else {
+                                    seleccion-=1;
+                                    TarjetaCredito tarjeta = cliente.getTarjetasCredito().get(seleccion);
+                                    tarjeta.comprarCredito();
+                                    select = false;
+                                }
+                            } while (select);
+                        }
+                        if (contadorTarjetas==cliente.getTarjetasCredito().size()) {
+                            System.out.println("\nNo tienes tarjetas de crédito disponibles");
+                        }
+                    }
+                    if (cliente.getTarjetasCredito()==null) System.out.println("\nNo tienes tarjetas de crédito");
                     break;
-                case 8:
-                    System.out.println("Este será el menú realizar pago a tarjeta");
+                case 10:
+                    int k=1,opcionPago,contadorTc=0;//Contador i para las opciones
+                    boolean pagoValido = true;
+                    if (cliente.getTarjetasCredito()!=null) {
+                        System.out.println("\tSelecciona la tarjeta a pagar");
+                        System.out.println("\nTarjetas de Crédito");
+                        for(TarjetaCredito tarjetaCredito:cliente.getTarjetasCredito()) {
+                            if (tarjetaCredito.getSaldoPendiente() > 0) {
+                                System.out.printf("\n%d) Tarjeta %s\n", k, tarjetaCredito.getTipoCredito());
+                                System.out.printf("Saldo pendiente por pagar: %f", tarjetaCredito.getSaldoPendiente());
+                                k++;
+                            }//Este contador permite registrar cuántas tarjetas están sin saldo pendiente.
+                            if (tarjetaCredito.getSaldoPendiente() == 0) {
+                                contadorTc++;
+                            }
+                        }
+                        if (contadorTc<cliente.getTarjetasCredito().size()) {
+                            do {
+                                opcionPago = DatosComun.pedirNumero();
+                                if (opcionPago<1||opcionPago>k) {
+                                    System.out.println("Error. Selecciona una opción válida");
+                                }else {
+                                    opcionPago-=1;
+                                    TarjetaCredito tarjeta = cliente.getTarjetasCredito().get(opcionPago);
+                                    tarjeta.pagarTarjeta();
+                                    pagoValido = false;
+                                }
+                            } while (pagoValido);
+                        }//Si no hay tarjetas pendientes de pago, se arroja el siguiente mensaje
+                        if (contadorTc==cliente.getTarjetasCredito().size()) {
+                            System.out.println("\nNo tienes tarjetas pendientes de pago");
+                        }
+                    }
+                    if (cliente.getTarjetasCredito()==null) System.out.println("\nNo tienes tarjetas de crédito");
                     break;
                 case 0:
                     System.out.println("Cerrando Sesión...");
