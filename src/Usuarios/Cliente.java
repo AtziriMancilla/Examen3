@@ -53,7 +53,7 @@ public class Cliente extends Persona {
             Scanner sc=new Scanner(System.in);
             int opcion;
             boolean band;
-            if(cliente.tarjetaDebito.getSaldo()>200000){
+            if(cliente.tarjetaDebito.getSaldo()>=200000){
                 do {
                     band=false;
                     System.out.println("Seleccione el tipo de tarjeta: ");
@@ -64,14 +64,17 @@ public class Cliente extends Persona {
                         case 1:
                             solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                             Banco.solicitudes.add(solicitud);
+                            System.out.println("Solicitud de tarjeta Simplicity realizada");
                             break;
                         case 2:
                             solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                             Banco.solicitudes.add(solicitud);
+                            System.out.println("Solicitud de tarjeta Platino realizada");
                             break;
                         case 3:
                             solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Oro);
                             Banco.solicitudes.add(solicitud);
+                            System.out.println("Solicitud de tarjeta Oro realizada");
                             break;
                         default:
                             System.out.println("Opcion no valida");
@@ -80,7 +83,7 @@ public class Cliente extends Persona {
                     }
                 }while (band);
             }
-            if(cliente.tarjetaDebito.getSaldo()>100000) {
+            if(cliente.tarjetaDebito.getSaldo()>=100000&&cliente.tarjetaDebito.getSaldo()<200000) {
                 System.out.println("Seleccione el tipo de tarjeta: ");
                 System.out.println("1. Simplicity\n2. Platino");
                 opcion = DatosComun.pedirNumero();
@@ -89,25 +92,28 @@ public class Cliente extends Persona {
                     case 1:
                         solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                         Banco.solicitudes.add(solicitud);
+                        System.out.println("Solicitud de tarjeta Simplicity realizada");
                         break;
                     case 2:
                         solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                         Banco.solicitudes.add(solicitud);
+                        System.out.println("Solicitud de tarjeta Platino realizada");
                         break;
                     default:
                         System.out.println("Opcion no valida");
                         break;
                 }
             }
-            if(cliente.tarjetaDebito.getSaldo()>50000){
+            if(cliente.tarjetaDebito.getSaldo()>=50000&&cliente.tarjetaDebito.getSaldo()<100000){
                 System.out.println("Puedes seleccionar el tipo Simplicity");
-                System.out.println("1. Solicitar\n 2.Salir");
+                System.out.println("1.Solicitar\n2. Salir");
                 opcion=DatosComun.pedirNumero();
                 SolicitudTarjetaCredito solicitud;
                 switch (opcion){
                     case 1:
                         solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                         Banco.solicitudes.add(solicitud);
+                        System.out.println("Solicitud de tarjeta Simplicity realizada");
                         break;
                     default:
                         System.out.println("Opcion no valida");
@@ -119,7 +125,7 @@ public class Cliente extends Persona {
         public void verTodasLasTarjetas() {
             System.out.println("Tarjeta de debito: ");
             System.out.println(tarjetaDebito.toString());
-            System.out.println("Tarjeta de credito: ");
+            System.out.println("Tarjetas de credito: ");
             tarjetasCredito.forEach(tarjetaCredito -> System.out.println(tarjetaCredito.toString()));
         }
 //        public static void realizarCompra () {

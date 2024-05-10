@@ -13,6 +13,7 @@ import java.util.Map;
 public class Banco {
     public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
     public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
+    public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
 
     public Banco (){
         inicializarHashmap();
@@ -20,7 +21,7 @@ public class Banco {
         personas.get(Rol.INVERSIONISTA).add(inversionista);
         Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
         personas.get(Rol.CLIENTE).add(cliente);
-        cliente.realizarDeposito(60000);
+        cliente.realizarDeposito(600000);
     }
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());
@@ -97,6 +98,4 @@ public class Banco {
     public void mostrarInversiones(){Inversion.mostrarInversiones();
     }
 
-
-    //public void eliminarInversión(){Inversion.eliminarInversion();}
 }
