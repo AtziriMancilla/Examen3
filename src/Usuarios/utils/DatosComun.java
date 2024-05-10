@@ -1,5 +1,6 @@
 package Usuarios.utils;
 
+import Banco.Banco;
 import Banco.utils.Generador;
 import Usuarios.Persona;
 
@@ -46,8 +47,7 @@ public class DatosComun {
         String curp = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, estado);
         //Aquí debería ir el RFC
         String RFC = Generador.generarRFC(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
-        System.out.print("Ingresa el nombre de usuario: ");
-        String nombreUsuario=sc.nextLine();
+        String nombreUsuario=obtenerNombreUsuario(rol);
         System.out.println("Ingresa la contraseña");
         String contrasena = sc.nextLine(); //aqui no se si vamos a meter excepciones de algun tipo
 
@@ -55,6 +55,29 @@ public class DatosComun {
 
         return datosComun;
 
+    }
+    private static String obtenerNombreUsuario(Rol rol) {
+        Scanner scanner = new Scanner(System.in);
+        boolean nombreUsuarioExistente = true;
+        String nombreUsuario = "";
+
+        do {
+            System.out.println("Ingresa el nombre de usuario");
+            nombreUsuario = DatosComun.pedirDatoUsuario();
+
+            nombreUsuarioExistente = false;
+            for (Persona persona : Banco.personas.get(rol)) {
+                if (persona.getNombreUsuario().equals(nombreUsuario)) {
+                    nombreUsuarioExistente = true;
+                }
+            }
+
+            if (nombreUsuarioExistente) {
+                System.out.println("El nombre de usuario ya existe. Intenta de nuevo\n");
+            }
+        } while (nombreUsuarioExistente);
+
+        return nombreUsuario;
     }
 
     public static LocalDate obtenerFechaNacimiento() {
@@ -115,7 +138,7 @@ public class DatosComun {
 
     private static boolean validarSexo(char sexo) {
         boolean band = false;
-        if (sexo == 'H' || sexo == 'M') {
+        if (sexo == 'H'|| sexo == 'M') {
             band = true;
             return band;
         } else {
@@ -161,7 +184,6 @@ public class DatosComun {
                 error = true;
 
             }
-
         } while (error);
         sc.nextLine();
         return dato;
@@ -182,6 +204,10 @@ public class DatosComun {
                 if (dato == null || dato.trim().isEmpty()) {
                     throw new IllegalArgumentException("El dato no puede estar vacío");
                 }
+                if (dato.charAt(0)=='0'||dato.charAt(0)=='1'||dato.charAt(0)=='2'||dato.charAt(0)=='3'||dato.charAt(0)=='4'||dato.charAt(0)=='5'||dato.charAt(0)=='6'||dato.charAt(0)=='7'||dato.charAt(0)=='8'||dato.charAt(0)=='9') {
+                    throw new IllegalArgumentException("El dato no puede contener números al inicio");
+                }
+
                 if (dato.length()<2){
                     throw new IllegalArgumentException("Error: solo ingresaste un carácter");
                 }
@@ -205,7 +231,8 @@ public class DatosComun {
     }
     public static String pedirDireccion(){
         Scanner sc = new Scanner(System.in);
-        String direccion ="";
+//        sc.nextLine();
+        //String direccion ="";
         System.out.println("Ingrese calle");
         String calle = pedirDatoString();
         System.out.println("Ingrese numero");
@@ -216,8 +243,7 @@ public class DatosComun {
         System.out.println("Ingrese código postal");
         int codigoPostal = pedirNumero();
         String codigoPostalLegible = String.valueOf(codigoPostal);
-        direccion = "Calle: "+calle+" No."+numeroLegible+colonia+" Col."+colonia+" C.P. "+codigoPostalLegible;
-        return direccion;
+        return "Calle: "+calle+" No."+numeroLegible+colonia+" Col."+colonia+" C.P. "+codigoPostalLegible;
     }
 
     public static int pedirNumero(){ //para valores enteros

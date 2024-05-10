@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a9a53224-9e74-4fa5-9e7d-da06cd056198" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banco/Banco.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Banco.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Banco/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Ejecutivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuarios/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuarios/utils/DatosComun.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

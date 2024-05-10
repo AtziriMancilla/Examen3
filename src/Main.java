@@ -56,8 +56,9 @@ public class Main {
 //        tarjeta.setFechaHoraUltimoMov(fecha3);
 //        System.out.println(tarjeta.fechaUltimoMov());
         Banco banco=new Banco();
-        //Cliente.solicitarTarjetaCredito((Cliente) Banco.personas.get(Rol.CLIENTE).getFirst());
-        //Cliente.buscarCliente();
-        Ejecutivo.buscarEjecutivo();
+//        //Cliente.solicitarTarjetaCredito((Cliente) Banco.personas.get(Rol.CLIENTE).getFirst());
+//        //Cliente.buscarCliente();
+//        Ejecutivo.buscarEjecutivo();
+        Cliente.registrarCliente();
     }
 }

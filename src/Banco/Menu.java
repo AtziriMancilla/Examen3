@@ -186,6 +186,7 @@ public class Menu {
             System.out.println("4. Ver Clientes ");
             System.out.println("5. Buscar Clientes ");
             System.out.println("6. Ver Solicitudes de Tarjetas");//pedir contraseña
+            //hacer atziri
             System.out.println("7. Procesar Solicitudes de Tarjeta");//pedir contraseña
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();

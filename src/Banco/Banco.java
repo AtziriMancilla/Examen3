@@ -13,7 +13,7 @@ import java.util.Map;
 public class Banco {
     public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
     public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
-    public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
+    public static final ArrayList<Inversion> inversiones = new ArrayList<>();
 
     public Banco (){
         inicializarHashmap();
