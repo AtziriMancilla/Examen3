@@ -91,7 +91,7 @@ public class Menu {
         System.out.println("6) Revisar estatus de solicitud de tarjeta");
         System.out.println("7) Realizar compra con tarjeta de crédito");
         System.out.println("8) Realizar pago a tarjeta de crédito");
-        System.out.println("9) Cerrar Sesión");
+        System.out.println("0) Cerrar Sesión");
         do {
             try {
                 System.out.print("Opción: ");
@@ -106,7 +106,7 @@ public class Menu {
                         tarjetaDebito.depositoDebito();
                         break;
                     case 3:
-                        System.out.println("Este será el menú retiro");
+                        tarjetaDebito.retirarDebito(tarjetaDebito);
                         break;
                     case 4:
                         System.out.println("Este será el menú consulta crédito");
@@ -124,7 +124,7 @@ public class Menu {
                     case 8:
                         System.out.println("Este será el menú realizar pago a tarjeta");
                         break;
-                    case 9:
+                    case 0:
                         System.out.println("Cerrando Sesión...");
                         flag = false;
                         break;
