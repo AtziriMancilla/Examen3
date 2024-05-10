@@ -8,7 +8,6 @@ import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -66,14 +65,54 @@ public class Menu {
     }
     private static void seleccionarMenu() {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
-            case CAPTURISTA -> mostrarMenuC();
-            case CLIENTE -> mostrarMenuCliente();
+            case CAPTURISTA -> mostrarMenuCapturista();
+            //case CLIENTE -> mostrarMenuCliente();
             case EJECUTIVO -> mostrarMenuEjecutivo();
             case GERENTE -> mostrarMenuGerente();
             case INVERSIONISTA -> mostrarMenuInversionista();
         }
     }
-    
+    private static void mostrarMenuCapturista(){
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 10;
+
+        do {
+            System.out.println("\nMenú Capturista");
+            System.out.println("Selecciona una opción para continuar");
+            System.out.println("1. Registrar Ejecutivo de Cuenta");
+            System.out.println("2. Modificar Ejecutivo de Cuenta");
+            System.out.println("3. Ver Ejecutivos de Cuenta ");
+            System.out.println("4. Eliminar Ejecutivo de Cuenta ");
+            System.out.println("5. Buscar Ejecutivo de Cuenta ");//pero no se si se quede este o no
+            System.out.println("0. Cerrar sesión ");
+            opcion = DatosComun.pedirNumero();
+
+            switch (opcion) {
+                case 1:
+                    Ejecutivo.registrarEjecutivo();
+                    break;
+                case 2:
+                    Ejecutivo.modificarEjecutivo();
+                    break;
+                case 3:
+                    Ejecutivo.mostrarEjecutivos();
+                    break;
+                case 4:
+                    Ejecutivo.eliminarEjecutivo();
+                    break;
+                case 5:
+                    //Ejecutivo.buscarEjecutivo();
+                    break;
+                case 0:
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    seleccionarBanco();
+                    break;
+                default:
+                    System.out.println("Ingresa una opción válida");
+            }
+        }
+        while(opcion != 0);
+    }
     private static void mostrarMenuEjecutivo(){
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
@@ -401,4 +440,31 @@ public class Menu {
         }
         while(opcion != 0);
     }
+
+
+
+
+//    private Banco bancoMadero = new Banco();
+//    private Banco bancoAcueducto = new Banco();
+//    public void discernirElBanco(){
+//        do{
+//            System.out.println(">>Bienvenido al Banco<<");
+//            System.out.println("Por favor elija la sucursal");
+//            System.out.println("1. Madero \t\t 2. Acueducto");
+//            int sucursal =
+//        }while();
+//
+//    }
+//    public Persona verificarInicioSesion(String usuario, String contrasena) {
+//        for (Map.Entry<Rol, ArrayList<Persona>> entry : usuario.ent()){
+//            ArrayList<Persona> listaUsuarios = entry.getValue();
+//            for(Persona usuarioActual : listaUsuarios){
+//                if(usuarioActual.getNombre().equals(usuario)&& usuarioActual.getContrasena().equals(contrasena)){
+//                    return usuarioActual;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+
 }
