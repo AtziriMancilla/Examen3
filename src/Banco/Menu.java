@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-<<<<<<< HEAD
+
     private final Banco bancoMadero = new Banco();
     private final Banco bancoAcueducto = new Banco();
     public void seleccionarBanco(){
@@ -63,35 +63,12 @@ public class Menu {
     }
     private static void seleccionarMenu() {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
-            //case CAPTURISTA -> mostrarMenuCliente();
+            //case CAPTURISTA -> mostrarMenuC();
             //case CLIENTE -> mostrarMenuTrabajador();
             //case EJECUTIVO -> mostrarMenuEjecutivo();
             //case GERENTE -> mostrarMenuGerente();
             //case INVERSIONISTA -> mostrarMenuInversionista();
         }
     }
-=======
-    private Banco bancoMadero = new Banco();
-    private Banco bancoAcueducto = new Banco();
-//    public void discernirElBanco(){
-//        do{
-//            System.out.println(">>Bienvenido al Banco<<");
-//            System.out.println("Por favor elija la sucursal");
-//            System.out.println("1. Madero \t\t 2. Acueducto");
-//            int sucursal =
-//        }while();
-//
-//    }
-//    public Persona verificarInicioSesion(String usuario, String contrasena) {
-//        for (Map.Entry<Rol, ArrayList<Persona>> entry : usuario.ent()){
-//            ArrayList<Persona> listaUsuarios = entry.getValue();
-//            for(Persona usuarioActual : listaUsuarios){
-//                if(usuarioActual.getNombre().equals(usuario)&& usuarioActual.getContrasena().equals(contrasena)){
-//                    return usuarioActual;
-//                }
-//            }
-//        }
-//        return null;
-//    }
->>>>>>> fdbc97f959884ab8c6288c2144d0f7c8cba04f4e
+
 }
