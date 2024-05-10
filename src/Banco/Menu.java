@@ -1,5 +1,6 @@
 package Banco;
 
+import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Inversion;
@@ -66,10 +67,62 @@ public class Menu {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
             //case CAPTURISTA -> mostrarMenuCliente();
             //case CLIENTE -> mostrarMenuTrabajador();
-            //case EJECUTIVO -> mostrarMenuEjecutivo();
+            case EJECUTIVO -> mostrarMenuEjecutivo();
             case GERENTE -> mostrarMenuGerente();
             case INVERSIONISTA -> mostrarMenuInversionista();
         }
+    }
+
+    private static void mostrarMenuEjecutivo(){
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 10;
+
+        do {
+            System.out.println("\nMenú Ejecutivo");
+            System.out.println("Selecciona una opción para continuar");
+            System.out.println("1. Registrar Cliente ");
+            System.out.println("2. Modificar Cliente ");
+            System.out.println("3. Eliminar Cliente ");
+            System.out.println("4. Ver Clientes ");
+            System.out.println("5. Buscar Clientes ");
+            System.out.println("6. Ver Solicitudes de Tarjetas");//pedir contraseña
+            System.out.println("7. Procesar Solicitudes de Tarjeta");//pedir contraseña
+            System.out.println("0. Cerrar sesión ");
+            opcion = DatosComun.pedirNumero();
+
+            switch (opcion) {
+                case 1:
+                    Cliente.registrarCliente();
+                    break;
+                case 2:
+                    Cliente.modificarCliente();
+                    break;
+                case 3:
+                    Cliente.borrarCliente();
+                    break;
+                case 4:
+                    Cliente.mostrarClientes();
+                    break;
+                case 5:
+                    //Cliente.buscarCliente;
+                    break;
+                case 6:
+                    //Ejecutivo.solicitarcontrasena();
+                    //
+                    break;
+                case 7:
+                    //
+                    break;
+                case 0:
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    seleccionarBanco();
+                    break;
+                default:
+                    System.out.println("Ingresa una opción válida");
+            }
+        }
+        while(opcion != 0);
+
     }
     private static void mostrarMenuInversionista() {
         Scanner scanner = new Scanner(System.in);
