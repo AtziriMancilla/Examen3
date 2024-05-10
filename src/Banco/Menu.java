@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-<<<<<<< HEAD
+
     private final Banco bancoMadero = new Banco();
     private final Banco bancoAcueducto = new Banco();
     public void seleccionarBanco(){
@@ -70,9 +70,9 @@ public class Menu {
             //case INVERSIONISTA -> mostrarMenuInversionista();
         }
     }
-=======
-    private Banco bancoMadero = new Banco();
-    private Banco bancoAcueducto = new Banco();
+
+//    private Banco bancoMadero = new Banco();
+//    private Banco bancoAcueducto = new Banco();
 //    public void discernirElBanco(){
 //        do{
 //            System.out.println(">>Bienvenido al Banco<<");
@@ -93,5 +93,5 @@ public class Menu {
 //        }
 //        return null;
 //    }
->>>>>>> fdbc97f959884ab8c6288c2144d0f7c8cba04f4e
+
 }
