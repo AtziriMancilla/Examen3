@@ -327,7 +327,7 @@ public class Menu {
                     Cliente.mostrarClientes();
                     break;
                 case 5:
-                    //Cliente.buscarCliente();
+                    Cliente.buscarCliente();
                     break;
                 case 0:
                    mostrarMenuGerente();

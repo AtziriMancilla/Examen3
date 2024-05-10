@@ -374,5 +374,8 @@ public class Cliente extends Persona {
             sc.nextLine();
             return numCliente;
     }
+    public static void buscarCliente(){
+
+    }
 }
 
