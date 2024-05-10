@@ -9,11 +9,17 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Banco {
     public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
     public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
+<<<<<<< HEAD
     public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
+    private String contrasenaSecreta = "uwu";
+=======
+    public static final ArrayList<Inversion> inversiones = new ArrayList<>();
+>>>>>>> 7507cb949c60ea86214ae42ce8f458fa7dc9f7d3
 
     public Banco (){
         inicializarHashmap();
@@ -46,6 +52,30 @@ public class Banco {
             }
         }
         return null;
+    }
+
+
+    public static boolean verificarContrasenaSecreta(){
+
+        Scanner sc = new Scanner(System.in);
+        boolean contrasenaCoincide = false;
+        String contrasenaIngresada = "";
+        int contador =0;
+        do{
+            System.out.println("Ingrese contraseña secreta");
+            contrasenaIngresada = sc.nextLine();
+            if (contrasenaIngresada.equals("uwu")){
+                contrasenaCoincide = true;
+            }
+            else {
+                contador ++;
+            }
+            if (contador>=3){
+                System.out.println("Alcanzó máximo de intentos");
+                break;
+            }
+        }while(!contrasenaCoincide);
+        return contrasenaCoincide;
     }
 
     //Crear personas

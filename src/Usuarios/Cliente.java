@@ -374,5 +374,23 @@ public class Cliente extends Persona {
             sc.nextLine();
             return numCliente;
     }
+    public static void buscarCliente(){
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Ingrese el ID del cliente");
+            int id=DatosComun.pedirNumero();
+            boolean existe=false;
+            for (Persona persona : Banco.personas.get(Rol.CLIENTE)) {
+                Cliente cliente = (Cliente) persona;
+                    if(cliente.getId()==id){
+                        System.out.println(cliente.toString());
+                        existe=true;
+                    }
+            }
+        if (!existe)
+            System.out.println("No se encontro este Cliente");
+    }
+    public int getId() {
+        return id;
+    }
 }
 
