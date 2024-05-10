@@ -77,7 +77,6 @@ public class Menu {
 
     private static void mostrarMenuCliente() {
         boolean flag = true;
-        Scanner sc = new Scanner(System.in);
         int opcion;
         Cliente cliente = (Cliente)UsuarioEnSesion.getInstancia().getUsuarioActual();//Para obtener al cliente de la sesión.
         TarjetaDebito tarjetaDebito = cliente.getTarjetaDebito();//Se obtiene la tarjeta de débito del usuario para sus futuras operaciones.
@@ -93,54 +92,42 @@ public class Menu {
         System.out.println("8) Realizar pago a tarjeta de crédito");
         System.out.println("0) Cerrar Sesión");
         do {
-            try {
-                System.out.print("Opción: ");
-                opcion = sc.nextInt();
-                sc.nextLine();
-                switch (opcion) {
-                    case 1:
-                        System.out.println("Saldo de la cuenta: "+ tarjetaDebito.getSaldo());
-                        System.out.println(tarjetaDebito.toString());//Obtener el resto de los datos de la tarjeta
-                        break;
-                    case 2:
-                        tarjetaDebito.depositoDebito();
-                        break;
-                    case 3:
-                        tarjetaDebito.retirarDebito(tarjetaDebito);
-                        break;
-                    case 4:
-                        System.out.println("Este será el menú consulta crédito");
-                        break;
-                    case 5:
-                        System.out.println("\tBienvenido\n");
-                        Cliente.solicitarTarjetaCredito(cliente);
-                        break;
-                    case 6:
-                        System.out.println("Este será el menú status de solicitud de tarjeta");
-                        break;
-                    case 7:
-                        System.out.println("Este será el menú realizar compra con tarjeta");
-                        break;
-                    case 8:
-                        System.out.println("Este será el menú realizar pago a tarjeta");
-                        break;
-                    case 0:
-                        System.out.println("Cerrando Sesión...");
-                        flag = false;
-                        break;
-                    default:
-                        System.out.println("Error. Selecciona una opción válida\n");
-                        break;
-                }
-            } catch (InputMismatchException error) {
-                System.out.println("\nDatos no válidos. Intenta de nuevo.\n");
-                sc.next();
-            } catch (NullPointerException error) {
-                System.out.println(error.getMessage());
-                sc.next();
-            } catch (Exception error) {
-                System.out.println("Entrada inválida. Intenta de nuevo.");
-                sc.next();
+            System.out.print("Opción: ");
+            opcion = DatosComun.pedirNumero();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Saldo de la cuenta: " + tarjetaDebito.getSaldo());
+                    System.out.println(tarjetaDebito.toString());//Obtener el resto de los datos de la tarjeta
+                    break;
+                case 2:
+                    tarjetaDebito.depositoDebito();
+                    break;
+                case 3:
+                    tarjetaDebito.retirarDebito(tarjetaDebito);
+                    break;
+                case 4:
+                    System.out.println("Este será el menú consulta crédito");
+                    break;
+                case 5:
+                    System.out.println("\tBienvenido\n");
+                    Cliente.solicitarTarjetaCredito(cliente);
+                    break;
+                case 6:
+                    System.out.println("Este será el menú status de solicitud de tarjeta");
+                    break;
+                case 7:
+                    System.out.println("Este será el menú realizar compra con tarjeta");
+                    break;
+                case 8:
+                    System.out.println("Este será el menú realizar pago a tarjeta");
+                    break;
+                case 0:
+                    System.out.println("Cerrando Sesión...");
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Error. Selecciona una opción válida\n");
+                    break;
             }
         }while(flag);
     }
