@@ -12,9 +12,9 @@ public class TarjetaDebito extends Tarjeta {
         this.saldo = 0;
     }
     //Método para depósitos iniciales de objetos precargados
-    public void depositar(double deposito) {
+    /*public void depositar(double deposito) {
         this.saldo += deposito;
-    }
+    }*/
     //Método para depósitos mediante entradas del Usuario en Sesión
     public void depositoDebito() {
         Scanner sc = new Scanner(System.in);
@@ -50,7 +50,7 @@ public class TarjetaDebito extends Tarjeta {
         }while(flag);
     }
 
-    public void retirar(TarjetaDebito tarjeta) {
+    public void retirarDebito(TarjetaDebito tarjeta) {
         Scanner sc = new Scanner(System.in);
         boolean flag = true;
         double retiro;

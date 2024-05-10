@@ -135,17 +135,17 @@ public class Cliente extends Persona {
 //
 //        }
         //Método para objetos precargados del sistema.
-        public void realizarDeposito(double monto){
+        /*public void realizarDeposito(double monto){
             tarjetaDebito.depositar(monto);
-        }
+        }*/
         //Método para depósitos ingresados por el Usuario en Sesión.
-        public void depositarDebito() {
+        /*public void depositarDebito() {
             tarjetaDebito.depositoDebito();
-        }
+        }*/
 
-        public void retirarDebito(TarjetaDebito tarjeta) {
+        /*public void retirarDebito(TarjetaDebito tarjeta) {
             tarjetaDebito.retirar(tarjeta);
-        }
+        }*/
 
         public static void registrarCliente () {
             ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CLIENTE);
