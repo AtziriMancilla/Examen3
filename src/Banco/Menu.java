@@ -161,7 +161,7 @@ public class Menu {
                     Ejecutivo.eliminarEjecutivo();
                     break;
                 case 5:
-                    //Ejecutivo.buscarEjecutivo();
+                    Ejecutivo.buscarEjecutivo();
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
@@ -204,7 +204,7 @@ public class Menu {
                     Cliente.mostrarClientes();
                     break;
                 case 5:
-                    //Cliente.buscarCliente;
+                    Cliente.buscarCliente();
                     break;
                 case 6:
                     //Ejecutivo.solicitarcontrasena();

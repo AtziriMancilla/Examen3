@@ -6,8 +6,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Persona {
-    private static int PERSONAS_REGISTRADAS = 1;
-    private int id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -23,9 +21,7 @@ public class Persona {
     private String contrasena;
     private Rol rol;
 
-    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, Rol rol, String rfc,String nombreUsuario, String contrasena) {
-      this.id = PERSONAS_REGISTRADAS;
-      PERSONAS_REGISTRADAS++;
+    public Persona(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, Rol rol, String rfc, String nombreUsuario, String contrasena) {
       this.nombre = nombre;
       this.apellidoPaterno = apellidoPaterno;
       this.apellidoMaterno = apellidoMaterno;
@@ -45,17 +41,11 @@ public class Persona {
     public String toString(){
         DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         String fechaFormateada = getFechaNacimiento().format(pattern);
-        return String.format("ID: %d,Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s, Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s", id, nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaFormateada,RFC);
+        return String.format("Nombre: %s, Apellido: %s %s, Ciudad: %s, Estado: %s, Curp: %s, Direccion: %s, Fecha nacimiento: %s, RFC: %s", nombre,apellidoPaterno,apellidoMaterno,ciudad,estado,curp,direccion,fechaFormateada,RFC);
     }
-
-    public int getId() {
-        return id;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNombre() {
         return nombre;
     }

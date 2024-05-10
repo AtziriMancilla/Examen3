@@ -166,6 +166,43 @@ public class DatosComun {
         sc.nextLine();
         return dato;
     }
+    public static String pedirDatoUsuario() { //Permite signos y numeros en una cadena
+        Scanner sc = new Scanner(System.in);
+        String dato = "a";
+
+        boolean error = false;
+
+        do {
+            error = false;
+
+            try {
+                System.out.print("Ingrese dato: ");
+                dato = sc.nextLine();
+
+                if (dato == null || dato.trim().isEmpty()) {
+                    throw new IllegalArgumentException("El dato no puede estar vacío");
+                }
+                if (dato.length()<2){
+                    throw new IllegalArgumentException("Error: solo ingresaste un carácter");
+                }
+                else{
+                    return dato;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                error = true;
+
+
+            } catch (Exception e) {
+                System.out.println("Error. Intente de nuevo. ");
+                error = true;
+
+            }
+
+        } while (error);
+        sc.nextLine();
+        return dato;
+    }
     public static String pedirDireccion(){
         Scanner sc = new Scanner(System.in);
         String direccion ="";
