@@ -93,5 +93,7 @@ public class Banco {
     }
     public void mostrarInversiones(){Inversion.mostrarInversiones();
     }
+
+
     //public void eliminarInversión(){Inversion.eliminarInversion();}
 }

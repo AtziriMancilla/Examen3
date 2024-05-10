@@ -124,12 +124,15 @@ public class DatosComun {
         }
     }
 
-    public static String pedirDatoString() {
+    public static String pedirDatoString() { //No permite ni signos .,%. Acepta minimo una letra. No acepta numeros
         Scanner sc = new Scanner(System.in);
-        String dato = "";
+        String dato = "a";
 
-        boolean comprobacion = false;
+        boolean error = false;
+
         do {
+            error = false;
+
             try {
                 System.out.print("Ingrese dato: ");
                 dato = sc.nextLine();
@@ -137,25 +140,30 @@ public class DatosComun {
                 if (dato == null || dato.trim().isEmpty()) {
                     throw new IllegalArgumentException("El dato no puede estar vacío");
                 }
-                if (dato.matches(".*\\d.*")) {
-                    throw new InputMismatchException("El dato no puede contener números.");
+
+                if (!dato.matches("[a-ñ-zA-Ñ-Z]+")) {
+                    throw new IllegalArgumentException("El dato solo puede contener letras.");
                 }
-            } catch (IllegalArgumentException error) {
-                System.out.println("Error: " + error.getMessage());
-                comprobacion=true;
-            } catch (InputMismatchException e) {
-                System.out.println("Error: El dato no puede contener numeros");
-                comprobacion=true;
-            } catch (Exception error) {
+
+                if (dato.length()<2){
+                    throw new IllegalArgumentException("Error: solo ingresaste un carácter");
+                }
+                else{
+                    return dato;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                error = true;
+
+
+            } catch (Exception e) {
                 System.out.println("Error. Intente de nuevo. ");
-                comprobacion=true;
-            }finally {
-                sc.nextLine();
+                error = true;
+
             }
 
-        } while (!comprobacion);
-        sc.close();
-
+        } while (error);
+        sc.nextLine();
         return dato;
     }
     public static String pedirDireccion(){
@@ -175,20 +183,28 @@ public class DatosComun {
         return direccion;
     }
 
-    public static int pedirNumero(){
+    public static int pedirNumero(){ //para valores enteros
         Scanner sc = new Scanner(System.in);
-        int numero=0;
+        int numero=-1;
         boolean comprobacion = false;
         do {
+            comprobacion = false;
+
             try {
                 System.out.print("Ingresa dato: ");
                 String input = sc.nextLine();
+
                 if (input.isEmpty()) {
                     throw new IllegalArgumentException("No ha ingresado ningún número.");
                 }
+
                 numero = Integer.parseInt(input);
+
                 if(numero<0){
                     throw new NumberFormatException("No puedes ingresar un valor negativo");
+                }
+                else{
+                    return numero;
                 }
 
             } catch(IllegalArgumentException error){
@@ -202,30 +218,33 @@ public class DatosComun {
             catch (Exception error) {
                 System.out.println("Error. Intente de nuevo. ");
                 comprobacion=true;
-            }finally {
-                sc.close();
             }
 
-        } while (!comprobacion);
-        sc.close();
-
+        } while (comprobacion);
+        sc.nextLine();
         return numero;
     }
 
     public static double pedirValorDouble(){
         Scanner sc = new Scanner(System.in);
-        double valorDouble=0;
+        double valorDouble=-1;
         boolean comprobacion = false;
         do {
+            comprobacion = false;
             try {
                 System.out.print("Ingresa dato: ");
                 String input = sc.nextLine();
                 if (input.isEmpty()) {
                     throw new IllegalArgumentException("No ha ingresado ningún número.");
                 }
+
                 valorDouble = Double.parseDouble(input);
+
                 if(valorDouble<0){
                     throw new NumberFormatException("No puedes ingresar un valor negativo");
+                }
+                else{
+                    return valorDouble;
                 }
 
             } catch(IllegalArgumentException error){
@@ -239,13 +258,10 @@ public class DatosComun {
             catch (Exception error) {
                 System.out.println("Error. Intente de nuevo. ");
                 comprobacion=true;
-            }finally {
-                sc.nextLine();
             }
 
-        } while (!comprobacion);
-        sc.close();
-
+        } while (comprobacion);
+        sc.nextLine();
         return valorDouble;
     }
     public static void pedirOpcionValida(ArrayList<Persona> listaUsuarios){
