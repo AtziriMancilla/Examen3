@@ -119,7 +119,7 @@ public class Cliente extends Persona {
         public void verTodasLasTarjetas() {
             System.out.println("Tarjeta de debito: ");
             System.out.println(tarjetaDebito.toString());
-            System.out.println("Tarjeta de credito: ");
+            System.out.println("Tarjetas de credito: ");
             tarjetasCredito.forEach(tarjetaCredito -> System.out.println(tarjetaCredito.toString()));
         }
 //        public static void realizarCompra () {
