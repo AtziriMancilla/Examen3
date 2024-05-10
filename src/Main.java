@@ -2,7 +2,9 @@ import Banco.Banco;
 import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
+import Usuarios.Cliente;
 import Usuarios.Inversionista;
+import Usuarios.utils.Rol;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -53,6 +55,7 @@ public class Main {
 //        tarjeta.setFechaHoraUltimoMov(fecha3);
 //        System.out.println(tarjeta.fechaUltimoMov());
         Banco banco=new Banco();
-        Inversionista.eliminarInversionista();
+        Cliente.solicitarTarjetaCredito((Cliente) Banco.personas.get(Rol.CLIENTE).getFirst());
+
     }
 }
