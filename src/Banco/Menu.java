@@ -65,14 +65,54 @@ public class Menu {
     }
     private static void seleccionarMenu() {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
-            //case CAPTURISTA -> mostrarMenuCliente();
-            //case CLIENTE -> mostrarMenuTrabajador();
+            case CAPTURISTA -> mostrarMenuCapturista();
+            //case CLIENTE -> mostrarMenuCliente();
             case EJECUTIVO -> mostrarMenuEjecutivo();
             case GERENTE -> mostrarMenuGerente();
             case INVERSIONISTA -> mostrarMenuInversionista();
         }
     }
+    private static void mostrarMenuCapturista(){
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 10;
 
+        do {
+            System.out.println("\nMenú Capturista");
+            System.out.println("Selecciona una opción para continuar");
+            System.out.println("1. Registrar Ejecutivo de Cuenta");
+            System.out.println("2. Modificar Ejecutivo de Cuenta");
+            System.out.println("3. Ver Ejecutivos de Cuenta ");
+            System.out.println("4. Eliminar Ejecutivo de Cuenta ");
+            System.out.println("5. Buscar Ejecutivo de Cuenta ");//pero no se si se quede este o no
+            System.out.println("0. Cerrar sesión ");
+            opcion = DatosComun.pedirNumero();
+
+            switch (opcion) {
+                case 1:
+                    Ejecutivo.registrarEjecutivo();
+                    break;
+                case 2:
+                    Ejecutivo.modificarEjecutivo();
+                    break;
+                case 3:
+                    Ejecutivo.mostrarEjecutivos();
+                    break;
+                case 4:
+                    Ejecutivo.eliminarEjecutivo();
+                    break;
+                case 5:
+                    //Ejecutivo.buscarEjecutivo();
+                    break;
+                case 0:
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    seleccionarBanco();
+                    break;
+                default:
+                    System.out.println("Ingresa una opción válida");
+            }
+        }
+        while(opcion != 0);
+    }
     private static void mostrarMenuEjecutivo(){
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
