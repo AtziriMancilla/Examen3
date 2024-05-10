@@ -14,8 +14,12 @@ import java.util.Scanner;
 public class Banco {
     public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
     public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
+<<<<<<< HEAD
     public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
     private String contrasenaSecreta = "uwu";
+=======
+    public static final ArrayList<Inversion> inversiones = new ArrayList<>();
+>>>>>>> 7507cb949c60ea86214ae42ce8f458fa7dc9f7d3
 
     public Banco (){
         inicializarHashmap();

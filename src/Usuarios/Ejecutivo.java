@@ -7,10 +7,7 @@ import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Ejecutivo extends Empleado{
 private LocalDate fechaInicio;
@@ -234,5 +231,21 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
     }
 
 
+
+    public static void buscarEjecutivo(){
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Ingrese el nombre de usuario del Ejecutivo");
+        String nombreUsuario=DatosComun.pedirDatoUsuario();
+        boolean existe=false;
+        for (Persona persona : Banco.personas.get(Rol.EJECUTIVO)) {
+            Ejecutivo ejecutivo = (Ejecutivo) persona;
+            if(Objects.equals(ejecutivo.getNombreUsuario(), nombreUsuario)){
+                System.out.println(ejecutivo.toString());
+                existe=true;
+            }
+        }
+        if (!existe)
+            System.out.println("No se encontró este Ejecutivo");
     }
+}
 
