@@ -198,8 +198,8 @@ public class Menu {
             System.out.println("3. Eliminar Cliente ");
             System.out.println("4. Ver Clientes ");
             System.out.println("5. Buscar Clientes ");
-            System.out.println("6. Ver Solicitudes de Tarjetas");//pedir contraseña
-            System.out.println("7. Procesar Solicitudes de Tarjeta");//pedir contraseña
+            System.out.println("6. Ver Solicitudes de Tarjetas");
+            System.out.println("7. Procesar Solicitudes de Tarjeta");
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
 
@@ -220,12 +220,9 @@ public class Menu {
                     //Cliente.buscarCliente;
                     break;
                 case 6:
-                    //Ejecutivo.solicitarcontrasena();
                     //
-                    break;
                 case 7:
-                    //
-                    break;
+                   //
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
                     seleccionarBanco();
@@ -392,20 +389,26 @@ public class Menu {
             System.out.println(">>En relación a Inversionistas e Inversiones<<");
             System.out.println("Selecciona una opción para continuar");
             System.out.println();
-            System.out.println("1. Registrar Inversionista ");//solicitarcontraseña a gerente
-            System.out.println("2. Modificar Inversionista ");//solicitarcontraseña a gerente
-            System.out.println("3. Eliminar Inversionista ");//solicitarcontraseña a gerente
-            System.out.println("4. Ver Inversionistas ");//solicitarcontraseña a gerente
-            System.out.println("5. Ver Inversiones");//solicitarcontraseña a gerente
+            System.out.println("1. Registrar Inversionista ");
+            System.out.println("2. Modificar Inversionista ");
+            System.out.println("3. Eliminar Inversionista ");
+            System.out.println("4. Ver Inversionistas ");
+            System.out.println("5. Ver Inversiones");
             System.out.println("0. Atrás");
 
             opcion = DatosComun.pedirNumero();
-            //Gerente.solicitarContrasena();
             if(opcion==0){
                 mostrarMenuGerente();
                 scanner.nextLine();
-                break;
             }
+            else {
+                boolean respuesta = Banco.verificarContrasenaSecreta();
+                if (respuesta==false){System.out.println("Por seguridad se cerrrará la sesión");
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    seleccionarBanco();
+                    break;
+                }
+                else {
 
             switch (opcion) {
                 case 1:
@@ -429,6 +432,8 @@ public class Menu {
                     break;
                 default:
                     System.out.println("Ingresa una opción válida");
+            }
+        }
             }
         }
         while(opcion != 0);

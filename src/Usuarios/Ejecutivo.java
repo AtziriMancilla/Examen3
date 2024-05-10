@@ -15,6 +15,8 @@ import java.util.Scanner;
 public class Ejecutivo extends Empleado{
 private LocalDate fechaInicio;
 
+private String contrasenaSecreta;
+
 public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena, double salario){
     super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.EJECUTIVO, RFC, nombreUsuario, contrasena, salario);
     fechaInicio = getFechaInicio();
@@ -230,4 +232,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         sc.nextLine();
         return  numEjecutivo;
     }
-}
+
+
+    }
+
