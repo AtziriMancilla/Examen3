@@ -6,6 +6,8 @@ import Banco.Tarjetas.Tarjeta;
 import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
+import Banco.utils.SolicitudTarjetaCredito;
+import Banco.utils.TipoTarjetaCredito;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
@@ -22,19 +24,19 @@ public class Cliente extends Persona {
     private int id;
     private LocalDate fechaRegistro;
     private TarjetaDebito tarjetaDebito;
-    private ArrayList<TarjetaCredito> tarjetasCredito;
+    private ArrayList<TarjetaCredito> tarjetasCredito=new ArrayList<>();
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion,
         int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena){
             super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.CLIENTE, RFC, nombreUsuario, contrasena);
-
             fechaRegistro = LocalDate.now();
             id = num;
             num++;
             tarjetaDebito = new TarjetaDebito(1234);
-            tarjetasCredito = new ArrayList<>();
         }
-
+        public ArrayList<TarjetaCredito> getTarjetasCredito() {
+            return tarjetasCredito;
+        }
 
         @Override
         public String toString () {
@@ -42,23 +44,92 @@ public class Cliente extends Persona {
             String fechaFormateada = fechaRegistro.format(pattern);
             return String.format("ID: %d, %s Fecha registro %s ", id, super.toString(), fechaFormateada);
         }
+        //json no depende del lenguaje
         public TarjetaDebito getTarjetaDebito() {
             return tarjetaDebito;
         }
-        public static void solicitarTarjeta () {
 
+        public static void solicitarTarjetaCredito (Cliente cliente) {
+            Scanner sc=new Scanner(System.in);
+            int opcion;
+            boolean band;
+            if(cliente.tarjetaDebito.getSaldo()>200000){
+                do {
+                    band=false;
+                    System.out.println("Seleccione el tipo de tarjeta: ");
+                    System.out.println("1. Simplicity\n2. Platino\n3. Oro");
+                    opcion = DatosComun.pedirNumero();
+                    SolicitudTarjetaCredito solicitud;
+                    switch (opcion) {
+                        case 1:
+                            solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
+                            Banco.solicitudes.add(solicitud);
+                            break;
+                        case 2:
+                            solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
+                            Banco.solicitudes.add(solicitud);
+                            break;
+                        case 3:
+                            solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Oro);
+                            Banco.solicitudes.add(solicitud);
+                            break;
+                        default:
+                            System.out.println("Opcion no valida");
+                            band=true;
+                            break;
+                    }
+                }while (band);
+            }
+            if(cliente.tarjetaDebito.getSaldo()>100000) {
+                System.out.println("Seleccione el tipo de tarjeta: ");
+                System.out.println("1. Simplicity\n2. Platino");
+                opcion = DatosComun.pedirNumero();
+                SolicitudTarjetaCredito solicitud;
+                switch (opcion) {
+                    case 1:
+                        solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
+                        Banco.solicitudes.add(solicitud);
+                        break;
+                    case 2:
+                        solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
+                        Banco.solicitudes.add(solicitud);
+                        break;
+                    default:
+                        System.out.println("Opcion no valida");
+                        break;
+                }
+            }
+            if(cliente.tarjetaDebito.getSaldo()>50000){
+                System.out.println("Puedes seleccionar el tipo Simplicity");
+                System.out.println("1. Solicitar\n 2.Salir");
+                opcion=DatosComun.pedirNumero();
+                SolicitudTarjetaCredito solicitud;
+                switch (opcion){
+                    case 1:
+                        solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
+                        Banco.solicitudes.add(solicitud);
+                        break;
+                    default:
+                        System.out.println("Opcion no valida");
+                        break;
+                }
+
+            }
         }
-        public static void verEstatusSolicitud () {
-
+        public void verTodasLasTarjetas() {
+            System.out.println("Tarjeta de debito: ");
+            System.out.println(tarjetaDebito.toString());
+            System.out.println("Tarjeta de credito: ");
+            tarjetasCredito.forEach(tarjetaCredito -> System.out.println(tarjetaCredito.toString()));
         }
-        public static void verTarjetas() {
-
-        }
-        public static void realizarCompra () {
-
-        }
-        public static void pagarTarjeta () {
-
+//        public static void realizarCompra () {
+//
+//        }
+//        public static void pagarTarjeta () {
+//
+//        }
+        public void realizarDeposito(double monto){
+            tarjetaDebito.depositar(monto);
         }
         public static void registrarCliente () {
             ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CLIENTE);

@@ -4,24 +4,31 @@ import Banco.utils.TipoTarjetaCredito;
 
 public class TarjetaCredito extends Tarjeta {
     private TipoTarjetaCredito tipoCredito;
+    //credito que tiene dependiendo el tipo de tarjeta
     private double creditoMaximo;
+    //credito que le queda disponible al cliente
     private double creditoActual;
 
-    public TarjetaCredito(int clave, double credito) {
+    public TarjetaCredito(int clave,TipoTarjetaCredito tipo) {
         super(clave);
-        this.tipoCredito = tipoTarjeta(credito);
-        this.creditoMaximo = credito;
-        this.creditoActual = credito;
+        tipoCredito=tipo;
+        creditoMaximo=asignarCreditoMaximo(tipo);
+        creditoActual=creditoMaximo;
+    }
+    public static int asignarCreditoMaximo(TipoTarjetaCredito tipo){
+        int cantidad=0;
+        if(tipo == TipoTarjetaCredito.Simplicity){
+            cantidad=60000;
+        }
+        if(tipo==TipoTarjetaCredito.Platino){
+            cantidad=150000;
+        }
+        else{
+            cantidad=400000;
+        }
+        return cantidad;
     }
 
-    private TipoTarjetaCredito tipoTarjeta(double credito) {
-        TipoTarjetaCredito type = null;//Variable inicializada.
-        //Según el crédito otorgado, se le asigna el tipo a la tarjeta.
-        if (credito == 60000) type = TipoTarjetaCredito.Simplicity;
-        if (credito == 150000) type = TipoTarjetaCredito.Platino;
-        if (credito == 400000) type = TipoTarjetaCredito.Oro;
-        return type;
-    }
 
     @Override
     public String toString() {
@@ -47,8 +54,5 @@ public class TarjetaCredito extends Tarjeta {
 
     public double getCreditoActual() {
         return creditoActual;
-    }
-    public static void autorizarTarjeta(){
-
     }
 }
