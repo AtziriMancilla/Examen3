@@ -36,4 +36,12 @@ public class SolicitudTarjetaCredito {
     public String getStatus() {
         return status;
     }
+    //Getter para buscar en la lista al cliente que solicita ver el estatus de su tarjeta.
+    public Cliente getCliente() {
+        return cliente;
+    }
+    //Getter para mostrarle al cliente la tarjeta que solicitó.
+    public TipoTarjetaCredito getTipoTarjeta() {
+        return tipoTarjeta;
+    }
 }

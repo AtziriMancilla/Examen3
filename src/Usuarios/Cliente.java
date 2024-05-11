@@ -2,7 +2,6 @@ package Usuarios;
 
 
 import Banco.Banco;
-import Banco.Tarjetas.Tarjeta;
 import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.Generador;
@@ -25,6 +24,7 @@ public class Cliente extends Persona {
     private LocalDate fechaRegistro;
     private TarjetaDebito tarjetaDebito;
     private ArrayList<TarjetaCredito> tarjetasCredito=new ArrayList<>();
+    private int numeroSolicitudesEnProceso;
 
     public Cliente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion,
         int anioNacimiento, LocalDate fechaNacimiento, String RFC, String nombreUsuario, String contrasena){
@@ -72,6 +72,7 @@ public class Cliente extends Persona {
                         if(opcion==1) {
                             solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                             Banco.solicitudes.add(solicitud);
+                            cliente.setNumeroSolicitudesEnProceso(1);//Contador que indica que tiene una numeroSolicitudesEnProceso pendiente.
                             System.out.println("Solicitud de tarjeta Simplicity realizada");
                             band=false;
                         }else System.out.println("Opción no válida");
@@ -86,12 +87,14 @@ public class Cliente extends Persona {
                             case 1:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                                 Banco.solicitudes.add(solicitud);
+                                cliente.setNumeroSolicitudesEnProceso(1);
                                 System.out.println("Solicitud de tarjeta Simplicity realizada");
                                 band=false;
                                 break;
                             case 2:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                                 Banco.solicitudes.add(solicitud);
+                                cliente.setNumeroSolicitudesEnProceso(1);
                                 System.out.println("Solicitud de tarjeta Platino realizada");
                                 band=false;
                                 break;
@@ -110,18 +113,21 @@ public class Cliente extends Persona {
                                 case 1:
                                     solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                                     Banco.solicitudes.add(solicitud);
+                                    cliente.setNumeroSolicitudesEnProceso(1);
                                     System.out.println("Solicitud de tarjeta Simplicity realizada");
                                     band=false;
                                     break;
                                 case 2:
                                     solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                                     Banco.solicitudes.add(solicitud);
+                                    cliente.setNumeroSolicitudesEnProceso(1);
                                     System.out.println("Solicitud de tarjeta Platino realizada");
                                     band=false;
                                     break;
                                 case 3:
                                     solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Oro);
                                     Banco.solicitudes.add(solicitud);
+                                    cliente.setNumeroSolicitudesEnProceso(1);
                                     System.out.println("Solicitud de tarjeta Oro realizada");
                                     band=false;
                                     break;
@@ -391,6 +397,14 @@ public class Cliente extends Persona {
     }
     public int getId() {
         return id;
+    }
+
+    public int getNumeroSolicitudesEnProceso() {
+        return numeroSolicitudesEnProceso;
+    }
+
+    public void setNumeroSolicitudesEnProceso(int numeroSolicitudesEnProceso) {
+        this.numeroSolicitudesEnProceso = numeroSolicitudesEnProceso;
     }
 }
 

@@ -6,13 +6,9 @@ import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Inversion;
-import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
 
@@ -119,17 +115,37 @@ public class Menu {
                             card++;
                         }
                     }
+                    if(cliente.getTarjetasCredito()==null) System.out.println("No tienes tarjetas de crédito.");
                     break;
                 case 6:
                     cliente.verTodasLasTarjetas();
                     break;
                 case 7:
                     System.out.println("\tBienvenido\n");
-                    Cliente.solicitarTarjetaCredito(cliente);
+                    if (cliente.getTarjetasCredito().size()<3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
+                        if(cliente.getNumeroSolicitudesEnProceso()==0) Cliente.solicitarTarjetaCredito(cliente);
+                        if(cliente.getNumeroSolicitudesEnProceso()==1) System.out.println("Ya tienes una solicitud en curso. Debes esperar a que termine el proceso para poder hacer una nueva solicitud.");
+                    }
+                    if (cliente.getTarjetasCredito().size()==3) System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
                     break;
-                case 8:
-                    System.out.println("Este será el menú status de solicitud de tarjeta");
-                    break;
+                case 8://El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
+                    System.out.println("Solicitud en curso:");
+                    boolean solicitudEncontrada = false;//Determina si se encontró una solicitud pendiente del cliente.
+                    List<SolicitudTarjetaCredito> solicitudAEliminar = new ArrayList<>();//Lista que almacenará la solicitud a eliminar.
+                    for(SolicitudTarjetaCredito solicitud : Banco.solicitudes) {
+                        if (solicitud.getCliente() == cliente){
+                            solicitudEncontrada = true;
+                            System.out.println("Tarjeta solicitada: "+ solicitud.getTipoTarjeta());
+                            System.out.println("Status: "+solicitud.getStatus());
+                            if(solicitud.getStatus().equals("Solicitud Aprobada")||solicitud.getStatus().equals("Solicitud Rechazada")){//Revisión del status
+                                System.out.println("Eliminando solicitud del historial...");
+                                cliente.setNumeroSolicitudesEnProceso(0);//Una vez que el cliente consulte el estatus, si la solicitud ya fue atendida, su contador pasa a 0.
+                                solicitudAEliminar.add(solicitud);//Añade la solicitud para luego eliminarla de la lista del Banco.
+                            }
+                        }
+                    }
+                    Banco.solicitudes.removeAll(solicitudAEliminar);//Una vez consultada y atendida la solicitud, se elimina del Banco.
+                    if(!solicitudEncontrada) System.out.println("No tienes solicitudes pendientes.");
                 case 9:
                     int i=1,seleccion,contadorTarjetas=0;//Contador i para las opciones
                     boolean select = true;
