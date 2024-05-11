@@ -48,11 +48,11 @@ public class Inversionista extends Persona{
         banco.personas.get(Rol.INVERSIONISTA).add(inversionista);
         System.out.println(">Inversionista registrado<");
     }
-    public void modificarInversionista( Banco banco){
+    public static void modificarInversionista(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarInversionistas();
+        mostrarInversionistas(banco);
         System.out.println("Selecciona el INVERSIONISTA: ");
-        int numInversionista=pedirInversionista();
+        int numInversionista=pedirInversionista(banco);
         int opcion=10 ;
         do{
             System.out.println("¿Qué información deseas editar?");
@@ -140,7 +140,7 @@ public class Inversionista extends Persona{
     }
     public static void eliminarInversionista(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarInversionistas();
+        mostrarInversionistas(banco);
         int numInversionista=0;
         boolean band;
         do {
@@ -241,5 +241,43 @@ public class Inversionista extends Persona{
         }while(confirmacion);
         sc.nextLine();
         return  numInversionista;
+    }
+    public void realizarInversion(){
+        Scanner sc=new Scanner(System.in);
+        boolean cantidadValida = false;
+        long monto;
+        System.out.println("\tBienvenido. Ingrese el mondo a invertir o escriba 0 para cancelar");
+        do{
+            cantidadValida=false;
+            System.out.print("\nIngrese el monto: ");
+            monto =sc.nextLong();
+            sc.nextLine();
+            if (monto <0) {
+                System.out.println("Error. Monto no válido! Ingrese números válidos o 0 para cancelar la operación.");
+                cantidadValida=true;
+            }
+            if (monto==0) {
+                System.out.println("\nCancelando operación. Regresando al menú anterior...");
+                cantidadValida = true;
+            }
+            if (monto>0){
+                System.out.println("Realizando depósito y guardando registro...");
+                Inversion inversion=new Inversion(monto);
+                inversiones.add(inversion);
+                System.out.println("Inversión realizada con éxito! Regresando al menú anterior...");
+
+            }
+        }while(cantidadValida);
+    }
+    public void mostrarMisInversiones(){
+        if(inversiones.isEmpty()){
+            System.out.println("No has realizado inversiones");
+        }
+        else{
+            for(int i=0;i<inversiones.size();i++){
+                System.out.println(inversiones.get(i).mostrarInversion());
+            }
+        }
+
     }
 }

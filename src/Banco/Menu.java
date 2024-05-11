@@ -211,9 +211,9 @@ public class Menu {
                     banco.buscarCliente();
                     break;
                 case 6:
-                    //
+                    banco.verSolicitudes();
                 case 7:
-                   //
+                    banco.procesarSolicitudes();
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
                     seleccionarBanco();
@@ -237,13 +237,13 @@ public class Menu {
 
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
-
+            Inversionista inversionista=(Inversionista)UsuarioEnSesion.getInstancia().getUsuarioActual();
             switch (opcion) {
                 case 1:
-                    //
+                    banco.realizarInversion(inversionista);
                     break;
                 case 2:
-                   //
+                    banco.mostrarMisInversiones(inversionista);
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
@@ -341,7 +341,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteTarjetas() {
+    private static void mostrarMenuGerenteTarjetas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -356,10 +356,10 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    //
+                    banco.verSolicitudes();
                     break;
                 case 2:
-                    //
+                    banco.procesarSolicitudes();
                     break;
                 case 0:
                     mostrarMenuGerente();
@@ -372,7 +372,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteInversionistas() {
+    private static void mostrarMenuGerenteInversionistas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -406,7 +406,7 @@ public class Menu {
                     Banco.registrarInversionista();
                     break;
                 case 2:
-                    Banco.modificarInversionista();
+                    banco.modificarInversionista();
                     break;
                 case 3:
                     Banco.eliminarInversionista();
@@ -415,7 +415,7 @@ public class Menu {
                     Banco.mostrarInversionistas();
                     break;
                 case 5:
-                    Banco.mostrarInversiones();
+                    banco.mostrarInversiones();
                     break;
                 case 0:
                     mostrarMenuGerente();

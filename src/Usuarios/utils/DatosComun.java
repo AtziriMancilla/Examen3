@@ -56,7 +56,7 @@ public class DatosComun {
         return datosComun;
 
     }
-    private static String obtenerNombreUsuario(Rol rol) {
+    private static String obtenerNombreUsuario(Rol rol,Banco banco) {
         Scanner scanner = new Scanner(System.in);
         boolean nombreUsuarioExistente = true;
         String nombreUsuario = "";
@@ -66,7 +66,7 @@ public class DatosComun {
             nombreUsuario = DatosComun.pedirDatoUsuario();
 
             nombreUsuarioExistente = false;
-            for (Persona persona : Banco.personas.get(rol)) {
+            for (Persona persona : banco.personas.get(rol)) {
                 if (persona.getNombreUsuario().equals(nombreUsuario)) {
                     nombreUsuarioExistente = true;
                 }

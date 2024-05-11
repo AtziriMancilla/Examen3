@@ -15,14 +15,11 @@ import java.util.Scanner;
 public class Banco {
     public HashMap<Rol, ArrayList<Persona>> personas;
     public ArrayList<SolicitudTarjetaCredito> solicitudes;
-    //public static ArrayList<SolicitudTarjetaCredito> inversiones;
     private String contrasenaSecreta = "uwu";
-    public ArrayList<Inversion> inversion;
 
     public Banco () {
         personas = new HashMap<>();
         solicitudes = new ArrayList<>();
-        inversion=new ArrayList<>();
         inicializarHashmap();
     }
     public void inicializarHashmap(){
@@ -120,9 +117,9 @@ public class Banco {
     public void modificarInversionista(){Inversionista.modificarInversionista(this);}
 
     //Me imagino que también los metodos para las inversiones
-    public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
+    public void realizarInversion(Inversionista inversionista){inversionista.realizarInversion();
     }
-    public void mostrarInversiones(){Inversion.mostrarInversiones(this);
+    public void mostrarMisInversiones(Inversionista inversionista){inversionista.mostrarMisInversiones();
     }
     //buscar
     public void buscarEjecutivo() {
@@ -130,6 +127,15 @@ public class Banco {
     }
     public static void buscarCliente() {
         Ejecutivo.buscarEjecutivo();
+    }
+    public void verSolicitudes(){
+        SolicitudTarjetaCredito.verSolicitudes(this);
+    }
+    public void procesarSolicitudes(){
+        SolicitudTarjetaCredito.procesarSolicitudes(this);
+    }
+    public void mostrarInversiones() {
+        Inversion.mostrarInversiones(this);
     }
 
 }
