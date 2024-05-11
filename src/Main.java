@@ -72,8 +72,7 @@ public class Main {
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
-        Banco.mostrarClientes();
-        System.out.println("otro banco");
+        bancoAcueducto.mostrarClientes();
         bancoMadero.mostrarClientes();
     }
 }

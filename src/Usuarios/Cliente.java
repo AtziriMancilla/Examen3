@@ -164,7 +164,7 @@ public class Cliente extends Persona {
             tarjetaDebito.retirar(tarjeta);
         }*/
 
-        public static void registrarCliente () {
+        public static void registrarCliente (Banco banco) {
             ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CLIENTE);
             String nombre = datosComun.get(0);
             String apellidoPaterno = datosComun.get(1);
@@ -184,9 +184,6 @@ public class Cliente extends Persona {
             LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
             Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena);
-            if (!Banco.personas.containsKey(Rol.CLIENTE)) {
-                Banco.personas.put(Rol.CLIENTE, new ArrayList<Persona>());
-            }
             Banco.personas.get(Rol.CLIENTE).add(cliente);
             System.out.println(">Cliente registrado<");
         }

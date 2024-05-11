@@ -13,13 +13,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Banco {
-    public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
-    public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
-    public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
+    public HashMap<Rol, ArrayList<Persona>> personas;
+    public ArrayList<SolicitudTarjetaCredito> solicitudes;
+    //public static ArrayList<SolicitudTarjetaCredito> inversiones;
     private String contrasenaSecreta = "uwu";
-    public static final ArrayList<Inversion> inversion = new ArrayList<>();
+    public ArrayList<Inversion> inversion;
 
     public Banco () {
+        personas = new HashMap<>();
+        solicitudes = new ArrayList<>();
+        inversion=new ArrayList<>();
         inicializarHashmap();
     }
     public void inicializarHashmap(){
@@ -74,8 +77,8 @@ public class Banco {
     //Crear personas
     public static void registrarCapturista(){
         Capturista.registrarCapturista();}
-    public static void registrarCliente(){
-        Cliente.registrarCliente();
+    public void registrarCliente(){
+        Cliente.registrarCliente(this);
     }
     //Nota: quizá borrarlo definitivamente//public void registrarGerente(){Gerente.registrarGerente();}
     public static void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
