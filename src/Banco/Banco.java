@@ -22,7 +22,6 @@ public class Banco {
     public Banco () {
         inicializarHashmap();
     }
-
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());
         personas.put(Rol.CLIENTE, new ArrayList<Persona>());
@@ -73,53 +72,60 @@ public class Banco {
     }
 
     //Crear personas
-    public void registrarCapturista(){
+    public static void registrarCapturista(){
         Capturista.registrarCapturista();}
-    public void registrarCliente(){
+    public static void registrarCliente(){
         Cliente.registrarCliente();
     }
     //Nota: quizá borrarlo definitivamente//public void registrarGerente(){Gerente.registrarGerente();}
-    public void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
-    public void registrarInversionista(){Inversionista.registrarInversionista();}
+    public static void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
+    public static void registrarInversionista(){Inversionista.registrarInversionista();}
 
     //mostrar
-    public void mostrarCapturistas() {
+    public static void mostrarCapturistas() {
         Capturista.mostrarCapturistas();
     }
-    public void mostrarClientes() {
+    public static void mostrarClientes() {
         Cliente.mostrarClientes();
     }
-    public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
+    public static void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
 
     public void mostrarGerente(){
         Gerente.mostrarGerente();
     }
-    public void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
+    public static void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
 
     //Eliminar
-    public void borrarCapturista(){
+    public static void borrarCapturista(){
         Capturista.borrarCapturista();
     }
-    public void borrarCliente(){Cliente.borrarCliente();}
-    public void borrarEjecutivo(){
+    public static void borrarCliente(){Cliente.borrarCliente();}
+    public static void eliminarEjecutivo(){
         Ejecutivo.eliminarEjecutivo();
     }
-    public void borrarInversionista(){
+    public static void eliminarInversionista(){
         Inversionista.eliminarInversionista();
     }
 
     //modificar
-    public void modificarCapturista(){Capturista.modificarCapturista();}
-    public void modificarCliente(){
+    public static void modificarCapturista(){Capturista.modificarCapturista();}
+    public static void modificarCliente(){
         Cliente.modificarCliente();}
-    public void modificarEjecutivo(){Ejecutivo.modificarEjecutivo();}
+    public static void modificarEjecutivo(){Ejecutivo.modificarEjecutivo();}
     public void modificarGerente(){Gerente.modificarGerente();}
-    public void modificarInversionista(){Inversionista.modificarInversionista();}
+    public static void modificarInversionista(){Inversionista.modificarInversionista();}
 
     //Me imagino que también los metodos para las inversiones
     public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
     }
-    public void mostrarInversiones(){Inversion.mostrarInversiones();
+    public static void mostrarInversiones(){Inversion.mostrarInversiones();
+    }
+    //buscar
+    public static void buscarEjecutivo() {
+        Ejecutivo.buscarEjecutivo();
+    }
+    public static void buscarCliente() {
+        Ejecutivo.buscarEjecutivo();
     }
 
 }

@@ -66,14 +66,14 @@ public class Main {
         bancoMadero.personas.get(Rol.CLIENTE).add(cliente);
         SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
         bancoMadero.solicitudes.add(solicitudTarjetaCredito);
-        bancoMadero.mostrarClientes();
         Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Canelita","1234");
         bancoAcueducto.personas.get(Rol.INVERSIONISTA).add(inversionista1);
         Cliente cliente1=new Cliente("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Bioshinin","1234");
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
-        bancoAcueducto.mostrarClientes();
+        Banco.mostrarClientes();
+        System.out.println("otro banco");
         bancoMadero.mostrarClientes();
     }
 }
