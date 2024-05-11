@@ -1,17 +1,14 @@
 package Banco;
 
+import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
 import Usuarios.utils.Inversion;
-import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Menu {
 
@@ -85,41 +82,47 @@ public class Menu {
         System.out.println("1) Consultar cuenta de débito");
         System.out.println("2) Depositar a cuenta de débito");
         System.out.println("3) Retirar dinero");
-        System.out.println("4) Consultar cuentas de crédito");
-        System.out.println("5) Realizar solicitud de tarjeta de crédito");
-        System.out.println("6) Revisar estatus de solicitud de tarjeta");
-        System.out.println("7) Realizar compra con tarjeta de crédito");
-        System.out.println("8) Realizar pago a tarjeta de crédito");
+        System.out.println("4) Comprar con tarjeta de débito");
+        System.out.println("5) Consultar cuentas de crédito");
+        System.out.println("6) Mostrar tarjetas de débito y crédito");
+        System.out.println("7) Realizar solicitud de tarjeta de crédito");
+        System.out.println("8) Revisar estatus de solicitud de tarjeta");
+        System.out.println("9) Realizar compra con tarjeta de crédito");
+        System.out.println("10) Realizar pago a tarjeta de crédito");
         System.out.println("0) Cerrar Sesión");
         do {
             System.out.print("Opción: ");
             opcion = DatosComun.pedirNumero();
             switch (opcion) {
                 case 1:
-                    System.out.println("Saldo de la cuenta: " + tarjetaDebito.getSaldo());
-                    System.out.println(tarjetaDebito.toString());//Obtener el resto de los datos de la tarjeta
+                    Cliente.consultarCuentaDebito(tarjetaDebito);
                     break;
                 case 2:
                     tarjetaDebito.depositoDebito();
                     break;
                 case 3:
-                    tarjetaDebito.retirarDebito(tarjetaDebito);
+                    tarjetaDebito.retirarDebito();
                     break;
                 case 4:
-                    System.out.println("Este será el menú consulta crédito");
+                    tarjetaDebito.comprarDebito();
                     break;
                 case 5:
-                    System.out.println("\tBienvenido\n");
-                    Cliente.solicitarTarjetaCredito(cliente);
+                    Cliente.consultarCuentasCredito(cliente);
                     break;
                 case 6:
-                    System.out.println("Este será el menú status de solicitud de tarjeta");
+                    cliente.verTodasLasTarjetas();
                     break;
                 case 7:
-                    System.out.println("Este será el menú realizar compra con tarjeta");
+                    Cliente.solicitudTarjetaCredito(cliente);
                     break;
                 case 8:
-                    System.out.println("Este será el menú realizar pago a tarjeta");
+                    Cliente.revisarStatusSolicitud(cliente);
+                    break;
+                case 9:
+                    Cliente.realizarCompraCredito(cliente);
+                    break;
+                case 10:
+                    Cliente.realizarPagoCredito(cliente);
                     break;
                 case 0:
                     System.out.println("Cerrando Sesión...");
