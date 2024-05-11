@@ -185,14 +185,8 @@ public class Menu {
             System.out.println("3. Eliminar Cliente ");
             System.out.println("4. Ver Clientes ");
             System.out.println("5. Buscar Clientes ");
-<<<<<<< HEAD
             System.out.println("6. Ver Solicitudes de Tarjetas");
             System.out.println("7. Procesar Solicitudes de Tarjeta");
-=======
-            System.out.println("6. Ver Solicitudes de Tarjetas");//pedir contraseña
-            //hacer atziri
-            System.out.println("7. Procesar Solicitudes de Tarjeta");//pedir contraseña
->>>>>>> 7507cb949c60ea86214ae42ce8f458fa7dc9f7d3
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
 
