@@ -19,16 +19,10 @@ public class Banco {
     private String contrasenaSecreta = "uwu";
     public static final ArrayList<Inversion> inversion = new ArrayList<>();
 
-    public Banco (){
+    public Banco () {
         inicializarHashmap();
-        Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
-        personas.get(Rol.INVERSIONISTA).add(inversionista);
-        Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
-        personas.get(Rol.CLIENTE).add(cliente);
-        //cliente.realizarDeposito(600000);
-        SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
-        solicitudes.add(solicitudTarjetaCredito);
     }
+
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());
         personas.put(Rol.CLIENTE, new ArrayList<Persona>());
