@@ -95,8 +95,7 @@ public class Menu {
             opcion = DatosComun.pedirNumero();
             switch (opcion) {
                 case 1:
-                    System.out.println("Saldo de la cuenta: " + tarjetaDebito.getSaldo());
-                    System.out.println(tarjetaDebito.toString());//Obtener el resto de los datos de la tarjeta
+                    Cliente.consultarCuentaDebito(tarjetaDebito);
                     break;
                 case 2:
                     tarjetaDebito.depositoDebito();
@@ -108,113 +107,22 @@ public class Menu {
                     tarjetaDebito.comprarDebito();
                     break;
                 case 5:
-                    int card = 1;
-                    if(cliente.getTarjetasCredito()!=null) {
-                        for(TarjetaCredito tarjetaCredito: cliente.getTarjetasCredito()){
-                            System.out.printf("\n%d) %s\n", card, tarjetaCredito.toString());
-                            card++;
-                        }
-                    }
-                    if(cliente.getTarjetasCredito()==null) System.out.println("No tienes tarjetas de crédito.");
+                    Cliente.consultarCuentasCredito(cliente);
                     break;
                 case 6:
                     cliente.verTodasLasTarjetas();
                     break;
                 case 7:
-                    System.out.println("\tBienvenido\n");
-                    if (cliente.getTarjetasCredito().size()<3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
-                        if(cliente.getNumeroSolicitudesEnProceso()==0) Cliente.solicitarTarjetaCredito(cliente);
-                        if(cliente.getNumeroSolicitudesEnProceso()==1) System.out.println("Ya tienes una solicitud en curso. Debes esperar a que termine el proceso para poder hacer una nueva solicitud.");
-                    }
-                    if (cliente.getTarjetasCredito().size()==3) System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
+                    Cliente.solicitudTarjetaCredito(cliente);
                     break;
-                case 8://El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
-                    System.out.println("Solicitud en curso:");
-                    boolean solicitudEncontrada = false;//Determina si se encontró una solicitud pendiente del cliente.
-                    List<SolicitudTarjetaCredito> solicitudAEliminar = new ArrayList<>();//Lista que almacenará la solicitud a eliminar.
-                    for(SolicitudTarjetaCredito solicitud : Banco.solicitudes) {
-                        if (solicitud.getCliente() == cliente){
-                            solicitudEncontrada = true;
-                            System.out.println("Tarjeta solicitada: "+ solicitud.getTipoTarjeta());
-                            System.out.println("Status: "+solicitud.getStatus());
-                            if(solicitud.getStatus().equals("Solicitud Aprobada")||solicitud.getStatus().equals("Solicitud Rechazada")){//Revisión del status
-                                System.out.println("Eliminando solicitud del historial...");
-                                cliente.setNumeroSolicitudesEnProceso(0);//Una vez que el cliente consulte el estatus, si la solicitud ya fue atendida, su contador pasa a 0.
-                                solicitudAEliminar.add(solicitud);//Añade la solicitud para luego eliminarla de la lista del Banco.
-                            }
-                        }
-                    }
-                    Banco.solicitudes.removeAll(solicitudAEliminar);//Una vez consultada y atendida la solicitud, se elimina del Banco.
-                    if(!solicitudEncontrada) System.out.println("No tienes solicitudes pendientes.");
+                case 8:
+                    Cliente.revisarStatusSolicitud(cliente);
+                    break;
                 case 9:
-                    int i=1,seleccion,contadorTarjetas=0;//Contador i para las opciones
-                    boolean select = true;
-                    if (cliente.getTarjetasCredito()!=null) {
-                        System.out.println("\tSelecciona la tarjeta a usar");
-                        System.out.println("\nTarjetas de Crédito Disponibles");
-                        for(TarjetaCredito tarjetaCredito:cliente.getTarjetasCredito()) {
-                            if (tarjetaCredito.getSaldoPendiente() > 0) {
-                                System.out.printf("\n%d) Tarjeta %s\n", i, tarjetaCredito.getTipoCredito());
-                                System.out.printf("Crédito Máximo: %f\n", tarjetaCredito.getCreditoMaximo());
-                                i++;
-                            }//Este contador permite registrar cuántas tarjetas están sin saldo pendiente.
-                            if (tarjetaCredito.getSaldoPendiente() == 0) {
-                                contadorTarjetas++;
-                            }
-                        }
-                        if (contadorTarjetas<cliente.getTarjetasCredito().size()) {
-                            do {
-                                seleccion = DatosComun.pedirNumero();
-                                if (seleccion<1||seleccion>i) {
-                                    System.out.println("Error. Selecciona una opción válida");
-                                }else {
-                                    seleccion-=1;
-                                    TarjetaCredito tarjeta = cliente.getTarjetasCredito().get(seleccion);
-                                    tarjeta.comprarCredito();
-                                    select = false;
-                                }
-                            } while (select);
-                        }
-                        if (contadorTarjetas==cliente.getTarjetasCredito().size()) {
-                            System.out.println("\nNo tienes tarjetas de crédito disponibles");
-                        }
-                    }
-                    if (cliente.getTarjetasCredito()==null) System.out.println("\nNo tienes tarjetas de crédito");
+                    Cliente.realizarCompraCredito(cliente);
                     break;
                 case 10:
-                    int k=1,opcionPago,contadorTc=0;//Contador i para las opciones
-                    boolean pagoValido = true;
-                    if (cliente.getTarjetasCredito()!=null) {
-                        System.out.println("\tSelecciona la tarjeta a pagar");
-                        System.out.println("\nTarjetas de Crédito");
-                        for(TarjetaCredito tarjetaCredito:cliente.getTarjetasCredito()) {
-                            if (tarjetaCredito.getSaldoPendiente() > 0) {
-                                System.out.printf("\n%d) Tarjeta %s\n", k, tarjetaCredito.getTipoCredito());
-                                System.out.printf("Saldo pendiente por pagar: %f", tarjetaCredito.getSaldoPendiente());
-                                k++;
-                            }//Este contador permite registrar cuántas tarjetas están sin saldo pendiente.
-                            if (tarjetaCredito.getSaldoPendiente() == 0) {
-                                contadorTc++;
-                            }
-                        }
-                        if (contadorTc<cliente.getTarjetasCredito().size()) {
-                            do {
-                                opcionPago = DatosComun.pedirNumero();
-                                if (opcionPago<1||opcionPago>k) {
-                                    System.out.println("Error. Selecciona una opción válida");
-                                }else {
-                                    opcionPago-=1;
-                                    TarjetaCredito tarjeta = cliente.getTarjetasCredito().get(opcionPago);
-                                    tarjeta.pagarTarjeta();
-                                    pagoValido = false;
-                                }
-                            } while (pagoValido);
-                        }//Si no hay tarjetas pendientes de pago, se arroja el siguiente mensaje
-                        if (contadorTc==cliente.getTarjetasCredito().size()) {
-                            System.out.println("\nNo tienes tarjetas pendientes de pago");
-                        }
-                    }
-                    if (cliente.getTarjetasCredito()==null) System.out.println("\nNo tienes tarjetas de crédito");
+                    Cliente.realizarPagoCredito(cliente);
                     break;
                 case 0:
                     System.out.println("Cerrando Sesión...");
