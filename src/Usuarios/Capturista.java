@@ -28,7 +28,7 @@ public class Capturista extends Empleado{
     public String toString(){
         return String.format("%s, Fecha Inicio: %s", super.toString(), String.valueOf(fechaInicio));
     }
-    public static void registrarCapturista(){
+    public static void registrarCapturista(Banco banco){
         Scanner sc = new Scanner(System.in);
         ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CAPTURISTA);
         String nombre = datosComun.get(0);
@@ -51,30 +51,30 @@ public class Capturista extends Empleado{
         LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
         Capturista capturista = new Capturista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena, salario);
-        if(!Banco.personas.containsKey(Rol.CAPTURISTA)){
-            Banco.personas.put(Rol.CAPTURISTA, new ArrayList<Persona>());
+        if(!banco.personas.containsKey(Rol.CAPTURISTA)){
+            banco.personas.put(Rol.CAPTURISTA, new ArrayList<Persona>());
         }
-        Banco.personas.get(Rol.CAPTURISTA).add(capturista);
+        banco.personas.get(Rol.CAPTURISTA).add(capturista);
         System.out.println(">Capturista registrado<");
 
     }
-    public static void mostrarCapturistas(){
+    public static void mostrarCapturistas(Banco banco){
         System.out.println("\nCapturistas en el banco\n");
-        if (((ArrayList)Banco.personas.get(Rol.CAPTURISTA)).isEmpty()) {
+        if (((ArrayList)banco.personas.get(Rol.CAPTURISTA)).isEmpty()) {
             System.out.println("No hay capturistas registrados");
         } else {
             int i = 1;
 
-            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.CAPTURISTA)).iterator(); var1.hasNext(); ++i) {
+            for(Iterator var1 = ((ArrayList)banco.personas.get(Rol.CAPTURISTA)).iterator(); var1.hasNext(); ++i) {
                 Persona usuario = (Persona)var1.next();
                 Capturista capturista = (Capturista) usuario;
                 System.out.println("" + i + ") " + capturista.toString());
             }
         }
     }
-    public static void borrarCapturista(){
+    public static void borrarCapturista(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarCapturistas();
+        mostrarCapturistas(banco);
         int numCapturista=0;
         boolean band;
         do {
@@ -82,7 +82,7 @@ public class Capturista extends Empleado{
                 band=false;
                 System.out.println("Selecciona el Ejecutivo que deseas eliminar");
                 numCapturista = sc.nextInt();
-                Banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1);
+                banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1);
             } catch (IndexOutOfBoundsException | InputMismatchException error) {
                 System.out.println("Opcion no valida");
                 band=true;
@@ -92,7 +92,7 @@ public class Capturista extends Empleado{
             }
         }while(band);
         System.out.println("Seleccionaste a: ");
-        System.out.println(Banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
+        System.out.println(banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
         int opcion = 0;
         boolean bandera;
         do {
@@ -107,16 +107,16 @@ public class Capturista extends Empleado{
             }
         } while (bandera);
         if (opcion == 1) {
-            Banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
+            banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
             System.out.println("Ejecutivo eliminado");
         }
         if (opcion != 1) {
             System.out.println("Se cancelo la eliminación");
         }
     }
-    public static void modificarCapturista(){
+    public static void modificarCapturista(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarCapturistas();
+        mostrarCapturistas(banco);
         System.out.println("Selecciona el capturista");
         int numCapturista = pedirCapturista();
 
@@ -126,13 +126,13 @@ public class Capturista extends Empleado{
             System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento \n7)Contraseña \n0)Regresar");
             opcion=DatosComun.pedirNumero();
 
-            Capturista capturista=(Capturista) Banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1);
+            Capturista capturista=(Capturista) banco.personas.get(Rol.CAPTURISTA).get(numCapturista-1);
             switch (opcion){
                 case 1:
                     System.out.println("Ingrese el nuevo nombre: ");
                     String nuevoNombre = DatosComun.pedirDatoString();
                     capturista.setNombre(nuevoNombre);
-                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
                     String curpAntigua = capturista.getCurp();
                     char sexo = curpAntigua.charAt(10);
                     String nuevaCurp= Generador.generarCURP(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento(), sexo, capturista.getEstado());
@@ -155,28 +155,28 @@ public class Capturista extends Empleado{
                     String nuevorfc1 = Generador.generarRFC(capturista.getNombre(), capturista.getApellidoPaterno(), capturista.getApellidoMaterno(), capturista.getFechaNacimiento());
                     capturista.setRFC(nuevorfc1);
                     capturista.setCurp(nuevaCurp1);
-                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
                     System.out.println("Apellido modificado");
                     break;
                 case 3:
                     System.out.println("Ingrese nueva ciudad: ");
                     String nuevaCiudad = DatosComun.pedirDatoString();
                     capturista.setCiudad(nuevaCiudad);
-                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
                     System.out.println("Ciudad actualizada");
                     break;
                 case 4:
                     System.out.println("Ingrese nuevo estado: ");
                     String nuevoEstado = DatosComun.pedirDatoString();
                     capturista.setEstado(nuevoEstado);
-                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
                     System.out.println("Estado actualizado");
                     break;
                 case 5:
                     System.out.println("Ingrese nueva direccion: ");
                     String nuevaDireccion = DatosComun.pedirDireccion();
                     capturista.setDireccion(nuevaDireccion);
-                    Banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
+                    banco.personas.get(Rol.CAPTURISTA).set(numCapturista-1,capturista);
                     System.out.println("Dirección actualizada");
                     break;
                 case 6 :
@@ -212,7 +212,7 @@ public class Capturista extends Empleado{
         }while(opcion!=0);
     }
 
-   private static int pedirCapturista(){
+   private static int pedirCapturista(Banco banco){
         Scanner sc = new Scanner(System.in);
        boolean confirmacion = false;
        int numCapturista=0;
@@ -224,7 +224,7 @@ public class Capturista extends Empleado{
                System.out.println("Selecciona el capturista: ");
                numCapturista=DatosComun.pedirNumero();
 
-               if(numCapturista<1||numCapturista>Banco.personas.get(Rol.CAPTURISTA).size()){
+               if(numCapturista<1||numCapturista>banco.personas.get(Rol.CAPTURISTA).size()){
                    throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
                }
               else{
