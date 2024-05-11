@@ -176,7 +176,7 @@ public class Menu {
         }
         while(opcion != 0);
     }
-    private static void mostrarMenuEjecutivo(){
+    private static void mostrarMenuEjecutivo(Banco banco){
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -196,19 +196,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarCliente();
+                    banco.registrarCliente();
                     break;
                 case 2:
-                    Banco.modificarCliente();
+                    banco.modificarCliente();
                     break;
                 case 3:
-                    Banco.borrarCliente();
+                    banco.borrarCliente();
                     break;
                 case 4:
-                    Banco.mostrarClientes();
+                    banco.mostrarClientes();
                     break;
                 case 5:
-                    Banco.buscarCliente();
+                    banco.buscarCliente();
                     break;
                 case 6:
                     //
@@ -225,7 +225,7 @@ public class Menu {
         while(opcion != 0);
 
     }
-    private static void mostrarMenuInversionista() {
+    private static void mostrarMenuInversionista(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 

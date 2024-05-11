@@ -81,8 +81,8 @@ public class Banco {
         Cliente.registrarCliente(this);
     }
     //Nota: quizá borrarlo definitivamente//public void registrarGerente(){Gerente.registrarGerente();}
-    public static void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
-    public static void registrarInversionista(){Inversionista.registrarInversionista();}
+    public void registrarEjecutivo(){Ejecutivo.registrarEjecutivo(this);}
+    public void registrarInversionista(){Inversionista.registrarInversionista(this);}
 
     //mostrar
     public static void mostrarCapturistas() {
@@ -91,20 +91,20 @@ public class Banco {
     public static void mostrarClientes() {
         Cliente.mostrarClientes();
     }
-    public static void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
+    public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos(this);}
 
     public void mostrarGerente(){
         Gerente.mostrarGerente();
     }
-    public static void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
+    public void mostrarInversionistas() {Inversionista.mostrarInversionistas(this);}
 
     //Eliminar
     public static void borrarCapturista(){
         Capturista.borrarCapturista();
     }
     public static void borrarCliente(){Cliente.borrarCliente();}
-    public static void eliminarEjecutivo(){
-        Ejecutivo.eliminarEjecutivo();
+    public void eliminarEjecutivo(){
+        Ejecutivo.eliminarEjecutivo(this);
     }
     public static void eliminarInversionista(){
         Inversionista.eliminarInversionista();
@@ -114,18 +114,18 @@ public class Banco {
     public static void modificarCapturista(){Capturista.modificarCapturista();}
     public static void modificarCliente(){
         Cliente.modificarCliente();}
-    public static void modificarEjecutivo(){Ejecutivo.modificarEjecutivo();}
+    public void modificarEjecutivo(){Ejecutivo.modificarEjecutivo(this);}
     public void modificarGerente(){Gerente.modificarGerente();}
-    public static void modificarInversionista(){Inversionista.modificarInversionista();}
+    public void modificarInversionista(){Inversionista.modificarInversionista(this);}
 
     //Me imagino que también los metodos para las inversiones
     public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
     }
-    public static void mostrarInversiones(){Inversion.mostrarInversiones();
+    public void mostrarInversiones(){Inversion.mostrarInversiones(this);
     }
     //buscar
-    public static void buscarEjecutivo() {
-        Ejecutivo.buscarEjecutivo();
+    public void buscarEjecutivo() {
+        Ejecutivo.buscarEjecutivo(this);
     }
     public static void buscarCliente() {
         Ejecutivo.buscarEjecutivo();

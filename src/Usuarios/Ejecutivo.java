@@ -25,7 +25,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         return String.format("%s", super.toString());
     }
 
-    public static void registrarEjecutivo(){
+    public static void registrarEjecutivo(Banco banco){
         Scanner sc = new Scanner(System.in);
         ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.EJECUTIVO);
         String nombre = datosComun.get(0);
@@ -48,29 +48,26 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
         Ejecutivo ejecutivo = new Ejecutivo(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena, salario);
-        if(!Banco.personas.containsKey(Rol.EJECUTIVO)){
-            Banco.personas.put(Rol.EJECUTIVO, new ArrayList<Persona>());
-        }
-        Banco.personas.get(Rol.EJECUTIVO).add(ejecutivo);
+        banco.personas.get(Rol.EJECUTIVO).add(ejecutivo);
         System.out.println(">Ejecutivo registrado<");
     }
-    public static void mostrarEjecutivos(){
+    public static void mostrarEjecutivos(Banco banco){
         System.out.println("\nEjecutivos en el banco\n");
-        if (((ArrayList)Banco.personas.get(Rol.EJECUTIVO)).isEmpty()) {
+        if (((ArrayList)banco.personas.get(Rol.EJECUTIVO)).isEmpty()) {
             System.out.println("No hay ejecutivos registrados");
         } else {
             int i = 1;
 
-            for(Iterator var1 = ((ArrayList)Banco.personas.get(Rol.EJECUTIVO)).iterator(); var1.hasNext(); ++i) {
+            for(Iterator var1 = ((ArrayList)banco.personas.get(Rol.EJECUTIVO)).iterator(); var1.hasNext(); ++i) {
                 Persona usuario = (Persona)var1.next();
                 Ejecutivo ejecutivo = (Ejecutivo) usuario;
                 System.out.println("" + i + ") " + ejecutivo.toString());
             }
         }
     }
-    public static void modificarEjecutivo(){
+    public static void modificarEjecutivo(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarEjecutivos();
+        mostrarEjecutivos(banco);
         System.out.println("Selecciona el ejecutivo: ");
         int numEjecutivo = pedirEjecutivo();
         int opt =10;
@@ -78,12 +75,12 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
             System.out.println("¿Qué información deseas editar?");
             System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento\n 7)Contraseña\n 0)Salir/Regresar");
             opt=DatosComun.pedirNumero();
-            Ejecutivo ejecutivo=(Ejecutivo) Banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo-1);
+            Ejecutivo ejecutivo=(Ejecutivo) banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo-1);
             switch (opt){
                 case 1:
                     System.out.println("Ingrese el nuevo nombre: ");
                     ejecutivo.setNombre(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
+                    banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
                     String curpAntigua = ejecutivo.getCurp();
                     char sexo = curpAntigua.charAt(10);
                     String nuevacurp= Generador.generarCURP(ejecutivo.getNombre(), ejecutivo.getApellidoPaterno(), ejecutivo.getApellidoMaterno(), ejecutivo.getFechaNacimiento(), sexo, ejecutivo.getEstado());
@@ -104,28 +101,28 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
                     String nuevorfc1 = Generador.generarRFC(ejecutivo.getNombre(), ejecutivo.getApellidoPaterno(), ejecutivo.getApellidoMaterno(), ejecutivo.getFechaNacimiento());
                     ejecutivo.setRFC(nuevorfc1);
                     ejecutivo.setCurp(nuevaCurp);
-                    Banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
+                    banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
                     System.out.println("Apellido modificado");
                     break;
 
                 case 3:
                     System.out.println("Ingrese nueva ciudad: ");
                     ejecutivo.setCiudad(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
+                    banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
                     System.out.println("Ciudad actualizada");
                     break;
 
                 case 4:
                     System.out.println("Ingrese nuevo estado: ");
                     ejecutivo.setEstado(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
+                    banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
                     System.out.println("Estado actualizado");
                     break;
 
                 case 5:
                     System.out.println("Ingrese nueva direccion: ");
                     ejecutivo.setDireccion(DatosComun.pedirDireccion());
-                    Banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
+                    banco.personas.get(Rol.EJECUTIVO).set(numEjecutivo-1,ejecutivo);
                     System.out.println("Dirección actualizada");
                     break;
 
@@ -162,9 +159,9 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         }while(opt!=0);
 
     }
-    public static void eliminarEjecutivo(){
+    public static void eliminarEjecutivo(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarEjecutivos();
+        mostrarEjecutivos(banco);
         int numEjecutivo=0;
         boolean band;
         do {
@@ -172,7 +169,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
                 band=false;
                 System.out.println("Selecciona el Ejecutivo que deseas eliminar");
                 numEjecutivo = sc.nextInt();
-                Banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo - 1);
+                banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo - 1);
             } catch (IndexOutOfBoundsException | InputMismatchException error) {
                 System.out.println("Opcion no valida");
                 band=true;
@@ -182,7 +179,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
             }
         }while(band);
         System.out.println("Seleccionaste a: ");
-        System.out.println(Banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo - 1).toString());
+        System.out.println(banco.personas.get(Rol.EJECUTIVO).get(numEjecutivo - 1).toString());
         int opcion = 0;
         boolean bandera;
         do {
@@ -197,14 +194,14 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
                 }
             } while (bandera);
         if (opcion == 1) {
-            Banco.personas.get(Rol.EJECUTIVO).remove(numEjecutivo - 1);
+            banco.personas.get(Rol.EJECUTIVO).remove(numEjecutivo - 1);
             System.out.println("Ejecutivo eliminado");
         }
         if (opcion != 1) {
             System.out.println("Se cancelo la eliminación");
         }
     }
-    private static int pedirEjecutivo(){
+    private static int pedirEjecutivo(Banco banco){
         Scanner sc = new Scanner(System.in);
         boolean confirmacion = false;
         int numEjecutivo=0;
@@ -215,7 +212,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
                 System.out.println("Selecciona el ejecutivo: ");
                 numEjecutivo=DatosComun.pedirNumero();
 
-                if(numEjecutivo<1||numEjecutivo>Banco.personas.get(Rol.CAPTURISTA).size()){
+                if(numEjecutivo<1||numEjecutivo>banco.personas.get(Rol.CAPTURISTA).size()){
                     throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la lista");
                 }
                 else{
@@ -232,12 +229,12 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
 
 
 
-    public static void buscarEjecutivo(){
+    public static void buscarEjecutivo(Banco banco){
         Scanner sc=new Scanner(System.in);
         System.out.println("Ingrese el nombre de usuario del Ejecutivo");
         String nombreUsuario=DatosComun.pedirDatoUsuario();
         boolean existe=false;
-        for (Persona persona : Banco.personas.get(Rol.EJECUTIVO)) {
+        for (Persona persona : banco.personas.get(Rol.EJECUTIVO)) {
             Ejecutivo ejecutivo = (Ejecutivo) persona;
             if(Objects.equals(ejecutivo.getNombreUsuario(), nombreUsuario)){
                 System.out.println(ejecutivo.toString());

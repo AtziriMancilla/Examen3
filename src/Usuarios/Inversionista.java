@@ -24,7 +24,7 @@ public class Inversionista extends Persona{
     public ArrayList<Inversion> getInversiones() {
         return inversiones;
     }
-    public static void registrarInversionista(){
+    public static void registrarInversionista(Banco banco){
         ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.INVERSIONISTA);
         String nombre = datosComun.get(0);
         String apellidoPaterno = datosComun.get(1);
@@ -45,13 +45,10 @@ public class Inversionista extends Persona{
 
         Inversionista inversionista = new Inversionista(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena);
 
-        if(!Banco.personas.containsKey(Rol.INVERSIONISTA)){
-            Banco.personas.put(Rol.INVERSIONISTA, new ArrayList<Persona>());
-        }
-        Banco.personas.get(Rol.INVERSIONISTA).add(inversionista);
+        banco.personas.get(Rol.INVERSIONISTA).add(inversionista);
         System.out.println(">Inversionista registrado<");
     }
-    public static void modificarInversionista(){
+    public void modificarInversionista( Banco banco){
         Scanner sc=new Scanner(System.in);
         mostrarInversionistas();
         System.out.println("Selecciona el INVERSIONISTA: ");
@@ -61,13 +58,13 @@ public class Inversionista extends Persona{
             System.out.println("¿Qué información deseas editar?");
             System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento \n7)Contraseña\0 0)Atrás");
             opcion=sc.nextInt();
-            Inversionista inversionista=(Inversionista) Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista-1);
+            Inversionista inversionista=(Inversionista) banco.personas.get(Rol.INVERSIONISTA).get(numInversionista-1);
 
             switch (opcion){
                 case 1:
                     System.out.println("Ingrese el nuevo nombre: ");
                     inversionista.setNombre(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
+                    banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
                     String curpAntigua = inversionista.getCurp();
                     char sexo = curpAntigua.charAt(10);
                     String nuevacurp= Generador.generarCURP(inversionista.getNombre(), inversionista.getApellidoPaterno(), inversionista.getApellidoMaterno(), inversionista.getFechaNacimiento(), sexo, inversionista.getEstado());
@@ -87,25 +84,25 @@ public class Inversionista extends Persona{
                     String nuevorfc1 = Generador.generarRFC(inversionista.getNombre(), inversionista.getApellidoPaterno(), inversionista.getApellidoMaterno(), inversionista.getFechaNacimiento());
                     inversionista.setRFC(nuevorfc1);
                     inversionista.setCurp(nuevacurp1);
-                    Banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
+                    banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
                     System.out.println("Apellido modificado");
                     break;
                 case 3:
                     System.out.println("Ingrese nueva ciudad: ");
                     inversionista.setCiudad(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
+                    banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
                     System.out.println("Ciudad actualizada");
                     break;
                 case 4:
                     System.out.println("Ingrese nuevo estado: ");
                     inversionista.setEstado(DatosComun.pedirDatoString());
-                    Banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
+                    banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
                     System.out.println("Estado actualizado");
                     break;
                 case 5:
                     System.out.println("Ingrese nueva direccion: ");
                     inversionista.setDireccion(DatosComun.pedirDireccion());
-                    Banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
+                    banco.personas.get(Rol.INVERSIONISTA).set(numInversionista-1,inversionista);
                     System.out.println("Dirección actualizada");
                     break;
                 case 6 :
@@ -141,7 +138,7 @@ public class Inversionista extends Persona{
 
 
     }
-    public static void eliminarInversionista(){
+    public static void eliminarInversionista(Banco banco){
         Scanner sc=new Scanner(System.in);
         mostrarInversionistas();
         int numInversionista=0;
@@ -151,7 +148,7 @@ public class Inversionista extends Persona{
                 band=false;
                 System.out.println("Selecciona el inversionista que deseas eliminar");
                 numInversionista = sc.nextInt();
-                Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
+                banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
             } catch (IndexOutOfBoundsException | InputMismatchException error) {
                 System.out.println("Opcion no valida");
                 band=true;
@@ -160,10 +157,10 @@ public class Inversionista extends Persona{
                 sc.nextLine();
             }
         }while(band);
-        Inversionista inversionista=(Inversionista)Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
+        Inversionista inversionista=(Inversionista)banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1);
         if(inversionista.getInversiones().isEmpty()) {
             System.out.println("Seleccionaste a: ");
-            System.out.println(Banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString());
+            System.out.println(banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString());
             int opcion = 0;
             boolean bandera;
             do {
@@ -178,7 +175,7 @@ public class Inversionista extends Persona{
                 }
             } while (bandera);
             if (opcion == 1) {
-                Banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista - 1);
+                banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista - 1);
                 System.out.println("Inversionista eliminado");
             }
             if (opcion != 1) {
@@ -200,15 +197,15 @@ public class Inversionista extends Persona{
 //    }
 
 
-    public static void mostrarInversionistas() {
+    public static void mostrarInversionistas(Banco banco) {
         System.out.println("\nInversionistas en el banco\n");
-        if ((Banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
+        if ((banco.personas.get(Rol.INVERSIONISTA)).isEmpty()) {
             System.out.println("No hay inversionistas registrados");
         }
         else {
             int i = 1;
 
-            for (Iterator<Persona> var1 = (Banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
+            for (Iterator<Persona> var1 = (banco.personas.get(Rol.INVERSIONISTA)).iterator(); var1.hasNext(); ++i) {
                 Persona usuario = (Persona) var1.next();
                 Inversionista inversionista = (Inversionista) usuario;
                 System.out.println(i + ") " + inversionista.toString());
@@ -220,7 +217,7 @@ public class Inversionista extends Persona{
     public String toString() {
         return super.toString();
     }
-    private static int pedirInversionista(){
+    private static int pedirInversionista(Banco banco){
         Scanner sc = new Scanner(System.in);
         boolean confirmacion = false;
         int numInversionista=0;
@@ -230,7 +227,7 @@ public class Inversionista extends Persona{
                 System.out.println("Selecciona el inversionista: ");
                 numInversionista=DatosComun.pedirNumero();
 
-                if(numInversionista<1||numInversionista>Banco.personas.get(Rol.CAPTURISTA).size()){
+                if(numInversionista<1||numInversionista>banco.personas.get(Rol.CAPTURISTA).size()){
                     throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la liste");
                 }
                 else{
