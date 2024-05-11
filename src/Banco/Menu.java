@@ -152,19 +152,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Ejecutivo.registrarEjecutivo();
+                    Banco.registrarEjecutivo();
                     break;
                 case 2:
-                    Ejecutivo.modificarEjecutivo();
+                    Banco.modificarEjecutivo();
                     break;
                 case 3:
-                    Ejecutivo.mostrarEjecutivos();
+                    Banco.mostrarEjecutivos();
                     break;
                 case 4:
-                    Ejecutivo.eliminarEjecutivo();
+                    Banco.eliminarEjecutivo();
                     break;
                 case 5:
-                    Ejecutivo.buscarEjecutivo();
+                    Banco.buscarEjecutivo();
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
@@ -190,24 +190,25 @@ public class Menu {
             System.out.println("5. Buscar Clientes ");
             System.out.println("6. Ver Solicitudes de Tarjetas");
             System.out.println("7. Procesar Solicitudes de Tarjeta");
+
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
 
             switch (opcion) {
                 case 1:
-                    Cliente.registrarCliente();
+                    Banco.registrarCliente();
                     break;
                 case 2:
-                    Cliente.modificarCliente();
+                    Banco.modificarCliente();
                     break;
                 case 3:
-                    Cliente.borrarCliente();
+                    Banco.borrarCliente();
                     break;
                 case 4:
-                    Cliente.mostrarClientes();
+                    Banco.mostrarClientes();
                     break;
                 case 5:
-                    Cliente.buscarCliente();
+                    Banco.buscarCliente();
                     break;
                 case 6:
                     //
@@ -315,19 +316,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Cliente.registrarCliente();
+                    Banco.registrarCliente();
                     break;
                 case 2:
-                    Cliente.modificarCliente();
+                    Banco.modificarCliente();
                     break;
                 case 3:
-                    Cliente.borrarCliente();
+                    Banco.borrarCliente();
                     break;
                 case 4:
-                    Cliente.mostrarClientes();
+                    Banco.mostrarClientes();
                     break;
                 case 5:
-                    Cliente.buscarCliente();
+                    Banco.buscarCliente();
                     break;
                 case 0:
                    mostrarMenuGerente();
@@ -402,19 +403,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Inversionista.registrarInversionista();
+                    Banco.registrarInversionista();
                     break;
                 case 2:
-                    Inversionista.modificarInversionista();
+                    Banco.modificarInversionista();
                     break;
                 case 3:
-                    Inversionista.eliminarInversionista();
+                    Banco.eliminarInversionista();
                     break;
                 case 4:
-                    Inversionista.mostrarInversionistas();
+                    Banco.mostrarInversionistas();
                     break;
                 case 5:
-                    Inversion.mostrarInversiones();
+                    Banco.mostrarInversiones();
                     break;
                 case 0:
                     mostrarMenuGerente();
@@ -446,16 +447,16 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Ejecutivo.registrarEjecutivo();
+                    Banco.registrarEjecutivo();
                     break;
                 case 2:
-                    Ejecutivo.modificarEjecutivo();
+                    Banco.modificarEjecutivo();
                     break;
                 case 3:
-                    Ejecutivo.eliminarEjecutivo();
+                    Banco.eliminarEjecutivo();
                     break;
                 case 4:
-                    Ejecutivo.mostrarEjecutivos();
+                    Banco.mostrarEjecutivos();
                     break;
                 case 0:
                     mostrarMenuGerente();
@@ -486,15 +487,15 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Capturista.registrarCapturista();
+                    Banco.registrarCapturista();
                     break;
                 case 2:
-                    Capturista.modificarCapturista();
+                    Banco.modificarCapturista();
                     break;
                 case 3:
-                    Capturista.borrarCapturista();
+                    Banco.borrarCapturista();
                 case 4:
-                    Capturista.mostrarCapturistas();
+                    Banco.mostrarCapturistas();
                 case 0:
                     mostrarMenuGerente();
                     scanner.nextLine();

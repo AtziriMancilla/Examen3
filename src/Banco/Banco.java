@@ -1,6 +1,7 @@
 package Banco;
 
 import Banco.utils.SolicitudTarjetaCredito;
+import Banco.utils.TipoTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.Inversion;
 import Usuarios.utils.Rol;
@@ -12,19 +13,17 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Banco {
-    public static final HashMap<Rol, ArrayList<Persona>> personas = new HashMap<>();
-    public static final ArrayList<SolicitudTarjetaCredito> solicitudes = new ArrayList<>();
-    public static final ArrayList<SolicitudTarjetaCredito> inversiones = new ArrayList<>();
+    public HashMap<Rol, ArrayList<Persona>> personas;
+    public ArrayList<SolicitudTarjetaCredito> solicitudes;
+    //public static ArrayList<SolicitudTarjetaCredito> inversiones;
     private String contrasenaSecreta = "uwu";
-    public static final ArrayList<Inversion> inversion = new ArrayList<>();
+    public ArrayList<Inversion> inversion;
 
-    public Banco (){
+    public Banco () {
+        personas = new HashMap<>();
+        solicitudes = new ArrayList<>();
+        inversion=new ArrayList<>();
         inicializarHashmap();
-        Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
-        personas.get(Rol.INVERSIONISTA).add(inversionista);
-        Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
-        personas.get(Rol.CLIENTE).add(cliente);
-        //cliente.realizarDeposito(600000);
     }
     public void inicializarHashmap(){
         personas.put(Rol.GERENTE, new ArrayList<Persona>());
@@ -76,53 +75,60 @@ public class Banco {
     }
 
     //Crear personas
-    public void registrarCapturista(){
+    public static void registrarCapturista(){
         Capturista.registrarCapturista();}
     public void registrarCliente(){
-        Cliente.registrarCliente();
+        Cliente.registrarCliente(this);
     }
     //Nota: quizá borrarlo definitivamente//public void registrarGerente(){Gerente.registrarGerente();}
-    public void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
-    public void registrarInversionista(){Inversionista.registrarInversionista();}
+    public static void registrarEjecutivo(){Ejecutivo.registrarEjecutivo();}
+    public static void registrarInversionista(){Inversionista.registrarInversionista();}
 
     //mostrar
-    public void mostrarCapturistas() {
+    public static void mostrarCapturistas() {
         Capturista.mostrarCapturistas();
     }
-    public void mostrarClientes() {
+    public static void mostrarClientes() {
         Cliente.mostrarClientes();
     }
-    public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
+    public static void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos();}
 
     public void mostrarGerente(){
         Gerente.mostrarGerente();
     }
-    public void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
+    public static void mostrarInversionistas() {Inversionista.mostrarInversionistas();}
 
     //Eliminar
-    public void borrarCapturista(){
+    public static void borrarCapturista(){
         Capturista.borrarCapturista();
     }
-    public void borrarCliente(){Cliente.borrarCliente();}
-    public void borrarEjecutivo(){
+    public static void borrarCliente(){Cliente.borrarCliente();}
+    public static void eliminarEjecutivo(){
         Ejecutivo.eliminarEjecutivo();
     }
-    public void borrarInversionista(){
+    public static void eliminarInversionista(){
         Inversionista.eliminarInversionista();
     }
 
     //modificar
-    public void modificarCapturista(){Capturista.modificarCapturista();}
-    public void modificarCliente(){
+    public static void modificarCapturista(){Capturista.modificarCapturista();}
+    public static void modificarCliente(){
         Cliente.modificarCliente();}
-    public void modificarEjecutivo(){Ejecutivo.modificarEjecutivo();}
+    public static void modificarEjecutivo(){Ejecutivo.modificarEjecutivo();}
     public void modificarGerente(){Gerente.modificarGerente();}
-    public void modificarInversionista(){Inversionista.modificarInversionista();}
+    public static void modificarInversionista(){Inversionista.modificarInversionista();}
 
     //Me imagino que también los metodos para las inversiones
     public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
     }
-    public void mostrarInversiones(){Inversion.mostrarInversiones();
+    public static void mostrarInversiones(){Inversion.mostrarInversiones();
+    }
+    //buscar
+    public static void buscarEjecutivo() {
+        Ejecutivo.buscarEjecutivo();
+    }
+    public static void buscarCliente() {
+        Ejecutivo.buscarEjecutivo();
     }
 
 }
