@@ -184,17 +184,17 @@ public class Cliente extends Persona {
             LocalDate fechaNacimiento = LocalDate.parse(fechaNacimientoCadena);
 
             Cliente cliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, CURP, direccion, anioNacimientoint, fechaNacimiento, RFC, nombreUsuario, contrasena);
-            Banco.personas.get(Rol.CLIENTE).add(cliente);
+            banco.personas.get(Rol.CLIENTE).add(cliente);
             System.out.println(">Cliente registrado<");
         }
         public static void mostrarClientes () {
             System.out.println("\nClientes en el banco\n");
-            if (((ArrayList) Banco.personas.get(Rol.CLIENTE)).isEmpty()) {
+            if (((ArrayList) banco.personas.get(Rol.CLIENTE)).isEmpty()) {
                 System.out.println("No hay clientes registrados");
             } else {
                 int i = 1;
 
-                for (Iterator var1 = ((ArrayList) Banco.personas.get(Rol.CLIENTE)).iterator(); var1.hasNext(); ++i) {
+                for (Iterator var1 = ((ArrayList) banco.personas.get(Rol.CLIENTE)).iterator(); var1.hasNext(); ++i) {
                     Persona usuario = (Persona) var1.next();
                     Cliente cliente = (Cliente) usuario;
                     System.out.println("" + i + ") " + cliente.toString());

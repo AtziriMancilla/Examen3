@@ -469,7 +469,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteCapturistas() {
+    private static void mostrarMenuGerenteCapturistas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -487,7 +487,7 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarCapturista();
+                    banco.registrarCapturista();
                     break;
                 case 2:
                     Banco.modificarCapturista();

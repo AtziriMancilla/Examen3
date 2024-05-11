@@ -75,8 +75,8 @@ public class Banco {
     }
 
     //Crear personas
-    public static void registrarCapturista(){
-        Capturista.registrarCapturista();}
+    public void registrarCapturista(){
+        Capturista.registrarCapturista(this);}
     public void registrarCliente(){
         Cliente.registrarCliente(this);
     }
@@ -85,12 +85,13 @@ public class Banco {
     public void registrarInversionista(){Inversionista.registrarInversionista(this);}
 
     //mostrar
-    public static void mostrarCapturistas() {
-        Capturista.mostrarCapturistas();
+    public void mostrarCapturistas() {
+        Capturista.mostrarCapturistas(this);
     }
     public static void mostrarClientes() {
         Cliente.mostrarClientes();
     }
+
     public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos(this);}
 
     public void mostrarGerente(){
@@ -99,8 +100,8 @@ public class Banco {
     public void mostrarInversionistas() {Inversionista.mostrarInversionistas(this);}
 
     //Eliminar
-    public static void borrarCapturista(){
-        Capturista.borrarCapturista();
+    public void borrarCapturista(){
+        Capturista.borrarCapturista(this);
     }
     public static void borrarCliente(){Cliente.borrarCliente();}
     public void eliminarEjecutivo(){
@@ -111,7 +112,7 @@ public class Banco {
     }
 
     //modificar
-    public static void modificarCapturista(){Capturista.modificarCapturista();}
+    public void modificarCapturista(){Capturista.modificarCapturista(this);}
     public static void modificarCliente(){
         Cliente.modificarCliente();}
     public void modificarEjecutivo(){Ejecutivo.modificarEjecutivo(this);}
