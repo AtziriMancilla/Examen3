@@ -17,8 +17,7 @@ public class Menu {
     public static void seleccionarBanco(){
         pruebasMadero();
         pruebasAcueducto();
-        Scanner sc = new Scanner(System.in);
-        int sucursal =0;
+        int sucursal;
         boolean band;
         do{
             band=false;
@@ -41,7 +40,6 @@ public class Menu {
     public static void iniciarSesion(Banco banco) {
         Scanner sc = new Scanner(System.in);
         boolean datosCorrectos = false;
-        banco.mostrarClientes();
         do {
             System.out.println("BIENVENIDO AL SISTEMA DEL BANC0");
             System.out.println("Inicia sesión para continuar");
@@ -56,6 +54,7 @@ public class Menu {
             if (personaActual!= null) {
                 UsuarioEnSesion.getInstancia().setUsuario(personaActual);
                 datosCorrectos = true;
+                System.out.println();
                 seleccionarMenu(banco);
             } else {
 
@@ -77,61 +76,144 @@ public class Menu {
         int opcion;
         Cliente cliente = (Cliente)UsuarioEnSesion.getInstancia().getUsuarioActual();//Para obtener al cliente de la sesión.
         TarjetaDebito tarjetaDebito = cliente.getTarjetaDebito();//Se obtiene la tarjeta de débito del usuario para sus futuras operaciones.
-        do {
         System.out.println("\tMenú Cliente");
-        System.out.println("\nBienvenido. Seleccione una opción:\n");
-        System.out.println("1) Consultar cuenta de débito");
-        System.out.println("2) Depositar a cuenta de débito");
-        System.out.println("3) Retirar dinero");
-        System.out.println("4) Comprar con tarjeta de débito");
-        System.out.println("5) Consultar cuentas de crédito");
-        System.out.println("6) Mostrar tarjetas de débito y crédito");
-        System.out.println("7) Realizar solicitud de tarjeta de crédito");
-        System.out.println("8) Revisar estatus de solicitud de tarjeta");
-        System.out.println("9) Realizar compra con tarjeta de crédito");
-        System.out.println("10) Realizar pago a tarjeta de crédito");
-        System.out.println("0) Cerrar Sesión");
-            opcion = DatosComun.pedirNumero();
-            switch (opcion) {
-                case 1:
-                    banco.consultarCuentaDebito(tarjetaDebito);
-                    break;
-                case 2:
-                    banco.depositarDebito(tarjetaDebito);
-                    break;
-                case 3:
-                    banco.retirarDebito(tarjetaDebito);
-                    break;
-                case 4:
-                    banco.comprarDebito(tarjetaDebito);
-                    break;
-                case 5:
-                    banco.consultarCuentasCredito(cliente);
-                    break;
-                case 6:
-                    banco.verTarjetas(cliente);
-                    break;
-                case 7:
-                    banco.solicitudDeTarjetaCredito(cliente);
-                    break;
-                case 8:
-                    banco.revisarSolicitudCredito(cliente);
-                    break;
-                case 9:
-                    banco.compraTarjetaCredito(cliente);
-                    break;
-                case 10:
-                    banco.pagoTarjetaCredito(cliente);
-                    break;
-                case 0:
-                    UsuarioEnSesion.getInstancia().cerrarSesion();
-                    seleccionarBanco();
-                    break;
-                default:
-                    System.out.println("Error. Selecciona una opción válida\n");
-                    break;
+
+        if(cliente.getTarjetasCredito().isEmpty()){//Caso 1: El cliente no tiene tarjetas de crédito.
+            if(tarjetaDebito.getSaldo()<50000){//Si el cliente no cumple con saldo mínimo para solicitar tarjeta.
+                do{//Menú básico.
+                    System.out.println("\nBienvenido. Seleccione una opción:\n");
+                    System.out.println("1) Consultar cuenta de débito");
+                    System.out.println("2) Depositar a cuenta de débito");
+                    System.out.println("3) Retirar dinero");
+                    System.out.println("4) Comprar con tarjeta de débito");
+                    System.out.println("0) Cerrar Sesión");
+                    opcion = DatosComun.pedirNumero();
+                    switch (opcion) {
+                        case 1:
+                            banco.consultarCuentaDebito(tarjetaDebito);
+                            break;
+                        case 2:
+                            banco.depositarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 3:
+                            banco.retirarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 4:
+                            banco.comprarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 0:
+                            UsuarioEnSesion.getInstancia().cerrarSesion();
+                            seleccionarBanco();
+                            break;
+                        default:
+                            System.out.println("Error. Selecciona una opción válida\n");
+                            break;
+                    }
+                } while(opcion!=0);
             }
-        }while(opcion!=0);
+            if(tarjetaDebito.getSaldo()>=50000){//El cliente tiene saldo para solicitar una tarjeta de crédito.
+                do{//Menú con opción para solicitar tarjeta de crédito.
+                    System.out.println("\nBienvenido. Seleccione una opción:\n");
+                    System.out.println("1) Consultar cuenta de débito");
+                    System.out.println("2) Depositar a cuenta de débito");
+                    System.out.println("3) Retirar dinero");
+                    System.out.println("4) Comprar con tarjeta de débito");
+                    System.out.println("5) Realizar solicitud de tarjeta de crédito");
+                    System.out.println("6) Revisar estatus de solicitud de tarjeta");
+                    System.out.println("0) Cerrar Sesión");
+                    opcion = DatosComun.pedirNumero();
+                    switch (opcion) {
+                        case 1:
+                            banco.consultarCuentaDebito(tarjetaDebito);
+                            break;
+                        case 2:
+                            banco.depositarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 3:
+                            banco.retirarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 4:
+                            banco.comprarDebito(tarjetaDebito);
+                            mostrarMenuCliente(banco);
+                            break;
+                        case 5:
+                            banco.solicitudDeTarjetaCredito(cliente);
+                            break;
+                        case 6:
+                            banco.revisarSolicitudCredito(cliente);
+                            break;
+                        case 0:
+                            UsuarioEnSesion.getInstancia().cerrarSesion();
+                            seleccionarBanco();
+                            break;
+                    }
+                }while(opcion!=0);
+            }
+        }
+        if(!cliente.getTarjetasCredito().isEmpty()){//Caso 2. El cliente ya cuenta con tarjetas de crédito.
+            do {//Menú Completo.
+                System.out.println("\nBienvenido. Seleccione una opción:\n");
+                System.out.println("1) Consultar cuenta de débito");
+                System.out.println("2) Depositar a cuenta de débito");
+                System.out.println("3) Retirar dinero");
+                System.out.println("4) Comprar con tarjeta de débito");
+                System.out.println("5) Consultar cuentas de crédito");
+                System.out.println("6) Mostrar tarjetas de débito y crédito");
+                System.out.println("7) Realizar solicitud de tarjeta de crédito");
+                System.out.println("8) Revisar estatus de solicitud de tarjeta");
+                System.out.println("9) Realizar compra con tarjeta de crédito");
+                System.out.println("10) Realizar pago a tarjeta de crédito");
+                System.out.println("0) Cerrar Sesión");
+                opcion = DatosComun.pedirNumero();
+                switch (opcion) {
+                    case 1:
+                        banco.consultarCuentaDebito(tarjetaDebito);
+                        break;
+                    case 2:
+                        banco.depositarDebito(tarjetaDebito);
+                        mostrarMenuCliente(banco);
+                        break;
+                    case 3:
+                        banco.retirarDebito(tarjetaDebito);
+                        mostrarMenuCliente(banco);
+                        break;
+                    case 4:
+                        banco.comprarDebito(tarjetaDebito);
+                        mostrarMenuCliente(banco);
+                        break;
+                    case 5:
+                        banco.consultarCuentasCredito(cliente);
+                        break;
+                    case 6:
+                        banco.verTarjetas(cliente);
+                        break;
+                    case 7:
+                        banco.solicitudDeTarjetaCredito(cliente);
+                        break;
+                    case 8:
+                        banco.revisarSolicitudCredito(cliente);
+                        break;
+                    case 9:
+                        banco.compraTarjetaCredito(cliente);
+                        break;
+                    case 10:
+                        banco.pagoTarjetaCredito(cliente);
+                        break;
+                    case 0:
+                        UsuarioEnSesion.getInstancia().cerrarSesion();
+                        seleccionarBanco();
+                        break;
+                    default:
+                        System.out.println("Error. Selecciona una opción válida\n");
+                        break;
+                }
+            }while(opcion!=0);
+        }
     }
 
     private static void mostrarMenuCapturista(Banco banco){
@@ -343,7 +425,6 @@ public class Menu {
     private static void mostrarMenuGerenteTarjetas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
-
         do {
             System.out.println(">>En relación a Tarjetas<<");
             System.out.println("Selecciona una opción para continuar");
@@ -512,7 +593,8 @@ public class Menu {
         bancoMadero.personas.get(Rol.CLIENTE).add(cliente);
         SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
         bancoMadero.solicitudes.add(solicitudTarjetaCredito);
-
+        Gerente gerente = new Gerente("Jafet","Santoyo","Benites","Morelia","Michoacán","SABJ970130HMNNNF09","Rey Ezequias #88",1997,LocalDate.of(1997,1,30),"SABJ970130HM1","jafiSan","uwu",35240.89,"1234");
+        bancoMadero.personas.get(Rol.GERENTE).add(gerente);
     }
     public static void pruebasAcueducto(){
         Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Canelita","1234");
@@ -521,7 +603,8 @@ public class Menu {
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Simplicity);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
-
+        Gerente gerente2 = new Gerente("Andrés","Santoyo","Benites","Morelia","Michoacán","SABA030617HMNNNF09","Rey Ezequias #88",2003,LocalDate.of(2003,1,30),"SABJ970130HM1","andySan","uwu",35240.89,"1234");
+        bancoAcueducto.personas.get(Rol.CLIENTE).add(gerente2);
     }
 
 }
