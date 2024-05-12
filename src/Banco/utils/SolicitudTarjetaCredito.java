@@ -9,17 +9,18 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class SolicitudTarjetaCredito {
-    Cliente cliente;
+    private Cliente cliente;
     private LocalDate fechaSolicitud;
     private TipoTarjetaCredito tipoTarjeta;
     private String status;
     int idCliente;
 
-    public SolicitudTarjetaCredito(Cliente cliente, TipoTarjetaCredito tipo) {
-        this.cliente = cliente;
+    public SolicitudTarjetaCredito(Cliente clienteSolicitante, TipoTarjetaCredito tipo) {
+        cliente = clienteSolicitante;
         status = "En espera";
         tipoTarjeta = tipo;
         idCliente = cliente.getId();
+        cliente.setNumeroSolicitudesEnProceso(1);
     }
 
     //método que aprueba la solicitud en curso y asigna una tarjeta de credito
@@ -59,7 +60,7 @@ public class SolicitudTarjetaCredito {
         } else {
             System.out.println("Solicitudes");
             for (int i = 0; i < banco.solicitudes.size(); i++) {
-                System.out.println((i + 1) + ")" + banco.solicitudes.get(i));
+                System.out.println((i + 1) + ")" + banco.solicitudes.get(i).toString());
             }
         }
     }

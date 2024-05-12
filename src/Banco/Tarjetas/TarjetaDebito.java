@@ -43,7 +43,7 @@ public class TarjetaDebito extends Tarjeta {
         boolean flag = true;
         double retiro;
         do {
-            System.out.println("\nSaldo Disponible: "+ saldo);
+            System.out.println("\nSaldo Disponible: %.2f"+ saldo);
             System.out.println("Ingresa el monto:");
             retiro = DatosComun.pedirValorDouble();
             if (retiro <= saldo) {
@@ -66,7 +66,7 @@ public class TarjetaDebito extends Tarjeta {
         boolean flag = true;
         double compra;
         do {
-            System.out.println("\nSaldo Disponible: "+ saldo);
+            System.out.println("\nSaldo Disponible: %.2f"+ saldo);
             System.out.println("Ingresa el monto de la compra:");
             compra = DatosComun.pedirValorDouble();
             if (compra <= saldo) {
@@ -105,12 +105,11 @@ public class TarjetaDebito extends Tarjeta {
     }
     @Override
     public String toString(){
-        return String.format("%s, Saldo: %f",super.toString(),saldo);
+        return String.format("\nSaldo disponible: %.2f\n%s",saldo,super.toString());
     }
     //Métodos Jafet
     public void consultarCuenta() {
-        System.out.println("Saldo de la cuenta: " + saldo);
-        System.out.println(this);//Obtener el resto de los datos de la tarjeta
+        System.out.println(this);//Imprimir los datos
     }
 
 }

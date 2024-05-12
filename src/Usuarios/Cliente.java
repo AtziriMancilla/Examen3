@@ -30,6 +30,7 @@ public class Cliente extends Persona {
             id = num;
             num++;
             tarjetaDebito = new TarjetaDebito(1234);
+            numeroSolicitudesEnProceso = 0;
         }
         public ArrayList<TarjetaCredito> getTarjetasCredito() {
             return tarjetasCredito;
@@ -52,24 +53,6 @@ public class Cliente extends Persona {
             System.out.println("Tarjetas de credito: ");
             tarjetasCredito.forEach(tarjetaCredito -> System.out.println(tarjetaCredito.toString()));
         }
-//        public static void realizarCompra () {
-//
-//        }
-//        public static void pagarTarjeta () {
-//
-//        }
-        //Método para objetos precargados del sistema.
-        /*public void realizarDeposito(double monto){
-            tarjetaDebito.depositar(monto);
-        }*/
-        //Método para depósitos ingresados por el Usuario en Sesión.
-        /*public void depositarDebito() {
-            tarjetaDebito.depositoDebito();
-        }*/
-
-        /*public void retirarDebito(TarjetaDebito tarjeta) {
-            tarjetaDebito.retirar(tarjeta);
-        }*/
 
         public static void registrarCliente (Banco banco) {
             ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CLIENTE,banco);
@@ -322,8 +305,7 @@ public class Cliente extends Persona {
     public void solicitudTarjetaCredito(Banco banco) {
         System.out.println("\tBienvenido\n");
         if (tarjetasCredito.size()<3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
-            if(numeroSolicitudesEnProceso==0) TarjetaCredito.solicitarTarjeta(banco,this);
-            if(numeroSolicitudesEnProceso==1) System.out.println("Ya tienes una solicitud en curso. Debes esperar a que termine el proceso para poder hacer una nueva solicitud.");
+            TarjetaCredito.solicitarTarjeta(banco,this);
         }
         if (tarjetasCredito.size()==3) System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
     }
