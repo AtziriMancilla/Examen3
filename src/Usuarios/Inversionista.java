@@ -246,16 +246,12 @@ public class Inversionista extends Persona{
         Scanner sc=new Scanner(System.in);
         boolean cantidadValida = false;
         long monto;
-        System.out.println("\tBienvenido. Ingrese el mondo a invertir o escriba 0 para cancelar");
+        System.out.println("\tBienvenido. Ingrese el monto a invertir o escriba 0 para cancelar");
         do{
             cantidadValida=false;
             System.out.print("\nIngrese el monto: ");
-            monto =sc.nextLong();
+            monto =DatosComun.pedirNumero();
             sc.nextLine();
-            if (monto <0) {
-                System.out.println("Error. Monto no válido! Ingrese números válidos o 0 para cancelar la operación.");
-                cantidadValida=true;
-            }
             if (monto==0) {
                 System.out.println("\nCancelando operación. Regresando al menú anterior...");
                 cantidadValida = true;

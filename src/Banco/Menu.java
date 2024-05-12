@@ -1,13 +1,8 @@
 package Banco;
-
-import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
-import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
-import Usuarios.utils.Inversion;
 import utils.UsuarioEnSesion;
-
 import java.util.*;
 
 public class Menu {
@@ -36,8 +31,6 @@ public class Menu {
             }
         }while(band);
     }
-
-
     public static void iniciarSesion(Banco banco) {
         Scanner sc = new Scanner(System.in);
         boolean datosCorrectos = false;

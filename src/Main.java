@@ -12,52 +12,6 @@ public class Main {
     public static void main(String[] args) {
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Banco bancoMadero = new Banco();
         Banco bancoAcueducto = new Banco();
         Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
