@@ -31,9 +31,8 @@ public class SolicitudTarjetaCredito {
         cliente.getTarjetasCredito().add(tarjetaCredito);
     }
 
-    public void rechazarTarjeta(Banco banco,int opcion) {
+    public void rechazarTarjeta() {
         status = "Solicitud Rechazada";
-        banco.solicitudes.remove(opcion-1);
     }
 
     public String toString() {
@@ -64,43 +63,68 @@ public class SolicitudTarjetaCredito {
             }
         }
     }
+    public static int contadorSolicitudesPendientes(Banco banco){
+        int cont=0;
+        for (int i=0;i<banco.solicitudes.size();i++) {
+            if (banco.solicitudes.get(i).status.equals("En espera")){
+                cont++;
+            }
+        }
+        return cont;
+    }
 
     public static void procesarSolicitudes(Banco banco) {
-        verSolicitudes(banco);
-        if (!banco.solicitudes.isEmpty()) {
+        if(banco.solicitudes.isEmpty()||contadorSolicitudesPendientes(banco)==0)
+            System.out.println("No hay solicitudes pendientes");
+        if(!banco.solicitudes.isEmpty()&&contadorSolicitudesPendientes(banco)!=0){
             Scanner sc = new Scanner(System.in);
             boolean band = false;
-            int opcion = 0;
+            int id = 0;
+            int posicion=-1;
+            for (int i=0;i<banco.solicitudes.size();i++) {
+                if (banco.solicitudes.get(i).status.equals("En espera")){
+                    System.out.println(banco.solicitudes.get(i).toString());
+                }
+            }
             do {
                 try {
+                    posicion=-1;
                     band = false;
-                    System.out.println("Seleccione una solicitud");
-                    opcion = DatosComun.pedirNumero();
+                    System.out.println("Seleccione el id de una solicitud: ");
+                    id = DatosComun.pedirNumero();
+                    for (int i=0;i<banco.solicitudes.size();i++) {
+                        if (banco.solicitudes.get(i).getCliente().getId()==id){
+                            posicion=i;
+                        }
+                    }
                     System.out.println("Seleccionaste: ");
-                    System.out.println(banco.solicitudes.get(opcion - 1).toString());
+                    System.out.println(banco.solicitudes.get(posicion).toString());
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("Opcion no valida");
-                    sc.nextLine();
                     band = true;
                 }
             } while (band);
-            boolean bandera2=true;
-            while(bandera2) {
+            boolean bandera2=false;
+            do{
                 System.out.println("1) Aceptar solicitud\n2)Rechazar solicitud");
                 int accion = DatosComun.pedirNumero();
                 if (accion == 1) {
-                    banco.solicitudes.get(opcion - 1).aprobarTarjeta();
+                    banco.solicitudes.get(posicion).aprobarTarjeta();
                     System.out.println("Aprobaste la solicitud");
                     bandera2 = false;
                 }
-                if (opcion == 2) {
-                    banco.solicitudes.get(opcion - 1).rechazarTarjeta(banco, opcion);
+                if (accion == 2) {
+                    banco.solicitudes.get(posicion).rechazarTarjeta();
                     System.out.println("Rechazaste la solicitud");
                     bandera2 = false;
-                } else {
-                    System.out.println("Opcion no valida");
                 }
-            }
+                if(accion != 1 && accion != 2) {
+                    System.out.println("Opcion no valida");
+                    bandera2 = true;
+                    sc.nextLine();
+                }
+            }while(bandera2);
         }
     }
 }
+
