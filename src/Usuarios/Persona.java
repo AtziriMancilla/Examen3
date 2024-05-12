@@ -16,7 +16,6 @@ public class Persona {
     private static int anioNacimiento;
     public LocalDate fechaNacimiento;
     private String RFC;
-    //private Sucursal sucursal;
     private String nombreUsuario;
     private String contrasena;
     private Rol rol;
@@ -35,7 +34,6 @@ public class Persona {
       this.rol = rol;
       this.nombreUsuario=nombreUsuario;
       this.contrasena = contrasena;
-      //this.sucursal = sucursal;
     }
     @Override
     public String toString(){
