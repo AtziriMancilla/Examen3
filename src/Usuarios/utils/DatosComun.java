@@ -234,12 +234,12 @@ public class DatosComun {
 //        sc.nextLine();
         //String direccion ="";
         System.out.println("Ingrese calle");
-        String calle = pedirDatoString();
+        String calle = pedirStringConEspacios();
         System.out.println("Ingrese numero");
         int numero = pedirNumero();
         String numeroLegible = String.valueOf(numero);
         System.out.println("Ingrese colonia");
-        String colonia =pedirDatoString();
+        String colonia =pedirStringConEspacios();
         System.out.println("Ingrese código postal");
         int codigoPostal = pedirNumero();
         String codigoPostalLegible = String.valueOf(codigoPostal);
@@ -330,5 +330,47 @@ public class DatosComun {
     public static void pedirOpcionValida(ArrayList<Persona> listaUsuarios){
 
     }
+    public static String pedirStringConEspacios() { //No permite ni signos .,%. Acepta minimo una letra. No acepta numeros//Acepta espacios
+        Scanner sc = new Scanner(System.in);
+        String dato = "a";
+
+        boolean error = false;
+
+        do {
+            error = false;
+
+            try {
+                System.out.print("Ingrese dato: ");
+                dato = sc.nextLine();
+
+                if (dato == null || dato.trim().isEmpty()) {
+                    throw new IllegalArgumentException("El dato no puede estar vacío");
+                }
+
+                if (!dato.matches("^[a-zA-Z\\\\s]+$")) {
+                    throw new IllegalArgumentException("El dato solo puede contener letras y espacios");
+                }
+
+                if (dato.length()<2){
+                    throw new IllegalArgumentException("Error: solo ingresaste un carácter");
+                }
+                else{
+                    return dato;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+                error = true;
+
+
+            } catch (Exception e) {
+                System.out.println("Error. Intente de nuevo. ");
+                error = true;
+
+            }
+        } while (error);
+        sc.nextLine();
+        return dato;
+    }
+
 }
 

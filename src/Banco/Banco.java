@@ -56,7 +56,7 @@ public class Banco {
         do{
             System.out.println("Ingrese contraseña secreta");
             contrasenaIngresada = sc.nextLine();
-            if (contrasenaIngresada.equals("uwu")){
+            if (contrasenaIngresada.equals("soyelchido")){
                 contrasenaCoincide = true;
             }
             else {
