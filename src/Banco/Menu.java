@@ -616,6 +616,7 @@ public class Menu {
         SolicitudTarjetaCredito solicitudTarjetaCredito2 = new SolicitudTarjetaCredito(cliente2, TipoTarjetaCredito.Oro);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito2);
         SolicitudTarjetaCredito solicitudTarjetaCredito3 = new SolicitudTarjetaCredito(cliente3, TipoTarjetaCredito.Platino);
+        bancoAcueducto.solicitudes.add(solicitudTarjetaCredito3);
         Gerente gerenteunico = new Gerente("Alejandro", "Montejano", "Diaz","Morelia", "Michoacan", "MODA736354", "Xangari", 2003, LocalDate.now(),"MODA736354", "Mario", "DrProfesor", 20000 );
         bancoAcueducto.personas.get(Rol.GERENTE).add(gerenteunico);
         Ejecutivo ejecutivo1= new Ejecutivo("Atziri", "Mancilla", "Cruz", "Patzcuaro", "Michoacan", "MACA928276", "Patzcuarito", 2000, LocalDate.now(), "MACA928276", "Atziri", "Alan", 50000);
