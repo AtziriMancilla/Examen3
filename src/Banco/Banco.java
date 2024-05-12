@@ -40,15 +40,13 @@ public class Banco {
         for (Map.Entry<Rol, ArrayList<Persona> > entry : personas.entrySet()){
             ArrayList<Persona> listaPersonas = entry.getValue();
             for(Persona personaActual : listaPersonas){
-                if(personaActual.getNombre().equals(usuario)&& personaActual.getContrasena().equals(contrasena)){
+                if(personaActual.getNombreUsuario().equals(usuario)&& personaActual.getContrasena().equals(contrasena)){
                     return personaActual;
                 }
             }
         }
         return null;
     }
-
-
     public static boolean verificarContrasenaSecreta(){
 
         Scanner sc = new Scanner(System.in);
