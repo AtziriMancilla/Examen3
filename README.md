@@ -2,7 +2,9 @@
 # Sistema para un Banco
 # Integrantes
 Atziri Estefanía Mancilla Cruz
+
 Jafet Santoyo Benítez
+
 Andrea Durán Martínez
 
 El proyecto está diseñado de tal forma que el sistema cuenta con 2 sucursales
