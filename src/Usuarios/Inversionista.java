@@ -161,19 +161,8 @@ public class Inversionista extends Persona{
         if(inversionista.getInversiones().isEmpty()) {
             System.out.println("Seleccionaste a: ");
             System.out.println(banco.personas.get(Rol.INVERSIONISTA).get(numInversionista - 1).toString());
-            int opcion = 0;
-            boolean bandera;
-            do {
-                bandera = false;
-                try {
-                    System.out.println("¿Deseas eliminarlo? 1) Si, Otro numero) Cancelar");
-                    opcion = sc.nextInt();
-                } catch (InputMismatchException error) {
-                    System.out.println("Opcion no valida");
-                    bandera = true;
-                    sc.nextLine();
-                }
-            } while (bandera);
+            System.out.println("¿Deseas eliminarlo? 1) Si, Otro numero) Cancelar");
+            int opcion = DatosComun.pedirNumero();
             if (opcion == 1) {
                 banco.personas.get(Rol.INVERSIONISTA).remove(numInversionista - 1);
                 System.out.println("Inversionista eliminado");
@@ -186,16 +175,6 @@ public class Inversionista extends Persona{
             System.out.println("No se puede eliminar este inversionista");
         }
     }
-//    public static void realizarInversion(){
-//        Persona persona = UsuarioEnSesion.getInstancia().getUsuarioActual();
-//        Inversionista inversionista = (Inversionista) persona;
-//        inversionista.realizarInversion();
-//    }
-//
-//    public void agregarInversion(Inversion inversion){
-//        inversiones.add(inversion);
-//    }
-
 
     public static void mostrarInversionistas(Banco banco) {
         System.out.println("\nInversionistas en el banco\n");
@@ -209,6 +188,7 @@ public class Inversionista extends Persona{
                 Persona usuario = (Persona) var1.next();
                 Inversionista inversionista = (Inversionista) usuario;
                 System.out.println(i + ") " + inversionista.toString());
+                i++;
             }
         }
     }

@@ -205,28 +205,15 @@ public class Cliente extends Persona {
                 } catch (IndexOutOfBoundsException | InputMismatchException error) {
                     System.out.println("Opcion no valida");
                     band=true;
-                }
-                finally {
-                    sc.nextLine();
+                    //revisar sc.nextLine
                 }
             }while(band);
             Cliente cliente=(Cliente) banco.personas.get(Rol.CLIENTE).get(numCliente - 1);
             if(cliente.getTarjetaDebito().getSaldo()==0) {
                 System.out.println("Seleccionaste a: ");
                 System.out.println(banco.personas.get(Rol.CLIENTE).get(numCliente - 1).toString());
-                int opcion = 0;
-                boolean bandera;
-                do {
-                    bandera = false;
-                    try {
-                        System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
-                        opcion = sc.nextInt();
-                    } catch (InputMismatchException error) {
-                        System.out.println("Opción no valida");
-                        bandera = true;
-                        sc.nextLine();
-                    }
-                } while (bandera);
+                System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
+                int opcion = DatosComun.pedirNumero();
                 if (opcion == 1) {
                     banco.personas.get(Rol.CLIENTE).remove(numCliente - 1);
                     System.out.println("Cliente eliminado");
