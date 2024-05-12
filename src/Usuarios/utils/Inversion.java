@@ -15,9 +15,7 @@ public class Inversion {
         fecha=LocalDate.now();
     }
     public String mostrarInversion(){
-        DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/YY hh:mm");
-        String fechaFormateada = fecha.format(pattern);
-        return String.format("Monto: %d, Fecha de realizacion: %s ",monto,fechaFormateada);
+        return String.format("Monto: %d, Fecha de realizacion: %s ",monto,fecha);
     }
     public static void mostrarInversiones(Banco banco){
         if(banco.personas.get(Rol.INVERSIONISTA).isEmpty())

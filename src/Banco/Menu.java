@@ -1,8 +1,13 @@
 package Banco;
 import Banco.Tarjetas.TarjetaDebito;
+import Banco.utils.SolicitudTarjetaCredito;
+import Banco.utils.TipoTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
+import Usuarios.utils.Rol;
 import utils.UsuarioEnSesion;
+
+import java.time.LocalDate;
 import java.util.*;
 
 public class Menu {
@@ -10,6 +15,8 @@ public class Menu {
     private static final Banco bancoMadero = new Banco();
     private static final Banco bancoAcueducto = new Banco();
     public static void seleccionarBanco(){
+        pruebasMadero();
+        pruebasAcueducto();
         Scanner sc = new Scanner(System.in);
         int sucursal =0;
         boolean band;
@@ -23,7 +30,7 @@ public class Menu {
                 iniciarSesion(bancoMadero);
             }
             if(sucursal==2){
-               iniciarSesion( bancoAcueducto);
+               iniciarSesion(bancoAcueducto);
             }
             else{
                 System.out.println("Intenta de nuevo");
@@ -34,6 +41,7 @@ public class Menu {
     public static void iniciarSesion(Banco banco) {
         Scanner sc = new Scanner(System.in);
         boolean datosCorrectos = false;
+        banco.mostrarClientes();
         do {
             System.out.println("BIENVENIDO AL SISTEMA DEL BANC0");
             System.out.println("Inicia sesión para continuar");
@@ -69,6 +77,7 @@ public class Menu {
         int opcion;
         Cliente cliente = (Cliente)UsuarioEnSesion.getInstancia().getUsuarioActual();//Para obtener al cliente de la sesión.
         TarjetaDebito tarjetaDebito = cliente.getTarjetaDebito();//Se obtiene la tarjeta de débito del usuario para sus futuras operaciones.
+        do {
         System.out.println("\tMenú Cliente");
         System.out.println("\nBienvenido. Seleccione una opción:\n");
         System.out.println("1) Consultar cuenta de débito");
@@ -82,8 +91,6 @@ public class Menu {
         System.out.println("9) Realizar compra con tarjeta de crédito");
         System.out.println("10) Realizar pago a tarjeta de crédito");
         System.out.println("0) Cerrar Sesión");
-        do {
-            System.out.print("Opción: ");
             opcion = DatosComun.pedirNumero();
             switch (opcion) {
                 case 1:
@@ -497,6 +504,24 @@ public class Menu {
             }
         }
         while(opcion != 0);
+    }
+    public static void pruebasMadero(){
+        Inversionista inversionista=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Mario bros","1234");
+        bancoMadero.personas.get(Rol.INVERSIONISTA).add(inversionista);
+        Cliente cliente=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Elpro","1234");
+        bancoMadero.personas.get(Rol.CLIENTE).add(cliente);
+        SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
+        bancoMadero.solicitudes.add(solicitudTarjetaCredito);
+
+    }
+    public static void pruebasAcueducto(){
+        Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Canelita","1234");
+        bancoAcueducto.personas.get(Rol.INVERSIONISTA).add(inversionista1);
+        Cliente cliente1=new Cliente("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Bioshinin","1234");
+        bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
+        SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Simplicity);
+        bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
+
     }
 
 }
