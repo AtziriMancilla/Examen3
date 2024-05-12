@@ -69,7 +69,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
         Scanner sc=new Scanner(System.in);
         mostrarEjecutivos(banco);
         System.out.println("Selecciona el ejecutivo: ");
-        int numEjecutivo = pedirEjecutivo();
+        int numEjecutivo = pedirEjecutivo(banco);
         int opt =10;
         do{
             System.out.println("¿Qué información deseas editar?");
