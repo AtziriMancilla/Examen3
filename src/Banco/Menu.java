@@ -597,7 +597,7 @@ public class Menu {
         bancoMadero.personas.get(Rol.CLIENTE).add(cliente);
         SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
         bancoMadero.solicitudes.add(solicitudTarjetaCredito);
-        Gerente gerente = new Gerente("Jafet","Santoyo","Benites","Morelia","Michoacán","SABJ970130HMNNNF09","Rey Ezequias #88",1997,LocalDate.of(1997,1,30),"SABJ970130HM1","jafiSan","uwu",35240.89,"1234");
+        Gerente gerente = new Gerente("Jafet","Santoyo","Benites","Morelia","Michoacán","SABJ970130HMNNNF09","Rey Ezequias #88",1997,LocalDate.of(1997,1,30),"SABJ970130HM1","jafiSan","uwu",35240.89);
         bancoMadero.personas.get(Rol.GERENTE).add(gerente);
     }
     public static void pruebasAcueducto(){
@@ -607,7 +607,7 @@ public class Menu {
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Simplicity);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
-        Gerente gerente2 = new Gerente("Andrés","Santoyo","Benites","Morelia","Michoacán","SABA030617HMNNNF09","Rey Ezequias #88",2003,LocalDate.of(2003,1,30),"SABJ970130HM1","andySan","uwu",35240.89,"1234");
+        Gerente gerente2 = new Gerente("Andrés","Santoyo","Benites","Morelia","Michoacán","SABA030617HMNNNF09","Rey Ezequias #88",2003,LocalDate.of(2003,1,30),"SABJ970130HM1","andySan","uwu",35240.89);
         bancoAcueducto.personas.get(Rol.CLIENTE).add(gerente2);
     }
 
