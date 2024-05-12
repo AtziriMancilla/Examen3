@@ -23,7 +23,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
 
     @Override
     public String toString(){
-        return String.format("%s", super.toString());
+        return String.format("%s, Fecha inicio: %s", super.toString(),fechaInicio);
     }
 
     public static void registrarEjecutivo(Banco banco){
@@ -54,15 +54,12 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
     }
     public static void mostrarEjecutivos(Banco banco){
         System.out.println("\nEjecutivos en el banco\n");
-        if (((ArrayList)banco.personas.get(Rol.EJECUTIVO)).isEmpty()) {
+        if (banco.personas.get(Rol.EJECUTIVO).isEmpty()) {
             System.out.println("No hay ejecutivos registrados");
         } else {
-            int i = 1;
-
-            for(Iterator var1 = ((ArrayList)banco.personas.get(Rol.EJECUTIVO)).iterator(); var1.hasNext(); ++i) {
-                Persona usuario = (Persona)var1.next();
-                Ejecutivo ejecutivo = (Ejecutivo) usuario;
-                System.out.println("" + i + ") " + ejecutivo.toString());
+            for(int i=0;i<banco.personas.get(Rol.EJECUTIVO).size();i++){
+                Ejecutivo ejecutivo=(Ejecutivo)banco.personas.get(Rol.EJECUTIVO).get(i);
+                System.out.println(ejecutivo.toString());
             }
         }
     }

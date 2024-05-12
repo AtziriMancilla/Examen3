@@ -125,7 +125,7 @@ public class Banco {
         Ejecutivo.buscarEjecutivo(this);
     }
     public void buscarCliente() {
-        Ejecutivo.buscarEjecutivo(this);
+        Cliente.buscarCliente(this);
     }
     public void verSolicitudes(){
         SolicitudTarjetaCredito.verSolicitudes(this);

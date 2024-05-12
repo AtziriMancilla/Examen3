@@ -297,8 +297,10 @@ public class Menu {
                     break;
                 case 6:
                     banco.verSolicitudes();
+                    break;
                 case 7:
                     banco.procesarSolicitudes();
+                    break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
                     seleccionarBanco();
@@ -597,28 +599,26 @@ public class Menu {
         bancoMadero.personas.get(Rol.INVERSIONISTA).add(inversionista1);
         Cliente cliente1=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA133545","Calle desconocida",2004, LocalDate.now(),"Moda904803","Elpro","1234");
         bancoMadero.personas.get(Rol.CLIENTE).add(cliente1);
-        SolicitudTarjetaCredito solicitudTarjetaCredito=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Simplicity);
-        bancoMadero.solicitudes.add(solicitudTarjetaCredito);
         Gerente gerente = new Gerente("Jafet","Santoyo","Benites","Morelia","Michoacán","SABJ970130HMNNNF09","Rey Ezequias #88",1997,LocalDate.of(1997,1,30),"SABJ970130HM1","jafiSan","uwu",35240.89);
         bancoMadero.personas.get(Rol.GERENTE).add(gerente);
         Cliente cliente2 = new Cliente("Edgar", "Lopez", "Vazquez", "Morelia", "Michoacan", "LOVE960828HHNT03", "Pino 12", 1996, LocalDate.now(), "LOVE960828", "Gari Uchiha", "naruto");
-        bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente2);
+        bancoMadero.personas.get(Rol.CLIENTE).add(cliente2);
         Cliente cliente3 = new Cliente("Jose Manuel", "Mancilla", "Cruz", "Morelia", "Michoacan", "MACO02987", "Juan Alvarez", 1999, LocalDate.now(), "MACO02987", "Wizdo", "wishes");
-        bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente3);
+        bancoMadero.personas.get(Rol.CLIENTE).add(cliente3);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Oro);
-        bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
+        bancoMadero.solicitudes.add(solicitudTarjetaCredito1);
         SolicitudTarjetaCredito solicitudTarjetaCredito2 = new SolicitudTarjetaCredito(cliente2, TipoTarjetaCredito.Oro);
-        bancoAcueducto.solicitudes.add(solicitudTarjetaCredito2);
+        bancoMadero.solicitudes.add(solicitudTarjetaCredito2);
         SolicitudTarjetaCredito solicitudTarjetaCredito3 = new SolicitudTarjetaCredito(cliente3, TipoTarjetaCredito.Platino);
-        bancoAcueducto.solicitudes.add(solicitudTarjetaCredito3);
+        bancoMadero.solicitudes.add(solicitudTarjetaCredito3);
         Ejecutivo ejecutivo1= new Ejecutivo("Sianya", "Garcia", "Medina", "Hidalgo", "Michoacan", "GAMS050276MMNNDY05", "Miguel Hidalgo", 2000, LocalDate.now(), "GAMS050276", "sianyis", "contabilidadesmipasion", 30000);
-        bancoAcueducto.personas.get(Rol.EJECUTIVO).add(ejecutivo1);
+        bancoMadero.personas.get(Rol.EJECUTIVO).add(ejecutivo1);
         Ejecutivo ejecutivo2= new Ejecutivo("Mariana", "Paz", "Alfaro", "Morelia", "Michoacan", "PAAM050705MMNUDH9", "Calle de Juanito", 2001, LocalDate.now(),"PAAM050705", "genshin", "amogenshin", 20000 );
-        bancoAcueducto.personas.get(Rol.EJECUTIVO).add(ejecutivo2);
+        bancoMadero.personas.get(Rol.EJECUTIVO).add(ejecutivo2);
         Capturista capturista1 = new Capturista("Pamela", "Cardoso", "Riveron", "Patzcuaro", "Michoacan", "CARP980705MMNNUD96", "Calle municipal", 2000, LocalDate.now(), "CARP980705", "gatitocosmico", "uwu", 30000);
-        bancoAcueducto.personas.get(Rol.CAPTURISTA).add(capturista1);
+        bancoMadero.personas.get(Rol.CAPTURISTA).add(capturista1);
         Capturista capturista2 = new Capturista("Alan", "Lopez", "Mancilla", "Patzcuaro", "Michoacan", "LOMA220522HHNDTU03", "Callechida", 2000, LocalDate.now(), "LOMA220522", "Sonic", "amosonic", 300000);
-        bancoAcueducto.personas.get(Rol.CAPTURISTA).add(capturista2);
+        bancoMadero.personas.get(Rol.CAPTURISTA).add(capturista2);
     }
     public static void pruebasAcueducto(){
         Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Canelita","1234");
