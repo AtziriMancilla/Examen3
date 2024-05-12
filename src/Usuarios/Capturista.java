@@ -74,10 +74,10 @@ public class Capturista extends Empleado{
     }
     public static void borrarCapturista(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarCapturistas(banco);
         int numCapturista=0;
         boolean band;
         if (!banco.personas.get(Rol.CAPTURISTA).isEmpty()) {
+            mostrarCapturistas(banco);
             do {
                 try {
                     band = false;

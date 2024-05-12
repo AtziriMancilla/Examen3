@@ -213,6 +213,7 @@ public class TarjetaCredito extends Tarjeta {
     public static void revisarStatus(Banco banco, Cliente cliente) {
         System.out.println("Solicitud en curso:");//El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
         boolean solicitudEncontrada = false;//Determina si se encontró una solicitud pendiente del cliente.
+        int indexSolicitud = 0;
         for(SolicitudTarjetaCredito solicitud : banco.solicitudes) {
             if (solicitud.getCliente() == cliente){
                 solicitudEncontrada = true;
@@ -221,10 +222,11 @@ public class TarjetaCredito extends Tarjeta {
                 if(solicitud.getStatus().equals("Solicitud Aprobada")||solicitud.getStatus().equals("Solicitud Rechazada")){//Revisión del status
                     System.out.println("Eliminando solicitud del historial...");
                     cliente.setNumeroSolicitudesEnProceso(0);//Una vez que el cliente consulte el estatus, si la solicitud ya fue atendida, su contador pasa a 0.
-                    banco.solicitudes.remove(solicitud);//Una vez consultada y atendida la solicitud, se elimina del Banco.
+                    indexSolicitud = banco.solicitudes.indexOf(solicitud);
                 }
             }
         }
+        banco.solicitudes.remove(indexSolicitud);//Una vez consultada y atendida la solicitud, se elimina del Banco.
         if(!solicitudEncontrada) System.out.println("No tienes solicitudes pendientes.");
     }
 }
