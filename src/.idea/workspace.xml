@@ -6,13 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="a9a53224-9e74-4fa5-9e7d-da06cd056198" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Banco/Banco.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Banco.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banco/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Banco/Sistema.java" beforeDir="false" afterPath="$PROJECT_DIR$/Banco/Sistema.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -30,7 +38,7 @@
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;banquito&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;banquitoAiuda&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/maceva/examenPoo/Examen/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -58,7 +66,8 @@
       <workItem from="1714958724991" duration="22000" />
       <workItem from="1715231586471" duration="4000" />
       <workItem from="1715392130574" duration="4710000" />
-      <workItem from="1715440818582" duration="6017000" />
+      <workItem from="1715440818582" duration="12680000" />
+      <workItem from="1715463852929" duration="9117000" />
     </task>
     <servers />
   </component>

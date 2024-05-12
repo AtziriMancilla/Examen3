@@ -1,5 +1,6 @@
 package Banco;
 
+import Banco.Tarjetas.TarjetaDebito;
 import Banco.utils.SolicitudTarjetaCredito;
 import Banco.utils.TipoTarjetaCredito;
 import Usuarios.*;
@@ -15,14 +16,11 @@ import java.util.Scanner;
 public class Banco {
     public HashMap<Rol, ArrayList<Persona>> personas;
     public ArrayList<SolicitudTarjetaCredito> solicitudes;
-    //public static ArrayList<SolicitudTarjetaCredito> inversiones;
     private String contrasenaSecreta = "uwu";
-    public ArrayList<Inversion> inversion;
 
     public Banco () {
         personas = new HashMap<>();
         solicitudes = new ArrayList<>();
-        inversion=new ArrayList<>();
         inicializarHashmap();
     }
     public void inicializarHashmap(){
@@ -88,14 +86,14 @@ public class Banco {
     public void mostrarCapturistas() {
         Capturista.mostrarCapturistas(this);
     }
-    public static void mostrarClientes() {
-        Cliente.mostrarClientes();
+    public void mostrarClientes() {
+        Cliente.mostrarClientes(this);
     }
 
     public void mostrarEjecutivos() {Ejecutivo.mostrarEjecutivos(this);}
 
     public void mostrarGerente(){
-        Gerente.mostrarGerente();
+        Gerente.mostrarGerente(this);
     }
     public void mostrarInversionistas() {Inversionista.mostrarInversionistas(this);}
 
@@ -103,33 +101,72 @@ public class Banco {
     public void borrarCapturista(){
         Capturista.borrarCapturista(this);
     }
-    public static void borrarCliente(){Cliente.borrarCliente();}
+    public void borrarCliente(){Cliente.borrarCliente(this);}
     public void eliminarEjecutivo(){
         Ejecutivo.eliminarEjecutivo(this);
     }
-    public static void eliminarInversionista(){
-        Inversionista.eliminarInversionista();
+    public void eliminarInversionista(){
+        Inversionista.eliminarInversionista(this);
     }
 
     //modificar
     public void modificarCapturista(){Capturista.modificarCapturista(this);}
-    public static void modificarCliente(){
-        Cliente.modificarCliente();}
+    public void modificarCliente(){
+        Cliente.modificarCliente(this);}
     public void modificarEjecutivo(){Ejecutivo.modificarEjecutivo(this);}
-    public void modificarGerente(){Gerente.modificarGerente();}
+    public void modificarGerente(){Gerente.modificarGerente(this);}
     public void modificarInversionista(){Inversionista.modificarInversionista(this);}
 
     //Me imagino que también los metodos para las inversiones
-    public void realizarInversion(Inversionista inversionista){Inversion.realizarInversion(inversionista);
+    public void realizarInversion(Inversionista inversionista){inversionista.realizarInversion();
     }
-    public void mostrarInversiones(){Inversion.mostrarInversiones(this);
+    public void mostrarMisInversiones(Inversionista inversionista){inversionista.mostrarMisInversiones();
     }
     //buscar
     public void buscarEjecutivo() {
         Ejecutivo.buscarEjecutivo(this);
     }
-    public static void buscarCliente() {
-        Ejecutivo.buscarEjecutivo();
+    public void buscarCliente() {
+        Ejecutivo.buscarEjecutivo(this);
     }
-
+    public void verSolicitudes(){
+        SolicitudTarjetaCredito.verSolicitudes(this);
+    }
+    public void procesarSolicitudes(){
+        SolicitudTarjetaCredito.procesarSolicitudes(this);
+    }
+    public void mostrarInversiones() {
+        Inversion.mostrarInversiones(this);
+    }
+    //Métodos Jafet
+    public void consultarCuentaDebito (TarjetaDebito tarjetaDebito) {
+        tarjetaDebito.consultarCuenta();
+    }
+    public void depositarDebito(TarjetaDebito tarjetaDebito) {
+        tarjetaDebito.depositoDebito();
+    }
+    public void retirarDebito(TarjetaDebito tarjetaDebito) {
+        tarjetaDebito.retiroDebito();
+    }
+    public void comprarDebito(TarjetaDebito tarjetaDebito) {
+        tarjetaDebito.compraDebito();
+    }
+    public void consultarCuentasCredito(Cliente cliente) {
+        cliente.consultarCuentasCredito();
+    }
+    public void verTarjetas(Cliente cliente) {
+        cliente.verTodasLasTarjetas();
+    }
+    public void solicitudDeTarjetaCredito(Cliente cliente) {
+        cliente.solicitudTarjetaCredito(this);
+    }
+    public void revisarSolicitudCredito(Cliente cliente) {
+        cliente.revisarStatusSolicitud(this);
+    }
+    public void compraTarjetaCredito(Cliente cliente) {
+        cliente.realizarCompraCredito();
+    }
+    public void pagoTarjetaCredito(Cliente cliente) {
+        cliente.realizarPagoCredito();
+    }
 }

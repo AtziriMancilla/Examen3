@@ -26,23 +26,23 @@ public class Gerente extends Empleado{
         return String.format("%s, Fecha Inicio: %s", super.toString(), String.valueOf(fechaInicio)); //me falta la fecha en formato
     }
 
-    public static void modificarGerente(){
+    public static void modificarGerente(Banco banco){
         Scanner sc=new Scanner(System.in);
-        mostrarGerente();
+        mostrarGerente(banco);
         System.out.println("Selecciona el gerente: ");
-        int numGerente=pedirGerente();
+        int numGerente=pedirGerente(banco);
 
         int opt =10;
         do{
             System.out.println("¿Qué información deseas editar?");
             System.out.println("1) Nombre\n2) Apellidos \n3) Ciudad\n4) Estado\n5) Dirección\n6) Fecha de nacimiento \n7)Contraseña \n0)Atrás");
              opt=DatosComun.pedirNumero();
-            Gerente gerente=(Gerente) Banco.personas.get(Rol.GERENTE).get(numGerente-1);
+            Gerente gerente=(Gerente) banco.personas.get(Rol.GERENTE).get(numGerente-1);
             switch (opt){
                 case 1:
                     System.out.println("Ingrese el nuevo nombre: ");
                     gerente.setNombre(sc.nextLine());
-                    Banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
+                    banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
                     String curpAntigua = gerente.getCurp();
                     char sexo = curpAntigua.charAt(10);
                     Generador.generarCURP(gerente.getNombre(), gerente.getApellidoPaterno(), gerente.getApellidoMaterno(), gerente.getFechaNacimiento(), sexo, gerente.getEstado());
@@ -60,25 +60,25 @@ public class Gerente extends Empleado{
                     Generador.generarCURP(gerente.getNombre(), gerente.getApellidoPaterno(), gerente.getApellidoMaterno(), gerente.getFechaNacimiento(), sexo1, gerente.getEstado());
                     String nuevorfc1 = Generador.generarRFC(gerente.getNombre(), gerente.getApellidoPaterno(), gerente.getApellidoMaterno(), gerente.getFechaNacimiento());
                     gerente.setRFC(nuevorfc1);
-                    Banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
+                    banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
                     System.out.println("Apellido modificado");
                     break;
                 case 3:
                     System.out.println("Ingrese nueva ciudad: ");
                     gerente.setCiudad(sc.nextLine());
-                    Banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
+                    banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
                     System.out.println("Ciudad actualizada");
                     break;
                 case 4:
                     System.out.println("Ingrese nuevo estado: ");
                     gerente.setEstado(sc.nextLine());
-                    Banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
+                    banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
                     System.out.println("Estado actualizado");
                     break;
                 case 5:
                     System.out.println("Ingrese nueva direccion: ");
                     gerente.setDireccion(DatosComun.pedirDireccion());
-                    Banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
+                    banco.personas.get(Rol.GERENTE).set(numGerente-1,gerente);
                     System.out.println("Dirección actualizada");
                     break;
                 case 6 :
@@ -114,10 +114,10 @@ public class Gerente extends Empleado{
 
     }
 
-    public static void mostrarGerente(){
-        System.out.println("\nGerente en el banco\n"+ Banco.personas.get(Rol.GERENTE).getFirst().toString());
+    public static void mostrarGerente(Banco banco){
+        System.out.println("\nGerente en el banco\n"+ banco.personas.get(Rol.GERENTE).getFirst().toString());
     }
-    private static int pedirGerente(){
+    private static int pedirGerente(Banco banco){
         Scanner sc = new Scanner(System.in);
         boolean confirmacion = false;
         int numGerente=0;
@@ -128,7 +128,7 @@ public class Gerente extends Empleado{
                 System.out.println("Selecciona el gerente: ");
                 numGerente=DatosComun.pedirNumero();
 
-                if(numGerente<1||numGerente>Banco.personas.get(Rol.GERENTE).size()){
+                if(numGerente<1||numGerente>banco.personas.get(Rol.GERENTE).size()){
                     throw new IndexOutOfBoundsException("El dato ingresado está fuera del tamaño de la lista");
                 }
                 else{

@@ -1,13 +1,8 @@
 package Banco;
-
-import Banco.Tarjetas.TarjetaCredito;
 import Banco.Tarjetas.TarjetaDebito;
-import Banco.utils.SolicitudTarjetaCredito;
 import Usuarios.*;
 import Usuarios.utils.DatosComun;
-import Usuarios.utils.Inversion;
 import utils.UsuarioEnSesion;
-
 import java.util.*;
 
 public class Menu {
@@ -36,8 +31,6 @@ public class Menu {
             }
         }while(band);
     }
-
-
     public static void iniciarSesion(Banco banco) {
         Scanner sc = new Scanner(System.in);
         boolean datosCorrectos = false;
@@ -55,25 +48,24 @@ public class Menu {
             if (personaActual!= null) {
                 UsuarioEnSesion.getInstancia().setUsuario(personaActual);
                 datosCorrectos = true;
-                seleccionarMenu();
+                seleccionarMenu(banco);
             } else {
 
                 System.out.println("Usuario o contrasena incorrectos. Intenta de nuevo.");
             }
         } while (!datosCorrectos);
     }
-    private static void seleccionarMenu() {
+    private static void seleccionarMenu(Banco banco) {
         switch (UsuarioEnSesion.getInstancia().getUsuarioActual().getRol()) {
-            case CAPTURISTA -> mostrarMenuCapturista();
-            case CLIENTE -> mostrarMenuCliente();
-            case EJECUTIVO -> mostrarMenuEjecutivo();
-            case GERENTE -> mostrarMenuGerente();
-            case INVERSIONISTA -> mostrarMenuInversionista();
+            case CAPTURISTA -> mostrarMenuCapturista(banco);
+            case CLIENTE -> mostrarMenuCliente(banco);
+            case EJECUTIVO -> mostrarMenuEjecutivo(banco);
+            case GERENTE -> mostrarMenuGerente(banco);
+            case INVERSIONISTA -> mostrarMenuInversionista(banco);
         }
     }
 
-    private static void mostrarMenuCliente() {
-        boolean flag = true;
+    private static void mostrarMenuCliente(Banco banco) {
         int opcion;
         Cliente cliente = (Cliente)UsuarioEnSesion.getInstancia().getUsuarioActual();//Para obtener al cliente de la sesión.
         TarjetaDebito tarjetaDebito = cliente.getTarjetaDebito();//Se obtiene la tarjeta de débito del usuario para sus futuras operaciones.
@@ -95,47 +87,47 @@ public class Menu {
             opcion = DatosComun.pedirNumero();
             switch (opcion) {
                 case 1:
-                    Cliente.consultarCuentaDebito(tarjetaDebito);
+                    banco.consultarCuentaDebito(tarjetaDebito);
                     break;
                 case 2:
-                    tarjetaDebito.depositoDebito();
+                    banco.depositarDebito(tarjetaDebito);
                     break;
                 case 3:
-                    tarjetaDebito.retirarDebito();
+                    banco.retirarDebito(tarjetaDebito);
                     break;
                 case 4:
-                    tarjetaDebito.comprarDebito();
+                    banco.comprarDebito(tarjetaDebito);
                     break;
                 case 5:
-                    Cliente.consultarCuentasCredito(cliente);
+                    banco.consultarCuentasCredito(cliente);
                     break;
                 case 6:
-                    cliente.verTodasLasTarjetas();
+                    banco.verTarjetas(cliente);
                     break;
                 case 7:
-                    Cliente.solicitudTarjetaCredito(cliente);
+                    banco.solicitudDeTarjetaCredito(cliente);
                     break;
                 case 8:
-                    Cliente.revisarStatusSolicitud(cliente);
+                    banco.revisarSolicitudCredito(cliente);
                     break;
                 case 9:
-                    Cliente.realizarCompraCredito(cliente);
+                    banco.compraTarjetaCredito(cliente);
                     break;
                 case 10:
-                    Cliente.realizarPagoCredito(cliente);
+                    banco.pagoTarjetaCredito(cliente);
                     break;
                 case 0:
-                    System.out.println("Cerrando Sesión...");
-                    flag = false;
+                    UsuarioEnSesion.getInstancia().cerrarSesion();
+                    seleccionarBanco();
                     break;
                 default:
                     System.out.println("Error. Selecciona una opción válida\n");
                     break;
             }
-        }while(flag);
+        }while(opcion!=0);
     }
 
-    private static void mostrarMenuCapturista(){
+    private static void mostrarMenuCapturista(Banco banco){
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -152,19 +144,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarEjecutivo();
+                    banco.registrarEjecutivo();
                     break;
                 case 2:
-                    Banco.modificarEjecutivo();
+                    banco.modificarEjecutivo();
                     break;
                 case 3:
-                    Banco.mostrarEjecutivos();
+                    banco.mostrarEjecutivos();
                     break;
                 case 4:
-                    Banco.eliminarEjecutivo();
+                    banco.eliminarEjecutivo();
                     break;
                 case 5:
-                    Banco.buscarEjecutivo();
+                    banco.buscarEjecutivo();
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
@@ -211,9 +203,9 @@ public class Menu {
                     banco.buscarCliente();
                     break;
                 case 6:
-                    //
+                    banco.verSolicitudes();
                 case 7:
-                   //
+                    banco.procesarSolicitudes();
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
                     seleccionarBanco();
@@ -237,13 +229,13 @@ public class Menu {
 
             System.out.println("0. Cerrar sesión ");
             opcion = DatosComun.pedirNumero();
-
+            Inversionista inversionista=(Inversionista)UsuarioEnSesion.getInstancia().getUsuarioActual();
             switch (opcion) {
                 case 1:
-                    //
+                    banco.realizarInversion(inversionista);
                     break;
                 case 2:
-                   //
+                    banco.mostrarMisInversiones(inversionista);
                     break;
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
@@ -255,7 +247,7 @@ public class Menu {
         }
         while(opcion != 0);
     }
-    private static void mostrarMenuGerente (){
+    private static void mostrarMenuGerente (Banco banco){
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -274,19 +266,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    mostrarMenuGerenteClientes();
+                    mostrarMenuGerenteClientes(banco);
                     break;
                 case 2:
-                    mostrarMenuGerenteTarjetas();
+                    mostrarMenuGerenteTarjetas(banco);
                     break;
                 case 3:
-                    mostrarMenuGerenteInversionistas();
+                    mostrarMenuGerenteInversionistas(banco);
                     break;
                 case 4:
-                    mostrarMenuGerenteEjecutivos();
+                    mostrarMenuGerenteEjecutivos(banco);
                     break;
                 case 5:
-                    mostrarMenuGerenteCapturistas();
+                    mostrarMenuGerenteCapturistas(banco);
                 case 0:
                     UsuarioEnSesion.getInstancia().cerrarSesion();
                     seleccionarBanco();
@@ -298,7 +290,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteClientes() {
+    private static void mostrarMenuGerenteClientes(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -316,22 +308,22 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarCliente();
+                    banco.registrarCliente();
                     break;
                 case 2:
-                    Banco.modificarCliente();
+                    banco.modificarCliente();
                     break;
                 case 3:
-                    Banco.borrarCliente();
+                    banco.borrarCliente();
                     break;
                 case 4:
-                    Banco.mostrarClientes();
+                    banco.mostrarClientes();
                     break;
                 case 5:
-                    Banco.buscarCliente();
+                    banco.buscarCliente();
                     break;
                 case 0:
-                   mostrarMenuGerente();
+                   mostrarMenuGerente(banco);
                    scanner.nextLine();
                     break;
                 default:
@@ -341,7 +333,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteTarjetas() {
+    private static void mostrarMenuGerenteTarjetas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -356,13 +348,13 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    //
+                    banco.verSolicitudes();
                     break;
                 case 2:
-                    //
+                    banco.procesarSolicitudes();
                     break;
                 case 0:
-                    mostrarMenuGerente();
+                    mostrarMenuGerente(banco);
                     scanner.nextLine();
                     break;
                 default:
@@ -372,7 +364,7 @@ public class Menu {
         while(opcion != 0);
     }
 
-    private static void mostrarMenuGerenteInversionistas() {
+    private static void mostrarMenuGerenteInversionistas(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -389,7 +381,7 @@ public class Menu {
 
             opcion = DatosComun.pedirNumero();
             if(opcion==0){
-                mostrarMenuGerente();
+                mostrarMenuGerente(banco);
                 scanner.nextLine();
             }
             else {
@@ -403,22 +395,22 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarInversionista();
+                    banco.registrarInversionista();
                     break;
                 case 2:
-                    Banco.modificarInversionista();
+                    banco.modificarInversionista();
                     break;
                 case 3:
-                    Banco.eliminarInversionista();
+                    banco.eliminarInversionista();
                     break;
                 case 4:
-                    Banco.mostrarInversionistas();
+                    banco.mostrarInversionistas();
                     break;
                 case 5:
-                    Banco.mostrarInversiones();
+                    banco.mostrarInversiones();
                     break;
                 case 0:
-                    mostrarMenuGerente();
+                    mostrarMenuGerente(banco);
                     scanner.nextLine();
                     break;
                 default:
@@ -429,7 +421,7 @@ public class Menu {
         }
         while(opcion != 0);
     }
-    private static void mostrarMenuGerenteEjecutivos() {
+    private static void mostrarMenuGerenteEjecutivos(Banco banco) {
         Scanner scanner = new Scanner(System.in);
         int opcion = 10;
 
@@ -447,19 +439,19 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    Banco.registrarEjecutivo();
+                    banco.registrarEjecutivo();
                     break;
                 case 2:
-                    Banco.modificarEjecutivo();
+                    banco.modificarEjecutivo();
                     break;
                 case 3:
-                    Banco.eliminarEjecutivo();
+                    banco.eliminarEjecutivo();
                     break;
                 case 4:
-                    Banco.mostrarEjecutivos();
+                    banco.mostrarEjecutivos();
                     break;
                 case 0:
-                    mostrarMenuGerente();
+                    mostrarMenuGerente(banco);
                     scanner.nextLine();
                     break;
                 default:
@@ -490,14 +482,14 @@ public class Menu {
                     banco.registrarCapturista();
                     break;
                 case 2:
-                    Banco.modificarCapturista();
+                    banco.modificarCapturista();
                     break;
                 case 3:
-                    Banco.borrarCapturista();
+                    banco.borrarCapturista();
                 case 4:
-                    Banco.mostrarCapturistas();
+                    banco.mostrarCapturistas();
                 case 0:
-                    mostrarMenuGerente();
+                    mostrarMenuGerente(banco);
                     scanner.nextLine();
                     break;
                 default:

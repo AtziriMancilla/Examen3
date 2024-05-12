@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class DatosComun {
 
-    public static ArrayList<String> registrarDatosComun(Rol rol) {
+    public static ArrayList<String> registrarDatosComun(Rol rol, Banco banco) {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> datosComun = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class DatosComun {
         String curp = Generador.generarCURP(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, estado);
         //Aquí debería ir el RFC
         String RFC = Generador.generarRFC(nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento);
-        String nombreUsuario=obtenerNombreUsuario(rol);
+        String nombreUsuario=obtenerNombreUsuario(rol,banco);
         System.out.println("Ingresa la contraseña");
         String contrasena = sc.nextLine(); //aqui no se si vamos a meter excepciones de algun tipo
 
@@ -56,7 +56,7 @@ public class DatosComun {
         return datosComun;
 
     }
-    private static String obtenerNombreUsuario(Rol rol) {
+    private static String obtenerNombreUsuario(Rol rol,Banco banco) {
         Scanner scanner = new Scanner(System.in);
         boolean nombreUsuarioExistente = true;
         String nombreUsuario = "";
@@ -66,7 +66,7 @@ public class DatosComun {
             nombreUsuario = DatosComun.pedirDatoUsuario();
 
             nombreUsuarioExistente = false;
-            for (Persona persona : Banco.personas.get(rol)) {
+            for (Persona persona : banco.personas.get(rol)) {
                 if (persona.getNombreUsuario().equals(nombreUsuario)) {
                     nombreUsuarioExistente = true;
                 }
