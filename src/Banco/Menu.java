@@ -578,8 +578,10 @@ public class Menu {
                     break;
                 case 3:
                     banco.borrarCapturista();
+                    break;
                 case 4:
                     banco.mostrarCapturistas();
+                    break;
                 case 0:
                     mostrarMenuGerente(banco);
                     scanner.nextLine();

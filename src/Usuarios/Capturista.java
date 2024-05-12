@@ -77,42 +77,43 @@ public class Capturista extends Empleado{
         mostrarCapturistas(banco);
         int numCapturista=0;
         boolean band;
-        do {
-            try {
-                band=false;
-                System.out.println("Selecciona el Ejecutivo que deseas eliminar");
-                numCapturista = sc.nextInt();
-                banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1);
-            } catch (IndexOutOfBoundsException | InputMismatchException error) {
-                System.out.println("Opcion no valida");
-                band=true;
+        if (!banco.personas.get(Rol.CAPTURISTA).isEmpty()) {
+            do {
+                try {
+                    band = false;
+                    System.out.println("Selecciona el Ejecutivo que deseas eliminar");
+                    numCapturista = sc.nextInt();
+                    banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1);
+                } catch (IndexOutOfBoundsException | InputMismatchException error) {
+                    System.out.println("Opcion no valida");
+                    band = true;
+                } finally {
+                    sc.nextLine();
+                }
+            } while (band);
+            System.out.println("Seleccionaste a: ");
+            System.out.println(banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
+            int opcion = 0;
+            boolean bandera;
+            do {
+                bandera = false;
+                try {
+                    System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
+                    opcion = sc.nextInt();
+                } catch (InputMismatchException error) {
+                    System.out.println("Opción no valida");
+                    bandera = true;
+                    sc.nextLine();
+                }
+            } while (bandera);
+            if (opcion == 1) {
+                banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
+                System.out.println("Ejecutivo eliminado");
             }
-            finally {
-                sc.nextLine();
+            if (opcion != 1) {
+                System.out.println("Se cancelo la eliminación");
             }
-        }while(band);
-        System.out.println("Seleccionaste a: ");
-        System.out.println(banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
-        int opcion = 0;
-        boolean bandera;
-        do {
-            bandera = false;
-            try {
-                System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
-                opcion = sc.nextInt();
-            }catch (InputMismatchException error) {
-                System.out.println("Opción no valida");
-                bandera = true;
-                sc.nextLine();
-            }
-        } while (bandera);
-        if (opcion == 1) {
-            banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
-            System.out.println("Ejecutivo eliminado");
-        }
-        if (opcion != 1) {
-            System.out.println("Se cancelo la eliminación");
-        }
+        }else System.out.println("No hay capturistas registrados");
     }
     public static void modificarCapturista(Banco banco){
         Scanner sc=new Scanner(System.in);
