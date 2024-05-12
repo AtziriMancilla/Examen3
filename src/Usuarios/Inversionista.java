@@ -268,8 +268,10 @@ public class Inversionista extends Persona{
             System.out.println("No has realizado inversiones");
         }
         else{
+            System.out.println("<<Mis inversiones>>");
             for(int i=0;i<inversiones.size();i++){
-                System.out.println((i+1)+inversiones.get(i).mostrarInversion());
+                System.out.println((i+1)+") "+inversiones.get(i).mostrarInversion());
+                System.out.println();
             }
         }
 

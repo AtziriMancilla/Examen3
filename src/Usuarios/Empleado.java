@@ -18,7 +18,7 @@ public class Empleado extends Persona{
 
     @Override
     public String toString(){
-        return String.format("%s, Salario: %d, Fecha Inicio: %s", super.toString(), salario, String.valueOf(fechaInicio));
+        return String.format("%s, Salario: %f, Fecha Inicio: %s", super.toString(), salario, fechaInicio);
     }
 
     public double getSalario() {
