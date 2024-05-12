@@ -25,7 +25,7 @@ public class Inversionista extends Persona{
         return inversiones;
     }
     public static void registrarInversionista(Banco banco){
-        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.INVERSIONISTA);
+        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.INVERSIONISTA,banco);
         String nombre = datosComun.get(0);
         String apellidoPaterno = datosComun.get(1);
         String apellidoMaterno = datosComun.get(2);

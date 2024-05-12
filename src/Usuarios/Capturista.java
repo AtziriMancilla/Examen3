@@ -30,7 +30,7 @@ public class Capturista extends Empleado{
     }
     public static void registrarCapturista(Banco banco){
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CAPTURISTA);
+        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.CAPTURISTA,banco);
         String nombre = datosComun.get(0);
         String apellidoPaterno = datosComun.get(1);
         String apellidoMaterno = datosComun.get(2);
@@ -118,7 +118,7 @@ public class Capturista extends Empleado{
         Scanner sc=new Scanner(System.in);
         mostrarCapturistas(banco);
         System.out.println("Selecciona el capturista");
-        int numCapturista = pedirCapturista();
+        int numCapturista = pedirCapturista(banco);
 
         int opcion=10 ;
         do{

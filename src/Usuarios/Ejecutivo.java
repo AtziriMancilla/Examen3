@@ -27,7 +27,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
 
     public static void registrarEjecutivo(Banco banco){
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.EJECUTIVO);
+        ArrayList<String> datosComun = DatosComun.registrarDatosComun(Rol.EJECUTIVO,banco);
         String nombre = datosComun.get(0);
         String apellidoPaterno = datosComun.get(1);
         String apellidoMaterno = datosComun.get(2);

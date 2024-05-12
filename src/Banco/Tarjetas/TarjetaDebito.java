@@ -39,7 +39,7 @@ public class TarjetaDebito extends Tarjeta {
         }while(flag);
     }
 
-    public void retirarDebito() {
+    public void retiroDebito() {
         boolean flag = true;
         double retiro;
         do {
@@ -62,7 +62,7 @@ public class TarjetaDebito extends Tarjeta {
         }while(flag);
     }
 
-    public void comprarDebito() {
+    public void compraDebito() {
         boolean flag = true;
         double compra;
         do {
@@ -107,4 +107,10 @@ public class TarjetaDebito extends Tarjeta {
     public String toString(){
         return String.format("%s, Saldo: %f",super.toString(),saldo);
     }
+    //Métodos Jafet
+    public void consultarCuenta() {
+        System.out.println("Saldo de la cuenta: " + saldo);
+        System.out.println(this);//Obtener el resto de los datos de la tarjeta
+    }
+
 }
