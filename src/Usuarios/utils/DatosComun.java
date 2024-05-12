@@ -243,7 +243,7 @@ public class DatosComun {
         System.out.println("Ingrese código postal");
         int codigoPostal = pedirNumero();
         String codigoPostalLegible = String.valueOf(codigoPostal);
-        return "Calle: "+calle+" No."+numeroLegible+colonia+" Col."+colonia+" C.P. "+codigoPostalLegible;
+        return "Calle: "+calle+" No."+numeroLegible+" Col."+colonia+" C.P. "+codigoPostalLegible;
     }
 
     public static int pedirNumero(){ //para valores enteros
@@ -347,7 +347,7 @@ public class DatosComun {
                     throw new IllegalArgumentException("El dato no puede estar vacío");
                 }
 
-                if (!dato.matches("^[a-zA-Z\\\\s]+$")) {
+                if (!dato.matches("^[a-zA-Z\\s]+$")) {
                     throw new IllegalArgumentException("El dato solo puede contener letras y espacios");
                 }
 

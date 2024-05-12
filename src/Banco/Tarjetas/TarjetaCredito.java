@@ -32,7 +32,7 @@ public class TarjetaCredito extends Tarjeta {
         if(tipo==TipoTarjetaCredito.Platino){
             cantidad=150000;
         }
-        else{
+        if(tipo==TipoTarjetaCredito.Oro){
             cantidad=400000;
         }
         return cantidad;
@@ -57,14 +57,14 @@ public class TarjetaCredito extends Tarjeta {
                 saldoPendiente -= pago;
                 System.out.println("Actualizando saldo y crédito disponible...");
                 creditoActual += pago;
-                System.out.println("Pago realizado.");
+                System.out.println("Pago realizado.\n");
                 flag = false;
             }
             if (pago > saldoPendiente) {
                 System.out.println("Error. No puedes ingresar un monto mayor a la deuda actual.");
             }
             if (pago == 0) {
-                System.out.println("Cancelando la operación...");
+                System.out.println("Cancelando la operación...\n");
                 flag = false;
             }
         } while(flag);
@@ -82,14 +82,14 @@ public class TarjetaCredito extends Tarjeta {
                 creditoActual -= importe;
                 System.out.println("Actualizando saldo y crédito disponible...");
                 saldoPendiente += importe;
-                System.out.println("Compra a crédito realizada.");
+                System.out.println("Compra a crédito realizada.\n");
                 flag = false;
             }
             if (importe > creditoActual) {
                 System.out.println("No se puede realizar la compra. Límite de crédito alcanzado. Intenta de nuevo.");
             }
             if (importe == 0) {
-                System.out.println("Cancelando la compra...");
+                System.out.println("Cancelando la compra...\n");
                 flag = false;
             }
         } while(flag);
@@ -134,7 +134,7 @@ public class TarjetaCredito extends Tarjeta {
                         if (opcion == 1) {
                             solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                             banco.solicitudes.add(solicitud);
-                            System.out.println("Solicitud de tarjeta Simplicity realizada");
+                            System.out.println("Solicitud de tarjeta Simplicity realizada\n");
                             band = false;
                         } if(opcion==2) band = false;
                         else {
@@ -152,13 +152,13 @@ public class TarjetaCredito extends Tarjeta {
                             case 1:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                                 banco.solicitudes.add(solicitud);
-                                System.out.println("Solicitud de tarjeta Simplicity realizada");
+                                System.out.println("Solicitud de tarjeta Simplicity realizada\n");
                                 band = false;
                                 break;
                             case 2:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                                 banco.solicitudes.add(solicitud);
-                                System.out.println("Solicitud de tarjeta Platino realizada");
+                                System.out.println("Solicitud de tarjeta Platino realizada\n");
                                 band = false;
                                 break;
                             case 3:
@@ -174,25 +174,25 @@ public class TarjetaCredito extends Tarjeta {
                 case 3:
                     do {
                         System.out.println("Seleccione el tipo de tarjeta: ");
-                        System.out.println("1. Simplicity\n2. Platino\n3. Oro\4. Salir");
+                        System.out.println("1. Simplicity\n2. Platino\n3. Oro\n4. Salir");
                         opcion = DatosComun.pedirNumero();
                         switch (opcion) {
                             case 1:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Simplicity);
                                 banco.solicitudes.add(solicitud);
-                                System.out.println("Solicitud de tarjeta Simplicity realizada");
+                                System.out.println("Solicitud de tarjeta Simplicity realizada\n");
                                 band = false;
                                 break;
                             case 2:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Platino);
                                 banco.solicitudes.add(solicitud);
-                                System.out.println("Solicitud de tarjeta Platino realizada");
+                                System.out.println("Solicitud de tarjeta Platino realizada\n");
                                 band = false;
                                 break;
                             case 3:
                                 solicitud = new SolicitudTarjetaCredito(cliente, TipoTarjetaCredito.Oro);
                                 banco.solicitudes.add(solicitud);
-                                System.out.println("Solicitud de tarjeta Oro realizada");
+                                System.out.println("Solicitud de tarjeta Oro realizada\n");
                                 band = false;
                                 break;
                             case 4:
@@ -206,27 +206,27 @@ public class TarjetaCredito extends Tarjeta {
                     } while (band);
                     break;
                 default:
-                    System.out.println("No tienes ofertas disponibles.");
+                    System.out.println("No tienes ofertas disponibles.\n");
                     break;
             }
         }
     public static void revisarStatus(Banco banco, Cliente cliente) {
-        System.out.println("Solicitud en curso:");//El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
+        System.out.println("\nSolicitud en curso:");//El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
         boolean solicitudEncontrada = false;//Determina si se encontró una solicitud pendiente del cliente.
-        int indexSolicitud = 0;
+        SolicitudTarjetaCredito solicitudEliminar = null;
         for(SolicitudTarjetaCredito solicitud : banco.solicitudes) {
             if (solicitud.getCliente() == cliente){
                 solicitudEncontrada = true;
                 System.out.println("Tarjeta solicitada: "+ solicitud.getTipoTarjeta());
                 System.out.println("Status: "+solicitud.getStatus());
                 if(solicitud.getStatus().equals("Solicitud Aprobada")||solicitud.getStatus().equals("Solicitud Rechazada")){//Revisión del status
-                    System.out.println("Eliminando solicitud del historial...");
+                    System.out.println("Eliminando solicitud del historial...\n");
                     cliente.setNumeroSolicitudesEnProceso(0);//Una vez que el cliente consulte el estatus, si la solicitud ya fue atendida, su contador pasa a 0.
-                    indexSolicitud = banco.solicitudes.indexOf(solicitud);
+                    solicitudEliminar = solicitud;
                 }
             }
         }
-        banco.solicitudes.remove(indexSolicitud);//Una vez consultada y atendida la solicitud, se elimina del Banco.
-        if(!solicitudEncontrada) System.out.println("No tienes solicitudes pendientes.");
+        if(solicitudEliminar!=null) banco.solicitudes.remove(solicitudEliminar);//Una vez consultada y atendida la solicitud, se elimina del Banco.
+        if(!solicitudEncontrada) System.out.println("No tienes solicitudes pendientes.\n");
     }
 }

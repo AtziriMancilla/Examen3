@@ -304,10 +304,13 @@ public class Cliente extends Persona {
 
     public void solicitudTarjetaCredito(Banco banco) {
         System.out.println("\tBienvenido\n");
-        if (tarjetasCredito.size()<3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
-            TarjetaCredito.solicitarTarjeta(banco,this);
-        }
-        if (tarjetasCredito.size()==3) System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
+        if(numeroSolicitudesEnProceso==0) {
+            if (tarjetasCredito.size() < 3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
+                TarjetaCredito.solicitarTarjeta(banco, this);
+            }
+            if (tarjetasCredito.size() == 3)
+                System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
+        }else System.out.println("Ya tienes una solicitud en proceso. Espera a que sea antendida.");
     }
 
     public void revisarStatusSolicitud(Banco banco) {

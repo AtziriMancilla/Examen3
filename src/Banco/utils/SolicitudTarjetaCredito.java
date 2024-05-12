@@ -57,7 +57,7 @@ public class SolicitudTarjetaCredito {
         if (banco.solicitudes.isEmpty()) {
             System.out.println("No hay solicitudes pendientes");
         } else {
-            System.out.println("Solicitudes");
+            System.out.println("\nSolicitudes");
             for (int i = 0; i < banco.solicitudes.size(); i++) {
                 System.out.println((i + 1) + ")" + banco.solicitudes.get(i).toString());
             }

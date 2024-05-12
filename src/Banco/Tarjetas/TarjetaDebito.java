@@ -27,13 +27,13 @@ public class TarjetaDebito extends Tarjeta {
             if (deposito > 0) {
                 System.out.println("Realizando depósito...");
                 saldo += deposito;
-                System.out.println("Depósito realizado con éxito.");
+                System.out.println("Depósito realizado con éxito.\n");
                 flag = false;
             }
             if (deposito < 0) {
                 System.out.println("Error. El monto no puede ser menor a 0.");
             }else if(deposito == 0) {
-                System.out.println("Cancelando operación...");
+                System.out.println("Cancelando operación...\n");
                 flag = false;
             }
         }while(flag);
@@ -49,14 +49,14 @@ public class TarjetaDebito extends Tarjeta {
             if (retiro <= saldo) {
                 System.out.println("Realizando retiro...");
                 saldo -= retiro;
-                System.out.println("Retiro realizado con éxito");
+                System.out.println("Retiro realizado con éxito\n");
                 flag = false;
             }
             if (retiro > saldo) {
                 System.out.println("Error. Fondos insuficientes. Intenta de nuevo");
             }
             if (retiro == 0) {
-                System.out.println("Cancelando la operación...");
+                System.out.println("Cancelando la operación...\n");
                 flag = false;
             }
         }while(flag);
@@ -72,14 +72,14 @@ public class TarjetaDebito extends Tarjeta {
             if (compra <= saldo) {
                 System.out.println("Realizando compra...");
                 saldo -= compra;
-                System.out.println("Compra realizada.");
+                System.out.println("Compra realizada.\n");
                 flag = false;
             }
             if (compra > saldo) {
                 System.out.println("Error. Fondos insuficientes. Intenta de nuevo");
             }
             if (compra == 0) {
-                System.out.println("Cancelando la compra...");
+                System.out.println("Cancelando la compra...\n");
                 flag = false;
             }
         } while (flag);
