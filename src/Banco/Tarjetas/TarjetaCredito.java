@@ -112,9 +112,6 @@ public class TarjetaCredito extends Tarjeta {
     }
     //Métodos Jafet
     public static void solicitarTarjeta (Banco banco, Cliente cliente) {
-        if(cliente.getNumeroSolicitudesEnProceso()==1) {
-            System.out.println("Ya tienes una solicitud en proceso. Espera a que sea atendida.");
-        }else {
             int opciones = 0, opcion;
             boolean band = false;
             SolicitudTarjetaCredito solicitud;
@@ -213,8 +210,6 @@ public class TarjetaCredito extends Tarjeta {
                     break;
             }
         }
-    }
-
     public static void revisarStatus(Banco banco, Cliente cliente) {
         System.out.println("Solicitud en curso:");//El ciclo buscará la solicitud hecha por el cliente y le mostrará el status.
         boolean solicitudEncontrada = false;//Determina si se encontró una solicitud pendiente del cliente.
