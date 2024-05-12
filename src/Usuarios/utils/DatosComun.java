@@ -271,7 +271,7 @@ public class DatosComun {
                 }
 
             } catch(IllegalArgumentException error){
-                System.out.println("Error: "+error.getMessage());
+                System.out.println("Error: Ingresaste un valor no valido. Intenta de nuevo ");
                 comprobacion=true;
             }
             catch (InputMismatchException e) {
