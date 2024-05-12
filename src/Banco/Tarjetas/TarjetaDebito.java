@@ -43,10 +43,10 @@ public class TarjetaDebito extends Tarjeta {
         boolean flag = true;
         double retiro;
         do {
-            System.out.println("\nSaldo Disponible: %.2f"+ saldo);
-            System.out.println("Ingresa el monto:");
+            System.out.printf("\nSaldo Disponible: %.2f",saldo);
+            System.out.println("\nIngresa el monto:");
             retiro = DatosComun.pedirValorDouble();
-            if (retiro <= saldo) {
+            if (retiro <= saldo && retiro!=0) {
                 System.out.println("Realizando retiro...");
                 saldo -= retiro;
                 System.out.println("Retiro realizado con éxito\n");
@@ -66,10 +66,10 @@ public class TarjetaDebito extends Tarjeta {
         boolean flag = true;
         double compra;
         do {
-            System.out.println("\nSaldo Disponible: %.2f"+ saldo);
-            System.out.println("Ingresa el monto de la compra:");
+            System.out.printf("\nSaldo Disponible: %.2f",saldo);
+            System.out.println("\nIngresa el monto de la compra:");
             compra = DatosComun.pedirValorDouble();
-            if (compra <= saldo) {
+            if (compra <= saldo && compra != 0) {
                 System.out.println("Realizando compra...");
                 saldo -= compra;
                 System.out.println("Compra realizada.\n");

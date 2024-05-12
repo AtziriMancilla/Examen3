@@ -48,9 +48,9 @@ public class Cliente extends Persona {
         }
 
         public void verTodasLasTarjetas() {
-            System.out.println("Tarjeta de debito: ");
+            System.out.println("\n"+"\tTarjeta de débito: ");
             System.out.println(tarjetaDebito.toString());
-            System.out.println("Tarjetas de credito: ");
+            System.out.println("\n"+"\tTarjetas de crédito: ");
             tarjetasCredito.forEach(tarjetaCredito -> System.out.println(tarjetaCredito.toString()));
         }
 
@@ -303,13 +303,9 @@ public class Cliente extends Persona {
     }
 
     public void solicitudTarjetaCredito(Banco banco) {
-        System.out.println("\tBienvenido\n");
-        if(numeroSolicitudesEnProceso==0) {
-            if (tarjetasCredito.size() < 3) {//Validación de la cantidad de tarjetas del cliente antes de realizar solicitud.
-                TarjetaCredito.solicitarTarjeta(banco, this);
-            }
-            if (tarjetasCredito.size() == 3)
-                System.out.println("No puedes solicitar más tarjetas. Límite máximo alcanzado.");
+        System.out.println("\tBienvenido\n");//Ya no es necesario validar aquí si alcanzó el límite de tarjetas, porque si lo hizo, no tendrá acceso a la opción de solicitar en el menú.
+        if(numeroSolicitudesEnProceso==0) {//Validar que no tiene una solicitud pendiente, antes de hacer otra.
+            TarjetaCredito.solicitarTarjeta(banco, this);
         }else System.out.println("Ya tienes una solicitud en proceso. Espera a que sea antendida.");
     }
 
@@ -327,8 +323,8 @@ public class Cliente extends Persona {
                 if (tarjetaCredito.getCreditoActual() > 0) {
                     i++;
                     System.out.printf("\n%d) Tarjeta %s\n", i, tarjetaCredito.getTipoCredito());
-                    System.out.printf("Crédito Máximo: %f\n", tarjetaCredito.getCreditoMaximo());
-                    System.out.printf("Crédito Disponible: %f\n", tarjetaCredito.getCreditoActual());
+                    System.out.printf("Crédito Máximo: %.2f\n", tarjetaCredito.getCreditoMaximo());
+                    System.out.printf("Crédito Disponible: %.2f\n", tarjetaCredito.getCreditoActual());
                 }//Este contador permite registrar las tarjetas sin saldo disponible.
                 if (tarjetaCredito.getCreditoActual() == 0) {
                     tarjetasNoDisponibles++;
@@ -364,7 +360,7 @@ public class Cliente extends Persona {
                 if (tarjetaCredito.getSaldoPendiente() > 0) {
                     k++;
                     System.out.printf("\n%d) Tarjeta %s\n", k, tarjetaCredito.getTipoCredito());
-                    System.out.printf("Saldo pendiente por pagar: %f", tarjetaCredito.getSaldoPendiente());
+                    System.out.printf("Saldo pendiente por pagar: %.2f\n", tarjetaCredito.getSaldoPendiente());
                 }//Este contador permite registrar cuántas tarjetas están sin saldo pendiente.
                 if (tarjetaCredito.getSaldoPendiente() == 0) {
                     tarjetasCreditoLiquidadas++;
@@ -384,7 +380,7 @@ public class Cliente extends Persona {
                 } while (pagoValido);
             }//Si no hay tarjetas pendientes de pago, se arroja el siguiente mensaje
             if (tarjetasCreditoLiquidadas==tarjetasCredito.size()) {
-                System.out.println("\nNo tienes tarjetas pendientes de pago");
+                System.out.println("\nNo tienes tarjetas pendientes de pago\n");
             }
         }
         if (tarjetasCredito==null) System.out.println("\nNo tienes tarjetas de crédito");

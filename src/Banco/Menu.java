@@ -50,7 +50,7 @@ public class Menu {
             System.out.println("Ingresa tu usuario: ");
             String usuario = sc.nextLine();
 
-            System.out.println("Ingresa tu contrasena: ");
+            System.out.println("Ingresa tu contraseña: ");
             String contrasena = sc.nextLine();
 
             Persona personaActual=banco.verificarInicioSesion(usuario, contrasena);
@@ -218,7 +218,7 @@ public class Menu {
                 }
             }while(opcion!=0);
         }
-        if(cliente.getTarjetasCredito().size()==3) {
+        if(cliente.getTarjetasCredito().size()==3) {//Como ya alcanzó el límite máximo de tarjetas, no se le mostrará la opción de realizar solicitud.
             do{
                 System.out.println("\nBienvenido. Seleccione una opción:\n");
                 System.out.println("1) Consultar cuenta de débito");

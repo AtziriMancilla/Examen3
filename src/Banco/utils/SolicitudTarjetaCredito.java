@@ -106,16 +106,17 @@ public class SolicitudTarjetaCredito {
             } while (band);
             boolean bandera2=false;
             do{
-                System.out.println("1) Aceptar solicitud\n2)Rechazar solicitud");
+                System.out.println("1) Aceptar solicitud\n2) Rechazar solicitud");
                 int accion = DatosComun.pedirNumero();
                 if (accion == 1) {
                     banco.solicitudes.get(posicion).aprobarTarjeta();
-                    System.out.println("Aprobaste la solicitud");
+                    System.out.println("\nAprobaste la solicitud");//Si al aceptar la solicitud, el cliente ya cuenta con las 3 tarjetas, se debe eliminar aquí la solicitud, ya que el cliente NO PODRÁ ver el menú solicitud porque alcanzó el límite.
+                    if(banco.solicitudes.get(posicion).getCliente().getTarjetasCredito().size()==3) banco.solicitudes.remove(posicion);
                     bandera2 = false;
                 }
                 if (accion == 2) {
                     banco.solicitudes.get(posicion).rechazarTarjeta();
-                    System.out.println("Rechazaste la solicitud");
+                    System.out.println("\nRechazaste la solicitud");
                     bandera2 = false;
                 }
                 if(accion != 1 && accion != 2) {
