@@ -69,6 +69,7 @@ public class Capturista extends Empleado{
                 Persona usuario = (Persona)var1.next();
                 Capturista capturista = (Capturista) usuario;
                 System.out.println("" + i + ") " + capturista.toString());
+                i++;
             }
         }
     }
@@ -93,22 +94,11 @@ public class Capturista extends Empleado{
             } while (band);
             System.out.println("Seleccionaste a: ");
             System.out.println(banco.personas.get(Rol.CAPTURISTA).get(numCapturista - 1).toString());
-            int opcion = 0;
-            boolean bandera;
-            do {
-                bandera = false;
-                try {
-                    System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
-                    opcion = sc.nextInt();
-                } catch (InputMismatchException error) {
-                    System.out.println("Opción no valida");
-                    bandera = true;
-                    sc.nextLine();
-                }
-            } while (bandera);
+            System.out.println("¿Deseas eliminarlo? 1) Sí, Otro número) Cancelar");
+            int opcion = DatosComun.pedirNumero();
             if (opcion == 1) {
                 banco.personas.get(Rol.CAPTURISTA).remove(numCapturista - 1);
-                System.out.println("Ejecutivo eliminado");
+                System.out.println("Capturista eliminado");
             }
             if (opcion != 1) {
                 System.out.println("Se cancelo la eliminación");
