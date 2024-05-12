@@ -14,9 +14,13 @@ public class Menu {
 
     private static final Banco bancoMadero = new Banco();
     private static final Banco bancoAcueducto = new Banco();
-    public static void seleccionarBanco(){
+
+    public static void iniciarObjetos() {
         pruebasMadero();
         pruebasAcueducto();
+    }
+
+    public static void seleccionarBanco(){
         int sucursal;
         boolean band;
         do{
