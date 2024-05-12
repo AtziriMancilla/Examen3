@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Banco {
     public HashMap<Rol, ArrayList<Persona>> personas;
     public ArrayList<SolicitudTarjetaCredito> solicitudes;
-    private String contrasenaSecreta = "uwu";
+
 
     public Banco () {
         personas = new HashMap<>();

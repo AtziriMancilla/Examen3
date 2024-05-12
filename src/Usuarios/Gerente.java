@@ -12,12 +12,11 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Gerente extends Empleado{
-    public String contrasenaSistema;
+    private String contrasenaSistema = "soyelchido";
 
     private LocalDate fechaInicio;
-    public Gerente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC,String nombreUsuario, String contrasena,  double salario, String contrasenaSistema){
+    public Gerente(String nombre, String apellidoPaterno, String apellidoMaterno, String ciudad, String estado, String curp, String direccion, int anioNacimiento, LocalDate fechaNacimiento, String RFC,String nombreUsuario, String contrasena,  double salario){
             super(nombre, apellidoPaterno, apellidoMaterno, ciudad, estado, curp, direccion, anioNacimiento, fechaNacimiento, Rol.GERENTE, RFC, nombreUsuario, contrasena, salario);
-            this.contrasenaSistema= contrasenaSistema;
              fechaInicio = getFechaInicio();
     }
 

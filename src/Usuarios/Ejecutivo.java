@@ -10,7 +10,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Ejecutivo extends Empleado{
-private LocalDate fechaInicio;
+    private LocalDate fechaInicio;
+    private String contrasenaSistema = "toychiquito";
 
 private String contrasenaSecreta;
 
