@@ -130,6 +130,9 @@ public class Banco {
     public void verSolicitudes(){
         SolicitudTarjetaCredito.verSolicitudes(this);
     }
+    public void verSolicitudesPendientes(){
+        SolicitudTarjetaCredito.verSolicitudesPendientes(this);
+    }
     public void procesarSolicitudes(){
         SolicitudTarjetaCredito.procesarSolicitudes(this);
     }

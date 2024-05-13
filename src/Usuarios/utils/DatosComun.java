@@ -178,7 +178,6 @@ public class DatosComun {
                 System.out.println("Error: " + e.getMessage());
                 error = true;
 
-
             } catch (Exception e) {
                 System.out.println("Error. Intente de nuevo. ");
                 error = true;

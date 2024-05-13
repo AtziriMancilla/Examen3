@@ -349,7 +349,7 @@ public class Menu {
                     banco.buscarCliente();
                     break;
                 case 6:
-                    banco.verSolicitudes();
+                    banco.verSolicitudesPendientes();
                     break;
                 case 7:
                     banco.procesarSolicitudes();
@@ -495,7 +495,7 @@ public class Menu {
 
             switch (opcion) {
                 case 1:
-                    banco.verSolicitudes();
+                    banco.verSolicitudesPendientes();
                     break;
                 case 2:
                     banco.procesarSolicitudes();

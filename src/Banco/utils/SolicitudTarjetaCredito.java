@@ -57,9 +57,20 @@ public class SolicitudTarjetaCredito {
         if (banco.solicitudes.isEmpty()) {
             System.out.println("No hay solicitudes pendientes");
         } else {
-            System.out.println("\nSolicitudes");
+            System.out.println("Solicitudes");
             for (int i = 0; i < banco.solicitudes.size(); i++) {
                 System.out.println((i + 1) + ")" + banco.solicitudes.get(i).toString());
+            }
+        }
+    }
+    public static void verSolicitudesPendientes(Banco banco) {
+        if (banco.solicitudes.isEmpty() || contadorSolicitudesPendientes(banco) == 0)
+            System.out.println("No hay solicitudes pendientes");
+        if (!banco.solicitudes.isEmpty() && contadorSolicitudesPendientes(banco) != 0) {
+            for (int i = 0; i < banco.solicitudes.size(); i++) {
+                if (banco.solicitudes.get(i).status.equals("En espera")) {
+                    System.out.println(banco.solicitudes.get(i).toString());
+                }
             }
         }
     }
@@ -88,39 +99,46 @@ public class SolicitudTarjetaCredito {
             }
             do {
                 try {
-                    posicion=-1;
+                    posicion = -1;
                     band = false;
                     System.out.println("Seleccione el id de una solicitud: ");
                     id = DatosComun.pedirNumero();
-                    for (int i=0;i<banco.solicitudes.size();i++) {
-                        if (banco.solicitudes.get(i).getCliente().getId()==id){
-                            posicion=i;
+                    for (int i = 0; i < banco.solicitudes.size(); i++) {
+                        if (banco.solicitudes.get(i).getCliente().getId() == id) {
+                            posicion = i;
                         }
+                    }
+                    if (banco.solicitudes.get(posicion).status.equals("Solicitud Aprobada")||banco.solicitudes.get(posicion).status.equals("Solicitud Rechazada")) {
+                        throw new IllegalArgumentException("Id no válido");
                     }
                     System.out.println("Seleccionaste: ");
                     System.out.println(banco.solicitudes.get(posicion).toString());
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Opcion no valida");
+                    System.out.println("Opción no valida");
+                    band = true;
+                }catch (IllegalArgumentException e) {
+                    System.out.println("Error: " + e.getMessage());
                     band = true;
                 }
             } while (band);
             boolean bandera2=false;
             do{
-                System.out.println("1) Aceptar solicitud\n2) Rechazar solicitud");
+                System.out.println("1) Aceptar solicitud\n2)Rechazar solicitud\n0)Salir");
                 int accion = DatosComun.pedirNumero();
                 if (accion == 1) {
                     banco.solicitudes.get(posicion).aprobarTarjeta();
-                    System.out.println("\nAprobaste la solicitud");//Si al aceptar la solicitud, el cliente ya cuenta con las 3 tarjetas, se debe eliminar aquí la solicitud, ya que el cliente NO PODRÁ ver el menú solicitud porque alcanzó el límite.
-                    if(banco.solicitudes.get(posicion).getCliente().getTarjetasCredito().size()==3) banco.solicitudes.remove(posicion);
+                    System.out.println("Aprobaste la solicitud");
                     bandera2 = false;
                 }
                 if (accion == 2) {
                     banco.solicitudes.get(posicion).rechazarTarjeta();
-                    System.out.println("\nRechazaste la solicitud");
+                    System.out.println("Rechazaste la solicitud");
                     bandera2 = false;
                 }
-                if(accion != 1 && accion != 2) {
-                    System.out.println("Opcion no valida");
+                if(accion==0)
+                    bandera2=false;
+                if(accion != 1 && accion != 2 && accion != 0) {
+                    System.out.println("Opción no valida");
                     bandera2 = true;
                     sc.nextLine();
                 }
