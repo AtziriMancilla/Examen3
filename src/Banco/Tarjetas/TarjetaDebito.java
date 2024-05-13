@@ -41,18 +41,19 @@ public class TarjetaDebito extends Tarjeta {
 
     public void retiroDebito() {
         boolean flag = true;
-        double retiro;
+        double retiro,saldoDisponible;
         do {
             System.out.printf("\nSaldo Disponible: %.2f",saldo);
             System.out.println("\nIngresa el monto:");
             retiro = DatosComun.pedirValorDouble();
-            if (retiro <= saldo && retiro!=0) {
+            saldoDisponible = saldo;
+            if (retiro <= saldoDisponible && retiro!=0) {
                 System.out.println("Realizando retiro...");
                 saldo -= retiro;
                 System.out.println("Retiro realizado con éxito\n");
                 flag = false;
             }
-            if (retiro > saldo) {
+            if (retiro > saldoDisponible) {
                 System.out.println("Error. Fondos insuficientes. Intenta de nuevo");
             }
             if (retiro == 0) {
@@ -64,18 +65,19 @@ public class TarjetaDebito extends Tarjeta {
 
     public void compraDebito() {
         boolean flag = true;
-        double compra;
+        double compra, saldoDisponible;
         do {
             System.out.printf("\nSaldo Disponible: %.2f",saldo);
             System.out.println("\nIngresa el monto de la compra:");
             compra = DatosComun.pedirValorDouble();
-            if (compra <= saldo && compra != 0) {
+            saldoDisponible = saldo;
+            if (compra <= saldoDisponible && compra != 0) {
                 System.out.println("Realizando compra...");
                 saldo -= compra;
                 System.out.println("Compra realizada.\n");
                 flag = false;
             }
-            if (compra > saldo) {
+            if (compra > saldoDisponible) {
                 System.out.println("Error. Fondos insuficientes. Intenta de nuevo");
             }
             if (compra == 0) {
