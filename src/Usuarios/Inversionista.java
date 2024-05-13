@@ -109,7 +109,7 @@ public class Inversionista extends Persona{
                     System.out.println("Fecha de nacimiento");
                     LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
                     inversionista.setFechaNacimiento(nuevaFechaNacimiento);
-                    int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                    int anioNacimiento = nuevaFechaNacimiento.getYear();
                     inversionista.setAnioNacimiento(anioNacimiento);
                     String curpAntigua2 = inversionista.getCurp();
                     char sexo2 = curpAntigua2.charAt(10);

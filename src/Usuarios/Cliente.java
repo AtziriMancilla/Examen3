@@ -161,7 +161,7 @@ public class Cliente extends Persona {
                         System.out.println("Fecha de nacimiento");
                         LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
                         cliente.setFechaNacimiento(nuevaFechaNacimiento);
-                        int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                        int anioNacimiento = nuevaFechaNacimiento.getYear();
                         cliente.setAnioNacimiento(anioNacimiento);
                         String curpAntigua2 = cliente.getCurp();
                         char sexo2 = curpAntigua2.charAt(10);

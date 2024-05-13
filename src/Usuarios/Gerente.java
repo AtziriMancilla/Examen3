@@ -84,7 +84,7 @@ public class Gerente extends Empleado{
                     System.out.println("Fecha de nacimiento");
                     LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
                     gerente.setFechaNacimiento(nuevaFechaNacimiento);
-                    int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                    int anioNacimiento = nuevaFechaNacimiento.getYear();
                     gerente.setAnioNacimiento(anioNacimiento);
                     String curpAntigua2 = gerente.getCurp();
                     char sexo2 = curpAntigua2.charAt(10);

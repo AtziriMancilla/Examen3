@@ -174,7 +174,7 @@ public class Capturista extends Empleado{
                     System.out.println("Fecha de nacimiento");
                     LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
                     capturista.setFechaNacimiento(nuevaFechaNacimiento);
-                    int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                    int anioNacimiento = nuevaFechaNacimiento.getYear();
                     capturista.setAnioNacimiento(anioNacimiento);
                     String curpAntigua2 = capturista.getCurp();
                     char sexo2 = curpAntigua2.charAt(10);

@@ -4,6 +4,7 @@ import Banco.Banco;
 import Banco.utils.Generador;
 import Usuarios.Persona;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -83,28 +84,42 @@ public class DatosComun {
     public static LocalDate obtenerFechaNacimiento() {
         Scanner scanner = new Scanner(System.in);
         int dia, mes, anio;
+        boolean fechaExistente = true;
         do {
-            System.out.println("Ingrese el día(1-31)");
-            dia = pedirNumero();
-            if (dia < 1 || dia > 31)
-                System.out.println("Dia no valido");
-        }
-        while (dia < 1 || dia > 31);
-        do {
-            System.out.println("Ingrese el mes(1-12)");
-            mes = pedirNumero();
-            if (mes < 1 || mes > 12)
-                System.out.println("Mes no valido");
-        }
-        while (mes < 1 || mes > 12);
-        do {
-            System.out.println("Ingrese el año");
-            anio = pedirNumero();
-            if (anio < 1900 || anio > 2024)
-                System.out.println("Año no valido");
-        }
-        while (anio < 1900 || anio > 2024);
+            do {
+                System.out.println("Ingrese el día(1-31)");
+                dia = pedirNumero();
+                if (dia < 1 || dia > 31)
+                    System.out.println("Dia no valido");
+            }
+            while (dia < 1 || dia > 31);
+            do {
+                System.out.println("Ingrese el mes(1-12)");
+                mes = pedirNumero();
+                if (mes < 1 || mes > 12)
+                    System.out.println("Mes no valido");
+            }
+            while (mes < 1 || mes > 12);
+            do {
+                System.out.println("Ingrese el año");
+                anio = pedirNumero();
+                if (anio < 1900 || anio > 2024)
+                    System.out.println("Año no valido");
+            }
+            while (anio < 1900 || anio > 2024);
+            fechaExistente = fechaValida(dia, mes, anio);
+            if(fechaExistente) System.out.println("Fecha no válida. Intenta de nuevo.");
+        } while (fechaExistente);
         return LocalDate.of(anio, mes, dia);
+    }
+
+    private static boolean fechaValida(int dia, int mes, int anio) {
+        try {
+            LocalDate fecha = LocalDate.of(anio, mes, dia);
+            return false;
+        } catch (DateTimeException error) {
+            return true;
+        }
     }
 
     private static String FechaMostrar(LocalDate fechaNacimiento) {

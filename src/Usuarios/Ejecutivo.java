@@ -128,7 +128,7 @@ public Ejecutivo(String nombre, String apellidoPaterno, String apellidoMaterno, 
                     System.out.println("Fecha de nacimiento");
                     LocalDate nuevaFechaNacimiento = DatosComun.obtenerFechaNacimiento();
                     ejecutivo.setFechaNacimiento(nuevaFechaNacimiento);
-                    int anioNacimiento = DatosComun.obtenerFechaNacimiento().getYear();
+                    int anioNacimiento = nuevaFechaNacimiento.getYear();
                     ejecutivo.setAnioNacimiento(anioNacimiento);
                     String curpAntigua2 = ejecutivo.getCurp();
                     char sexo2 = curpAntigua2.charAt(10);
