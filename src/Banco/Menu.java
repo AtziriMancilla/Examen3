@@ -674,15 +674,15 @@ public class Menu {
         bancoMadero.personas.get(Rol.CAPTURISTA).add(capturista2);
     }
     public static void pruebasAcueducto(){
-        Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Canelita","1234");
+        Inversionista inversionista1=new Inversionista("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA980902MMNRRN01","Calle desconocida",2004, LocalDate.now(),"DUMA980902MMN","Canelita","1234");
         bancoAcueducto.personas.get(Rol.INVERSIONISTA).add(inversionista1);
-        Inversionista inversionista2 = new Inversionista("Jafet", "Santoyo", "Benitez", "Zamora", "Michoacan", "JAFI847465", "Calle desconocida", 2000, LocalDate.now(), "JAFI847465", "Jafet", "Fatima");
+        Inversionista inversionista2 = new Inversionista("Jafet", "Santoyo", "Benitez", "Zamora", "Michoacan", "JSABJ970130HMNNNF09", "Calle desconocida", 2000, LocalDate.now(), "JSABJ970130HM", "Jafet", "Fatima");
         bancoAcueducto.personas.get(Rol.INVERSIONISTA).add(inversionista2);
-        Cliente cliente1=new Cliente("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA238732545","Calle desconocida",2004, LocalDate.now(),"DUMA857345","Bioshinin","1234");
+        Cliente cliente1=new Cliente("Andrea","Duran","Martinez","Morelia","Michoacan","DUMA980902MMNRRN01","Calle desconocida",2004, LocalDate.now(),"DUMA980902MMN","Bioshinin","1234");
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente1);
-        Cliente cliente2 = new Cliente("Paola Itzel", "Negrete", "Cobian", "Morelia", "Michoacan", "COBS873635", "CallecitaBonita", 2000, LocalDate.now(), "COBS873635", "Pao", "Draco");
+        Cliente cliente2 = new Cliente("Paola Itzel", "Negrete", "Cobian", "Morelia", "Michoacan", "NECP970423MMNGBL03", "CallecitaBonita", 2000, LocalDate.now(), "NECP970423MMN", "Pao", "Draco");
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente2);
-        Cliente cliente3 = new Cliente("Marcos", "Sanchez", "Hernandez", "Morelia", "Michoacan", "SAHM02987", "Xangari", 1990, LocalDate.now(), "SAHM02987", "Marcos", "uwu");
+        Cliente cliente3 = new Cliente("Marcos", "Sanchez", "Hernandez", "Morelia", "Michoacan", "SAHM900114HMNGBL03", "Xangari", 1990, LocalDate.now(), "SAHM900114HMN", "Marcos", "uwu");
         bancoAcueducto.personas.get(Rol.CLIENTE).add(cliente3);
         SolicitudTarjetaCredito solicitudTarjetaCredito1=new SolicitudTarjetaCredito(cliente1, TipoTarjetaCredito.Simplicity);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito1);
@@ -690,15 +690,15 @@ public class Menu {
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito2);
         SolicitudTarjetaCredito solicitudTarjetaCredito3 = new SolicitudTarjetaCredito(cliente3, TipoTarjetaCredito.Platino);
         bancoAcueducto.solicitudes.add(solicitudTarjetaCredito3);
-        Gerente gerenteunico = new Gerente("Alejandro", "Montejano", "Diaz","Morelia", "Michoacan", "MODA736354", "Xangari", 2003, LocalDate.now(),"MODA736354", "Mario", "DrProfesor", 20000 );
+        Gerente gerenteunico = new Gerente("Alejandro", "Montejano", "Diaz","Morelia", "Michoacan", "MODA030204HMNNZLA4", "Xangari", 2003, LocalDate.now(),"MODA030204HMN", "Mario", "DrProfesor", 20000 );
         bancoAcueducto.personas.get(Rol.GERENTE).add(gerenteunico);
-        Ejecutivo ejecutivo1= new Ejecutivo("Atziri", "Mancilla", "Cruz", "Patzcuaro", "Michoacan", "MACA928276", "Patzcuarito", 2000, LocalDate.now(), "MACA928276", "Atziri", "Alan", 50000);
+        Ejecutivo ejecutivo1= new Ejecutivo("Atziri", "Mancilla", "Cruz", "Patzcuaro", "Michoacan", "MACA960605MMNNRT02", "Patzcuarito", 2000, LocalDate.now(), "MACA960605MMN", "Atziri", "Alan", 50000);
         bancoAcueducto.personas.get(Rol.EJECUTIVO).add(ejecutivo1);
-        Ejecutivo ejecutivo2= new Ejecutivo("Juan", "Pérez", "Martínez", "Morelia", "Michoacan", "JUAN223445", "Calle de Juanito", 2001, LocalDate.now(),"JUAN223445", "Juanito", "Perito", 2000 );
+        Ejecutivo ejecutivo2= new Ejecutivo("Juan", "Pérez", "Martínez", "Morelia", "Michoacan", "JUAN030204HMNNZLA4", "Calle de Juanito", 2001, LocalDate.now(),"JUAN030204HMN", "Juanito", "Perito", 2000 );
         bancoAcueducto.personas.get(Rol.EJECUTIVO).add(ejecutivo2);
-        Capturista capturista1 = new Capturista("Jafet", "Santoyo", "Benitez", "Zamora", "Michoacan", "JAFI847465", "Calle desconocida", 2000, LocalDate.now(), "JAFI847465", "Jafet", "Fatima", 30000);
+        Capturista capturista1 = new Capturista("Jafet", "Santoyo", "Benitez", "Zamora", "Michoacan", "JSABJ970130HMNNNF09", "Calle desconocida", 2000, LocalDate.now(), "JSABJ970130HM", "Jafet", "Fatima", 30000);
         bancoAcueducto.personas.get(Rol.CAPTURISTA).add(capturista1);
-        Capturista capturista2 = new Capturista("Paola Itzel", "Negrete", "Cobian", "Morelia", "Michoacan", "COBS873635", "CallecitaBonita", 2000, LocalDate.now(), "COBS873635", "Pao", "Draco", 30000);
+        Capturista capturista2 = new Capturista("Paola Itzel", "Negrete", "Cobian", "Morelia", "Michoacan", "NECP970423MMNGBL03", "CallecitaBonita", 2000, LocalDate.now(), "NECP970423MMN", "Pao", "Draco", 30000);
         bancoAcueducto.personas.get(Rol.CAPTURISTA).add(capturista2);
     }
 
