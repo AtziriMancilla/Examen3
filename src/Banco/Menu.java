@@ -648,9 +648,9 @@ public class Menu {
         while(opcion != 0);
     }
     public static void pruebasMadero(){
-        Inversionista inversionista1=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA970130HMNNNF09","Calle desconocida",2004, LocalDate.now(),"MODA970130HMN","Mario bros","1234");
+        Inversionista inversionista1=new Inversionista("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA030204HMNNZLA4","Calle desconocida",2004, LocalDate.now(),"MODA030204HMN","Mario bros","1234");
         bancoMadero.personas.get(Rol.INVERSIONISTA).add(inversionista1);
-        Cliente cliente1=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA970130HMNNNF09","Calle desconocida",2004, LocalDate.now(),"MODA970130HMN","Elpro","1234");
+        Cliente cliente1=new Cliente("Alejandro","Montejano","Diaz","Morelia","Michoacan","MODA030204HMNNZLA4","Calle desconocida",2004, LocalDate.now(),"MODA030204HMN","Elpro","1234");
         bancoMadero.personas.get(Rol.CLIENTE).add(cliente1);
         Gerente gerente = new Gerente("Jafet","Santoyo","Benites","Morelia","Michoacán","SABJ970130HMNNNF09","Rey Ezequias #88",1997,LocalDate.of(1997,1,30),"SABJ970130HM1","jafiSan","uwu",35240.89);
         bancoMadero.personas.get(Rol.GERENTE).add(gerente);
