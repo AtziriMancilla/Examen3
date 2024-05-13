@@ -47,12 +47,13 @@ public class TarjetaCredito extends Tarjeta {
 
     public void pagarTarjeta() {
         boolean flag = true;
-        double pago;
+        double pago,saldoActual;
         do {
             System.out.println("\nIngrese el depósito de la Tarjeta:");
             System.out.printf("Saldo Pendiente: %.2f\n",saldoPendiente);
             pago = DatosComun.pedirValorDouble();
-            if (pago <= saldoPendiente && pago!=0) {
+            saldoActual = saldoPendiente;
+            if (pago <= saldoActual && pago!=0) {
                 System.out.println("Realizando pago...");
                 saldoPendiente -= pago;
                 System.out.println("Actualizando saldo y crédito disponible...");
@@ -60,7 +61,7 @@ public class TarjetaCredito extends Tarjeta {
                 System.out.println("Pago realizado.\n");
                 flag = false;
             }
-            if (pago > saldoPendiente) {
+            if (pago > saldoActual) {
                 System.out.println("Error. No puedes ingresar un monto mayor a la deuda actual.");
             }
             if (pago == 0) {
@@ -72,12 +73,13 @@ public class TarjetaCredito extends Tarjeta {
 
     public void comprarCredito() {
         boolean flag = true;
-        double importe;
+        double importe, creditoDisponible;
         do {
             System.out.printf("\nSaldo Disponible: %.2f",creditoActual);
             System.out.println("\nIngrese el monto de la compra a crédito:");
             importe = DatosComun.pedirValorDouble();
-            if (importe <= creditoActual && importe != 0) {
+            creditoDisponible = creditoActual;
+            if (importe <= creditoDisponible && importe != 0) {
                 System.out.println("Realizando pago...");
                 creditoActual -= importe;
                 System.out.println("Actualizando saldo y crédito disponible...");
@@ -85,7 +87,7 @@ public class TarjetaCredito extends Tarjeta {
                 System.out.println("Compra a crédito realizada.\n");
                 flag = false;
             }
-            if (importe > creditoActual) {
+            if (importe > creditoDisponible) {
                 System.out.println("No se puede realizar la compra. Límite de crédito alcanzado. Intenta de nuevo.");
             }
             if (importe == 0) {
